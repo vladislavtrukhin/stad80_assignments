@@ -1,0 +1,832 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80: Assignment 4},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80: Assignment 4}
+\author{Vladislav Trukhin}
+\date{Due: February 28th, 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+\hypertarget{question-1.1.a}{%
+\subsection{Question 1.1.a}\label{question-1.1.a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/functions.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos\_col }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+  \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/pos/\%d.png"}\NormalTok{, }\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{500}\NormalTok{, }\DecValTok{1}\NormalTok{)))}
+\NormalTok{neg\_col }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+  \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/neg/\%d.png"}\NormalTok{, }\FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{500}\NormalTok{, }\DecValTok{1}\NormalTok{)))}
+\FunctionTok{writePNG}\NormalTok{(pos\_col, }\AttributeTok{target =} \StringTok{"pos\_col.png"}\NormalTok{)}
+\FunctionTok{writePNG}\NormalTok{(neg\_col, }\AttributeTok{target =} \StringTok{"neg\_col.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{pos_col.png}
+  \includegraphics[width=\linewidth]{neg_col.png}
+  \caption{Colored}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(pos\_col)}
+\NormalTok{neg\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(neg\_col)}
+\FunctionTok{writePNG}\NormalTok{(pos\_gray, }\AttributeTok{target =} \StringTok{"pos\_gray.png"}\NormalTok{)}
+\FunctionTok{writePNG}\NormalTok{(neg\_gray, }\AttributeTok{target =} \StringTok{"neg\_gray.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{pos_gray.png}
+  \includegraphics[width=\linewidth]{neg_gray.png}
+  \caption{Grayscale}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{neg\_crop }\OtherTok{\textless{}{-}} \FunctionTok{crop.r}\NormalTok{(neg\_gray, }\DecValTok{160}\NormalTok{, }\DecValTok{96}\NormalTok{)}
+\FunctionTok{writePNG}\NormalTok{(neg\_crop, }\AttributeTok{target =} \StringTok{"neg\_crop.png"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{neg_crop.png}
+  \caption{Cropped}
+\end{figure}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+
+\NormalTok{pos\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(pos\_gray, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{) }
+\NormalTok{neg\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(neg\_crop, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{stad80a4_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(pos\_grad[[}\DecValTok{1}\NormalTok{]], pos\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{neg\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(neg\_grad[[}\DecValTok{1}\NormalTok{]], neg\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(pos\_fet, }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.07421875 0.20898438 0.17382812 0.13476562 0.22460938 0.18359375
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(neg\_fet, }\DecValTok{6}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1992188 0.2089844 0.1640625 0.1328125 0.1230469 0.1718750
+\end{verbatim}
+
+\hypertarget{question-1.1.b}{%
+\subsection{Question 1.1.b}\label{question-1.1.b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{feature }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pos, neg) \{}
+\NormalTok{  pos\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(pos)}
+\NormalTok{  neg\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(neg)}
+  
+\NormalTok{  neg\_crop }\OtherTok{\textless{}{-}} \FunctionTok{crop.r}\NormalTok{(neg\_gray, }\DecValTok{160}\NormalTok{, }\DecValTok{96}\NormalTok{)}
+  
+\NormalTok{  pos\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(pos\_gray, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{) }
+\NormalTok{  neg\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(neg\_crop, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+  
+\NormalTok{  pos\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(pos\_grad[[}\DecValTok{1}\NormalTok{]], pos\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{  neg\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(neg\_grad[[}\DecValTok{1}\NormalTok{]], neg\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(pos\_fet, neg\_fet))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fet\_data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\NormalTok{pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{500}\NormalTok{) \{}
+\NormalTok{  pos }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+    \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/pos/\%d.png"}\NormalTok{, i))}
+\NormalTok{  neg }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+    \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/neg/\%d.png"}\NormalTok{, i))}
+\NormalTok{  fet }\OtherTok{\textless{}{-}} \FunctionTok{feature}\NormalTok{(pos, neg)}
+\NormalTok{  fet\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(fet\_data, fet[[}\DecValTok{1}\NormalTok{]], fet[[}\DecValTok{2}\NormalTok{]])}
+\NormalTok{  pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(pos\_data, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{question-1.2}{%
+\subsection{Question 1.2}\label{question-1.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{glmnet}\NormalTok{(fet\_data, pos\_data, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }\AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{)}
+\NormalTok{cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(fet\_data, pos\_data, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }\AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(cv)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"CV Error vs Lambda"}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(fit)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{97}\NormalTok{])), }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{97}\NormalTok{])), }\AttributeTok{col=}\StringTok{"red"}\NormalTok{, }\AttributeTok{lwd=}\DecValTok{2}\NormalTok{, }\AttributeTok{lty=}\DecValTok{2}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Reg Path"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{stad80a4_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predicted }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv, fet\_data, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)}
+\NormalTok{misclass }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predicted }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{!=}\NormalTok{ pos\_data)}
+\NormalTok{misclass }\CommentTok{\# Number misclassified}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 61
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{500}\SpecialCharTok{{-}}\NormalTok{misclass)}\SpecialCharTok{/}\DecValTok{500} \CommentTok{\# Training accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.878
+\end{verbatim}
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+\hypertarget{question-2.a}{%
+\subsection{Question 2.a}\label{question-2.a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/Amazon\_SML.RData"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(dat) }\CommentTok{\# Column names}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "name"   "review" "rating"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{table}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating)) }\CommentTok{\# Number of reviews}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1312
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{nrow}\NormalTok{(}\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{unique}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{name))) }\CommentTok{\# Number of unique products}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{count5 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{rating }\SpecialCharTok{==} \DecValTok{5}\NormalTok{))}
+\NormalTok{\}}
+
+\NormalTok{count1 }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(data) \{}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{sum}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{rating }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
+\NormalTok{\}}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{dlply}\NormalTok{(dat, .(name), count5)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{dlply}\NormalTok{(dat, .(name), count1)}
+\NormalTok{x[}\FunctionTok{which.max}\NormalTok{(x)] }\CommentTok{\# Product with most number of 5 ratings and count}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`Vulli Sophie the Giraffe Teether`
+## [1] 526
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{y[}\FunctionTok{which.max}\NormalTok{(y)] }\CommentTok{\# Product with most number of 1 ratings and count}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $`Infant Optics DXR-5 2.4 GHz Digital Video Baby Monitor with Night Vision`
+## [1] 68
+\end{verbatim}
+
+\hypertarget{question-2.b}{%
+\subsection{Question 2.b}\label{question-2.b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Number of reviews of each rating}
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 656
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 656
+\end{verbatim}
+
+The best performance of a constant classifier is 50\%, one which assigns
+a rating 5 for every review.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/tdMat.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: NLP
+\end{verbatim}
+
+\hypertarget{question-2.c}{%
+\subsection{Question 2.c}\label{question-2.c}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/splitData.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{lambda }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\AttributeTok{length.out =} \DecValTok{99}\NormalTok{))}
+\NormalTok{cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(train.x, train.y, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }\AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{, }\AttributeTok{lambda=}\NormalTok{lambda)}
+
+\CommentTok{\# Number of covariates with non{-}zero coefficients in the model selected by lambda.1se}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 356
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{neg\_order }\OtherTok{\textless{}{-}} \FunctionTok{order}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{), }\AttributeTok{decreasing =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <sparse>[ <logic> ] : .M.sub.i.logical() maybe inefficient
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pos\_order }\OtherTok{\textless{}{-}} \FunctionTok{order}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{), }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## <sparse>[ <logic> ] : .M.sub.i.logical() maybe inefficient
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{row.names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{))[neg\_order], }\DecValTok{20}\NormalTok{) }\CommentTok{\# 20 most negative words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "swallow"    "downstair"  "tummi"      "solv"       "dissapoint"
+##  [6] "unlink"     "avoid"      "philip"     "bin"        "wast"      
+## [11] "useless"    "click"      "knock"      "scissor"    "massiv"    
+## [16] "sad"        "speaker"    "cool"       "return"     "ball"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(}\FunctionTok{row.names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{))[pos\_order], }\DecValTok{20}\NormalTok{) }\CommentTok{\# 20 most positive words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "wimper"       "round"        "endur"        "abov"         "scrape"      
+##  [6] "whichev"      "love"         "lol"          "neighborhood" "laundri"     
+## [11] "precious"     "fyi"          "teeth"        "poster"       "grandma"     
+## [16] "channel"      "sum"          "bet"          "describ"      "result"
+\end{verbatim}
+
+\hypertarget{question-2.d}{%
+\subsection{Question 2.d}\label{question-2.d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{most\_neg }\OtherTok{=} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{row.names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{))[neg\_order]) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{sum}\NormalTok{(train.x[,i] }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{) \{}
+\NormalTok{    most\_neg }\OtherTok{=}\NormalTok{ i}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{most\_neg }\CommentTok{\# Most negative word in more than 10 reviews}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "wast"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{most\_pos }\OtherTok{=} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \FunctionTok{row.names}\NormalTok{(}\FunctionTok{coef}\NormalTok{(cv, }\AttributeTok{lamda=}\StringTok{"lambda.1se"}\NormalTok{))[pos\_order]) \{}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{sum}\NormalTok{(train.x[,i] }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\textgreater{}} \DecValTok{10}\NormalTok{) \{}
+\NormalTok{    most\_pos }\OtherTok{=}\NormalTok{ i}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{most\_pos }\CommentTok{\# Most positive word in more than 10 reviews}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "love"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reviews with most negative word in more than 10 reviews and rating 5}
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_neg] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)]] }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reviews with most negative word in more than 10 reviews and rating 1}
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_neg] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)]] }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 80
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reviews with most positive word in more than 10 reviews and rating 5}
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_pos] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)]] }\SpecialCharTok{==} \DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 364
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Reviews with most positive word in more than 10 reviews and rating 1}
+\FunctionTok{sum}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{rating[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_pos] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)]] }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 63
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First review using the most negative word in more than 10 reviews}
+\FunctionTok{print}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{review[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_neg] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)[}\DecValTok{1}\NormalTok{]]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] We have had this monitor for four years now and we are getting ready to purchase another one to use with our second baby that is due soon.  Our home is about 4,000 sq. feet and our daughters room is at the other end of the house from ours.  We have no problems hearing her perfectly, anywhere in the house.  We have never replaced the battery and we take it with us whenever we travel.  Do not waste your time or money on any other product, we tried the Graco, Fisher Price, and the Summer and were disappointed.  Congratulations on your little one and enjoy hearing those precious sounds through this monitor!
+## 182643 Levels:  ...
+\end{verbatim}
+
+We have had this monitor for four years now and we are getting ready to
+purchase another one to use with our second baby that is due soon. Our
+home is about 4,000 sq. feet and our daughters room is at the other end
+of the house from ours. We have no problems hearing her perfectly,
+anywhere in the house. We have never replaced the battery and we take it
+with us whenever we travel. Do not waste your time or money on any other
+product, we tried the Graco, Fisher Price, and the Summer and were
+disappointed. Congratulations on your little one and enjoy hearing those
+precious sounds through this monitor!
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# First review using the most positive word in more than 10 reviews}
+\FunctionTok{print}\NormalTok{(dat}\SpecialCharTok{$}\NormalTok{review[train.tag[}\FunctionTok{which}\NormalTok{(train.x[, most\_pos] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)[}\DecValTok{1}\NormalTok{]]])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] It\\'s easy to hold by little fingers n gives sound when she presses it. She loves it very much and smile every time she sees Sophie.
+## 182643 Levels:  ...
+\end{verbatim}
+
+It\textbackslash's easy to hold by little fingers n gives sound when she
+presses it. She loves it very much and smile every time she sees Sophie.
+
+\hypertarget{question-2.e}{%
+\subsection{Question 2.e}\label{question-2.e}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predict\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(cv, test.x, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{misclass }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predict\_test }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{!=}\NormalTok{ test.y)}
+\NormalTok{misclass }\CommentTok{\# Number misclassified}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\DecValTok{1312}\SpecialCharTok{{-}}\NormalTok{misclass)}\SpecialCharTok{/}\DecValTok{1312} \CommentTok{\# Test accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9931402
+\end{verbatim}
+
+The performance of the logistic model exceeds the constant classifier.
+
+\hypertarget{question-3}{%
+\section{Question 3}\label{question-3}}
+
+\hypertarget{question-3.a}{%
+\subsection{Question 3.a}\label{question-3.a}}
+
+\(\ell(\beta) = \ln\Pi_{i=1}^n P(Y=y_i|X=x_i)\)
+
+\(=\ln\Pi_{i=1}^n \frac{\lambda(x_i)^{y_i}}{y_i!}e^{-\lambda(x_i)}\)
+
+\(=\Sigma_{i=1}^n y_i\ln\lambda(x_i) -\ln y_i! -\lambda(x_i)\)
+
+\(=\Sigma_{i=1}^n y_i\beta^\top x_i -\ln y_i! - e^{\beta^\top x_i}\)
+
+\hypertarget{question-3.b}{%
+\subsection{Question 3.b}\label{question-3.b}}
+
+For Poisson regression
+
+\(\frac{\partial\ell(\beta)}{\partial\beta}=\Sigma_{i=1}^n\frac{\partial}{\partial\beta}y_i\beta^\top x_i-\frac{\partial}{\partial\beta}\ln y_i!-\frac{\partial}{\partial\beta}e^{\beta^\top x_i}\)
+
+\(=\Sigma_{i=1}^ny_ix_i-e^{\beta^\top x_i}x_i\)
+
+At \(\beta=\hat\beta\)
+
+\(\Sigma_{i=1}^ny_ix_i-e^{\hat\beta^\top x_i}x_i=0\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^ne^{\hat\beta^\top x_i}x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^n\lambda(x_i)x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^nE_{\hat\beta}[Y|X=x_i]x_i\)
+
+For logistic regression
+
+\(\frac{\partial\ell(\beta)}{\partial\beta}=-\Sigma_{i=1}^n(1-y_i)\frac{\partial}{\partial\beta}\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\frac{\partial}{\partial\beta}\ln(1+e^{-\beta x_i})\)
+
+\(=-\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i+\Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i\)
+
+At \(\beta=\hat\beta\)
+
+\(-\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i+\Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i=0\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i=\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_i\frac{1}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i-y_i\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_i\frac{1}{1+e^{\beta x_i}}x_i+y_i\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_i(\frac{1}{1+e^{\beta x_i}}x_i+\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i)=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_i\frac{1+e^{\beta x_i}}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\theta(x_i)x_i\)
+
+\(\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^nE_{\hat\beta}[Y|X=x_i]x_i\)
+
+\hypertarget{question-4}{%
+\section{Question 4}\label{question-4}}
+
+\hypertarget{question-4.a}{%
+\subsection{Question 4.a}\label{question-4.a}}
+
+\(\ell(\beta) = \ln\Pi_{i=1}^n P(Y=y_i|X=x_i)\)
+
+\(=\ln\Pi_{i=1}^n(1-\eta(x_i))^{1-y_i}\eta(x_i)^{y_i}\)
+
+\(=\Sigma_{i=1}^n(1-y_i)\ln(1-\eta(x_i))+y_i\ln\eta(x_i)\)
+
+\(=\Sigma_{i=1}^n(1-y_i)\ln(1-\eta(x_i))+y_i\ln\eta(x_i)\)
+
+\(=\Sigma_{i=1}^n(1-y_i)\ln(\frac{1}{1+e^{\beta x_i}})+y_i\ln(\frac{1}{1+e^{-\beta x_i}})\)
+
+\(=-\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})\)
+
+\hypertarget{question-4.b}{%
+\subsection{Question 4.b}\label{question-4.b}}
+
+\(-\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})\)
+
+\(\forall x_i\leq 0, y_i=0\)
+
+\(\Rightarrow -\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i}) = -\Sigma_{i=1, y_i=0}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(\forall x_i\geq 0, y_i=1\)
+
+\(\Rightarrow -\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i}) = -\Sigma_{i=1, y_i=1}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(\Rightarrow -\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})\)
+
+\(=-\Sigma_{i=1, y_i=0}^n\ln(1+e^{-\beta|x_i|})-\Sigma_{i=1, y_i=1}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(=-\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(\Rightarrow argmax_\beta-\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(=argmin_\beta\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})\)
+
+\(=argmin_\beta e^{-\beta}\)
+
+\(=argmax_\beta\beta = \infty = \hat\beta\)
+
+\hypertarget{question-5}{%
+\section{Question 5}\label{question-5}}
+
+\hypertarget{question-5.1}{%
+\subsection{Question 5.1}\label{question-5.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/framingham.csv"}\NormalTok{)}
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(X)}
+\NormalTok{X.all }\OtherTok{\textless{}{-}} \FunctionTok{scale}\NormalTok{(X[,}\SpecialCharTok{{-}}\DecValTok{16}\NormalTok{])}
+\NormalTok{Y.all }\OtherTok{\textless{}{-}}\NormalTok{ X[,}\DecValTok{16}\NormalTok{]}
+
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(TenYearCHD}\SpecialCharTok{\textasciitilde{}}\NormalTok{male}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{education}\SpecialCharTok{+}\NormalTok{currentSmoker}\SpecialCharTok{+}\NormalTok{cigsPerDay}\SpecialCharTok{+}\NormalTok{BPMeds}
+           \SpecialCharTok{+}\NormalTok{prevalentStroke}\SpecialCharTok{+}\NormalTok{prevalentHyp}\SpecialCharTok{+}\NormalTok{diabetes}\SpecialCharTok{+}\NormalTok{totChol}\SpecialCharTok{+}\NormalTok{sysBP}\SpecialCharTok{+}\NormalTok{diaBP}
+           \SpecialCharTok{+}\NormalTok{BMI}\SpecialCharTok{+}\NormalTok{heartRate}\SpecialCharTok{+}\NormalTok{glucose, }\AttributeTok{family=}\NormalTok{binomial, }\AttributeTok{data=}\NormalTok{X)}
+\FunctionTok{summary}\NormalTok{(fit)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## glm(formula = TenYearCHD ~ male + age + education + currentSmoker + 
+##     cigsPerDay + BPMeds + prevalentStroke + prevalentHyp + diabetes + 
+##     totChol + sysBP + diaBP + BMI + heartRate + glucose, family = binomial, 
+##     data = X)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -1.9582  -0.5939  -0.4264  -0.2829   2.8409  
+## 
+## Coefficients:
+##                  Estimate Std. Error z value Pr(>|z|)    
+## (Intercept)     -8.328186   0.715449 -11.641  < 2e-16 ***
+## male             0.555279   0.109033   5.093 3.53e-07 ***
+## age              0.063515   0.006679   9.509  < 2e-16 ***
+## education       -0.047767   0.049395  -0.967  0.33353    
+## currentSmoker    0.071601   0.156752   0.457  0.64783    
+## cigsPerDay       0.017914   0.006238   2.872  0.00408 ** 
+## BPMeds           0.162496   0.234326   0.693  0.48802    
+## prevalentStroke  0.693660   0.489569   1.417  0.15652    
+## prevalentHyp     0.234208   0.138026   1.697  0.08973 .  
+## diabetes         0.039167   0.315506   0.124  0.90120    
+## totChol          0.002332   0.001127   2.070  0.03850 *  
+## sysBP            0.015403   0.003808   4.044 5.24e-05 ***
+## diaBP           -0.004159   0.006438  -0.646  0.51831    
+## BMI              0.006672   0.012758   0.523  0.60097    
+## heartRate       -0.003246   0.004211  -0.771  0.44082    
+## glucose          0.007127   0.002234   3.190  0.00142 ** 
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## (Dispersion parameter for binomial family taken to be 1)
+## 
+##     Null deviance: 3121.2  on 3657  degrees of freedom
+## Residual deviance: 2754.5  on 3642  degrees of freedom
+## AIC: 2786.5
+## 
+## Number of Fisher Scoring iterations: 5
+\end{verbatim}
+
+The variables male, age, cigsPerDay, totChol, sysBP, and glucose are
+statistically significant with p-val \textless{} 0.05.
+
+\hypertarget{question-5.2}{%
+\subsection{Question 5.2}\label{question-5.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+
+\NormalTok{total }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(X)}
+
+\CommentTok{\# 1/5 Test}
+\NormalTok{test\_idx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(total, }\FunctionTok{nrow}\NormalTok{(X)}\SpecialCharTok{/}\DecValTok{5}\NormalTok{)}
+\NormalTok{test }\OtherTok{\textless{}{-}}\NormalTok{ X[test\_idx, ] }
+
+\CommentTok{\# 4/5 Train}
+\NormalTok{train\_idx }\OtherTok{\textless{}{-}}\NormalTok{ total[}\SpecialCharTok{!}\NormalTok{total}\SpecialCharTok{\%in\%}\NormalTok{test\_idx]}
+\NormalTok{train }\OtherTok{\textless{}{-}}\NormalTok{ X[train\_idx, ]}
+
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{glm}\NormalTok{(TenYearCHD}\SpecialCharTok{\textasciitilde{}}\NormalTok{male}\SpecialCharTok{+}\NormalTok{age}\SpecialCharTok{+}\NormalTok{education}\SpecialCharTok{+}\NormalTok{currentSmoker}\SpecialCharTok{+}\NormalTok{cigsPerDay}\SpecialCharTok{+}\NormalTok{BPMeds}
+           \SpecialCharTok{+}\NormalTok{prevalentStroke}\SpecialCharTok{+}\NormalTok{prevalentHyp}\SpecialCharTok{+}\NormalTok{diabetes}\SpecialCharTok{+}\NormalTok{totChol}\SpecialCharTok{+}\NormalTok{sysBP}\SpecialCharTok{+}\NormalTok{diaBP}
+           \SpecialCharTok{+}\NormalTok{BMI}\SpecialCharTok{+}\NormalTok{heartRate}\SpecialCharTok{+}\NormalTok{glucose, }\AttributeTok{family=}\NormalTok{binomial, }\AttributeTok{data=}\NormalTok{train)}
+
+\NormalTok{predicted }\OtherTok{\textless{}{-}} \FunctionTok{predict.glm}\NormalTok{(fit, test)}
+\NormalTok{misclass }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predicted }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{!=}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{TenYearCHD) }
+\NormalTok{misclass }\CommentTok{\# Misclassification error for test}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 97
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{(}\FunctionTok{nrow}\NormalTok{(test)}\SpecialCharTok{{-}}\NormalTok{misclass)}\SpecialCharTok{/}\FunctionTok{nrow}\NormalTok{(test) }\CommentTok{\# Test accuracy}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8673051
+\end{verbatim}
+
+\hypertarget{question-5.3}{%
+\subsection{Question 5.3}\label{question-5.3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(X.all, Y.all, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }\AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{, }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{5}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(cv)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"CV Error vs Lambda"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{stad80a4_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+No, the shape is not a typical U-curve but does go down a little
+initially and up a little afterwards. Regularization is most likely not
+needed in this problem.
+
+\end{document}

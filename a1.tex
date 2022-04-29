@@ -1,0 +1,619 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80: Assignment 1},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80: Assignment 1}
+\author{Vladislav Trukhin}
+\date{Due: Jan 27}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\subsection{Question 1}\label{question-1}}
+
+\hypertarget{section}{%
+\subsubsection{1.1}\label{section}}
+
+B, C
+
+\hypertarget{section-1}{%
+\subsubsection{1.2}\label{section-1}}
+
+A, B, C
+
+\hypertarget{section-2}{%
+\subsubsection{1.3}\label{section-2}}
+
+B
+
+\hypertarget{section-3}{%
+\subsubsection{1.4}\label{section-3}}
+
+A, C
+
+\hypertarget{section-4}{%
+\subsubsection{1.5}\label{section-4}}
+
+A, F
+
+\hypertarget{section-5}{%
+\subsubsection{1.6}\label{section-5}}
+
+A
+
+\hypertarget{question-2}{%
+\subsection{Question 2}\label{question-2}}
+
+\hypertarget{section-6}{%
+\subsubsection{2.1}\label{section-6}}
+
+As
+\(\sqrt{n}(\theta - \hat{\theta}_n) \overset{D}\rightarrow N(0, \frac{1}{I(\theta)})\)
+and
+\(\sqrt{I(\hat{\theta}_n)} \overset{P}\rightarrow \sqrt{I(\theta)}\), by
+Slutsky's Theorem:
+
+\(\sqrt{I(\hat{\theta}_n)}\sqrt{n}(\theta - \hat{\theta}_n) = \sqrt{nI(\hat{\theta}_n)}(\theta - \hat{\theta}_n) \overset{D}\rightarrow \sqrt{I(\theta)} N(0, \frac{1}{I(\theta)}) = N(0, 1)\)
+
+Using this result:
+
+\(lim_{n \rightarrow \infty} P(\theta \in C_n)\)
+
+\(= lim_{n \rightarrow \infty} P(\hat{\theta}_n - \frac{z_{\alpha/2}}{\sqrt{nI(\hat{\theta}_n)}} \leq \theta \leq \hat{\theta}_n + \frac{z_{\alpha/2}}{\sqrt{nI(\hat{\theta}_n)}})\)
+
+\(= lim_{n \rightarrow \infty} P(- z_{\alpha/2} \leq \sqrt{nI(\hat{\theta}_n)}(\theta - \hat{\theta}_n) \leq z_{\alpha/2})\)
+
+\(= P(- z_{\alpha/2} \leq Y \leq z_{\alpha/2})\) where \(Y \sim N(0,1)\)
+
+\(= P(Y \leq z_{\alpha/2}) - P(Y \leq -z_{\alpha/2})\)
+
+\(= 1 - P(Y \leq -z_{\alpha/2}) - P(Y \leq -z_{\alpha/2}))\)
+
+\(= 1 - 2P(Y \leq -z_{\alpha/2})\)
+
+\(= 1 - 2\alpha/2\)
+
+\(= 1 - \alpha\)
+
+\hypertarget{a}{%
+\subsubsection{2.2a}\label{a}}
+
+\(\ell(\theta, X_1, ..., X_n) = ln(\Pi(\theta-1)x_i^{-\theta}1(x_i \geq 1))\)
+
+\(= \Sigma(\ln((\theta-1)x_i^{-\theta}1(x_i \geq 1)))\)
+
+\(= \Sigma(\ln(\theta-1) + \ln(x_i^{-\theta}) + \ln(1(x_i \geq 1)))\)
+
+\(= \Sigma(\ln(\theta-1) - \theta \ln(x_i) + \ln(1(x_i \geq 1)))\)
+
+\(= n \ln(\theta-1) - \theta \Sigma(\ln(x_i)) + \Sigma(\ln(1(x_i \geq 1))))\)
+
+\(\frac{\partial}{\partial \theta} \ell(\theta, X_1, ..., X_n) = \frac{\partial}{\partial \theta} (n \ln(\theta-1) - \theta \Sigma(\ln(x_i)) + \Sigma(\ln(1(x_i \geq 1))))\)
+
+\(= \frac{\partial}{\partial \theta} n \ln(\theta-1) - \frac{\partial}{\partial \theta} \theta \Sigma(\ln(x_i)) + \frac{\partial}{\partial \theta} \Sigma(\ln(1(x_i \geq 1)))\)
+
+\(= \frac{n}{\theta-1} - \Sigma(\ln(x_i)) = 0\)
+
+\(\Longrightarrow \frac{n}{\theta-1} = \Sigma(\ln(x_i))\)
+
+\(\Longrightarrow n = (\theta-1)\Sigma(\ln(x_i))\)
+
+\(\Longrightarrow n = \theta\Sigma(\ln(x_i)) - \Sigma(\ln(x_i))\)
+
+\(\Longrightarrow n + \Sigma(\ln(x_i)) = \theta\Sigma(\ln(x_i))\)
+
+\(\Longrightarrow \frac{n + \Sigma(\ln(x_i))}{\Sigma(\ln(x_i))} = \theta = \hat{\theta}_n\)
+
+\hypertarget{b}{%
+\subsubsection{2.2b}\label{b}}
+
+\(I(\theta) = E(-\frac{\partial^2}{\partial \theta^2} \ln p_{\theta}(X))\)
+
+\(= E(-\frac{\partial^2}{\partial \theta^2} (\ln((\theta-1)X^{-\theta}1(X \geq 1))))\)
+
+\(= E(-\frac{\partial^2}{\partial \theta^2} (\ln(\theta-1) + \ln(X^{-\theta}) + \ln(1(X \geq 1))))\)
+
+\(= E(-\frac{\partial^2}{\partial \theta^2} (\ln(\theta-1) - \theta \ln(X) + \ln(1(X \geq 1))))\)
+
+\(= E(-\frac{\partial^2}{\partial \theta^2} \ln(\theta-1) + \frac{\partial^2}{\partial \theta^2}\theta \ln(X) - \frac{\partial^2}{\partial \theta^2}\ln(1(X \geq 1)))\)
+
+\(= E(-\frac{\partial}{\partial \theta} \frac{1}{\theta-1})\)
+
+\(= E(\frac{1}{(\theta-1)^2})\)
+
+\(=\int_{-\infty}^{\infty} \frac{1}{(\theta-1)^2} (\theta-1)X^{-\theta}1(X \geq 1)\)
+
+\(=\int_{1}^{\infty} \frac{1}{(\theta-1)}X^{-\theta}\)
+
+\(=\frac{1}{(\theta-1)} \int_{1}^{\infty} X^{-\theta}\)
+
+\(=\frac{1}{(\theta-1)} \frac{X^{-\theta+1}}{-\theta+1}\vert_{1}^{\infty}\)
+
+\(= -\frac{1}{(\theta-1)^2} X^{-\theta+1}\vert_{1}^{\infty}\)
+
+\(= -\frac{1}{(\theta-1)^2} * 0 + \frac{1}{(\theta-1)^2} * 1\)
+
+\(= \frac{1}{(\theta-1)^2}\)
+
+\(\Longrightarrow \frac{1}{I(\theta)} = (\theta-1)^2\)
+
+\hypertarget{c}{%
+\subsubsection{2.2c}\label{c}}
+
+\(C_n = [\hat{\theta}_n - \frac{z_{\alpha/2}}{\sqrt{nI(\hat{\theta}_n)}}, \hat{\theta}_n + \frac{z_{\alpha/2}}{\sqrt{nI(\hat{\theta}_n)}}]\)
+
+\(= [\hat{\theta}_n - \frac{z_{\alpha/2}}{\sqrt{\frac{n}{(\hat{\theta}_n-1)^2}}}, \hat{\theta}_n + \frac{z_{\alpha/2}}{\sqrt{\frac{n}{(\hat{\theta}_n-1)^2}}}]\)
+
+\(= [\hat{\theta}_n - \frac{z_{\alpha/2}}{\frac{\sqrt{n}}{(\hat{\theta}_n-1)}}, \hat{\theta}_n + \frac{z_{\alpha/2}}{\frac{\sqrt{n}}{(\hat{\theta}_n-1)}}]\)
+
+\(= [\hat{\theta}_n - z_{\alpha/2}\frac{(\hat{\theta}_n-1)}{\sqrt{n}}, \hat{\theta}_n + z_{\alpha/2}\frac{(\hat{\theta}_n-1)}{\sqrt{n}}]\)
+
+\(= [\hat{\theta}_n - 1.96\frac{(\hat{\theta}_n-1)}{\sqrt{n}}, \hat{\theta}_n + 1.96\frac{(\hat{\theta}_n-1)}{\sqrt{n}}]\)
+
+\hypertarget{d}{%
+\subsubsection{2.2d}\label{d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{invcdf }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(y, theta) \{}
+  \FunctionTok{return}\NormalTok{ ((}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{y)}\SpecialCharTok{\^{}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{theta}\SpecialCharTok{+}\DecValTok{1}\NormalTok{)))}
+\NormalTok{\}}
+
+\NormalTok{N}\OtherTok{=}\DecValTok{10000}
+\NormalTok{n}\OtherTok{=}\DecValTok{100}
+\NormalTok{theta}\OtherTok{=}\DecValTok{2}
+\NormalTok{count}\OtherTok{=}\DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{  Y }\OtherTok{\textless{}{-}} \FunctionTok{runif}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  X }\OtherTok{\textless{}{-}} \FunctionTok{invcdf}\NormalTok{(Y, }\DecValTok{2}\NormalTok{)}
+\NormalTok{  theta\_hat }\OtherTok{\textless{}{-}}\NormalTok{ (n }\SpecialCharTok{+} \FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(X))) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(}\FunctionTok{log}\NormalTok{(X))}
+\NormalTok{  c\_l }\OtherTok{\textless{}{-}}\NormalTok{ theta\_hat }\SpecialCharTok{{-}} \FloatTok{1.96}\SpecialCharTok{*}\NormalTok{(theta\_hat}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+\NormalTok{  c\_u }\OtherTok{\textless{}{-}}\NormalTok{ theta\_hat }\SpecialCharTok{+} \FloatTok{1.96}\SpecialCharTok{*}\NormalTok{(theta\_hat}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\FunctionTok{sqrt}\NormalTok{(n)}
+  \ControlFlowTok{if}\NormalTok{ (c\_l }\SpecialCharTok{\textless{}=}\NormalTok{ theta }\SpecialCharTok{\&}\NormalTok{ theta }\SpecialCharTok{\textless{}=}\NormalTok{ c\_u) \{}
+\NormalTok{    count }\OtherTok{=}\NormalTok{ count }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{  \}}
+\NormalTok{\}}
+\NormalTok{count}\SpecialCharTok{/}\NormalTok{N}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9537
+\end{verbatim}
+
+Therefore the 95\% CI is effective.
+
+\hypertarget{question-3}{%
+\subsection{Question 3}\label{question-3}}
+
+\hypertarget{a-1}{%
+\subsubsection{3a}\label{a-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{generate }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(n)\{}
+\NormalTok{  N }\OtherTok{\textless{}{-}} \DecValTok{10000}
+\NormalTok{  Xbar\_n }\OtherTok{\textless{}{-}} \FunctionTok{vector}\NormalTok{(}\AttributeTok{mode =} \StringTok{"list"}\NormalTok{, }\AttributeTok{length =}\NormalTok{ N)}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{    X }\OtherTok{=} \FunctionTok{runif}\NormalTok{(n, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n) \{}
+      \ControlFlowTok{if}\NormalTok{ (X[i] }\SpecialCharTok{\textless{}} \FloatTok{0.5}\NormalTok{) \{X[i] }\OtherTok{=} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{\}}
+      \ControlFlowTok{else}\NormalTok{ \{X[i] }\OtherTok{=} \DecValTok{1}\NormalTok{\}}
+\NormalTok{    \}}
+\NormalTok{  Xbar\_n[j] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(X)}
+\NormalTok{  \}}
+\FunctionTok{return}\NormalTok{(Xbar\_n)}
+\NormalTok{\}}
+
+\NormalTok{Xbar\_10 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{generate}\NormalTok{(}\DecValTok{10}\NormalTok{))}
+\NormalTok{Xbar\_100 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{generate}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\NormalTok{Xbar\_1000 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{generate}\NormalTok{(}\DecValTok{1000}\NormalTok{))}
+\NormalTok{Xbar\_10000 }\OtherTok{\textless{}{-}} \FunctionTok{as.numeric}\NormalTok{(}\FunctionTok{generate}\NormalTok{(}\DecValTok{10000}\NormalTok{))}
+
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{log10}\NormalTok{(x), }\AttributeTok{from=}\DecValTok{1}\NormalTok{, }\AttributeTok{to=}\DecValTok{10000}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{), }\AttributeTok{log=}\StringTok{"x"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"n"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"log10(n)"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10}\NormalTok{, Xbar\_10[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{100}\NormalTok{, Xbar\_100[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1000}\NormalTok{, Xbar\_1000[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10000}\NormalTok{, Xbar\_10000[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+The plot shows as \(n \rightarrow \infty\),
+\((\bar{X}_n^{(1)} - \mu) \rightarrow 0\) or
+\(\bar{X}_n^{(1)} \rightarrow \mu\).
+
+\hypertarget{b-1}{%
+\subsubsection{3b}\label{b-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{lln }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, e) \{}
+\NormalTok{  N }\OtherTok{\textless{}{-}} \DecValTok{10000}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+    \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(X[i] }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{\textgreater{}}\NormalTok{ e) \{X[i] }\OtherTok{=} \DecValTok{1}\NormalTok{\}}
+    \ControlFlowTok{else}\NormalTok{ \{X[i] }\OtherTok{=} \DecValTok{0}\NormalTok{\}}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{mean}\NormalTok{(X))}
+\NormalTok{\}}
+
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{log10}\NormalTok{(x), }\AttributeTok{from=}\DecValTok{1}\NormalTok{, }\AttributeTok{to=}\DecValTok{10000}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{), }\AttributeTok{log=}\StringTok{"x"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"n"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"log10(n)"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10, }\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_100, }\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_1000, }\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10000, }\FloatTok{0.5}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}
+
+\FunctionTok{points}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10, }\FloatTok{0.1}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_100, }\FloatTok{0.1}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_1000, }\FloatTok{0.1}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10000, }\FloatTok{0.1}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{)}
+
+\FunctionTok{points}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10, }\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"yellow"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_100, }\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"yellow"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_1000, }\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"yellow"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\FunctionTok{lln}\NormalTok{(Xbar\_10000, }\FloatTok{0.05}\NormalTok{) }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{, }\AttributeTok{col =} \StringTok{"yellow"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+The plot shows that
+\(\underset{n \rightarrow \infty}{lim}P(|\bar{X}_n^{(i)} - \mu| > \epsilon) = 0\)
+\(\forall \epsilon\) \(\forall i\), which illustrates the Law of Large
+Numbers, or \(\bar{X}_n^{(i)} \overset{P}{\rightarrow} \mu\).
+
+\hypertarget{c-1}{%
+\subsubsection{3c}\label{c-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram n=10"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"root(n)*(Xbar{-}mu)/sigma"}\NormalTok{)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"QQ Plot n=10"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_1000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram n=1000"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"root(n)*(Xbar{-}mu)/sigma"}\NormalTok{)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_1000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"QQ Plot n=1000"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"Histogram n=10000"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"root(n)*(Xbar{-}mu)/sigma"}\NormalTok{)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\AttributeTok{main =} \StringTok{"QQ Plot n=10000"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-4-3.pdf}
+
+As \(n \rightarrow \infty\), the histogram of
+\(\sqrt{n}(\bar{X}_n^{(i)} - \mu)/\sigma\) begins to more closely
+resemble a random sample generated by a standard Normal distribution.
+The QQ plot begins to more closely resemble the \(x = y\) line,
+suggesting the data follows a standard Normal distribution. This
+illustrates the Central Limit Theorem, where
+\(\sqrt{n}(\bar{X}_n^{(i)} - \mu)/\sigma \overset{D}{\rightarrow} N(0, 1)\).
+
+\hypertarget{d-1}{%
+\subsubsection{3.d}\label{d-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{conv\_prob }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(X, e) \{}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10000}\NormalTok{) \{}
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{abs}\NormalTok{(X[i] }\SpecialCharTok{{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)) }\SpecialCharTok{\textgreater{}}\NormalTok{ e) \{X[i] }\OtherTok{=} \DecValTok{1}\NormalTok{\}}
+    \ControlFlowTok{else}\NormalTok{ \{X[i] }\OtherTok{=} \DecValTok{0}\NormalTok{\}}
+\NormalTok{  \}}
+\FunctionTok{return}\NormalTok{(}\FunctionTok{mean}\NormalTok{(X))}
+\NormalTok{\}}
+
+\FunctionTok{curve}\NormalTok{(}\FunctionTok{log10}\NormalTok{(x), }\AttributeTok{from=}\DecValTok{1}\NormalTok{, }\AttributeTok{to=}\DecValTok{10000}\NormalTok{, }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{,}\DecValTok{4}\NormalTok{), }\AttributeTok{log=}\StringTok{"x"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"n"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"log10(n)"}\NormalTok{)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{h =} \DecValTok{0}\NormalTok{, }\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10}\NormalTok{, }\FunctionTok{conv\_prob}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\FloatTok{0.001}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{100}\NormalTok{, }\FunctionTok{conv\_prob}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{100}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_100 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\FloatTok{0.001}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{1000}\NormalTok{, }\FunctionTok{conv\_prob}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_1000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\FloatTok{0.001}\NormalTok{))}
+\FunctionTok{points}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\FunctionTok{conv\_prob}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{(}\DecValTok{10000}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(Xbar\_10000 }\SpecialCharTok{{-}} \DecValTok{0}\NormalTok{)}\SpecialCharTok{/}\DecValTok{1}\NormalTok{, }\FloatTok{0.001}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+The plot shows that
+\(\underset{n \rightarrow \infty}{lim}P(|\sqrt{n}(\bar{X}_n^{(i)} - \mu)/\sigma - Y_i| > \epsilon) = 1\)
+for \(\epsilon = 0.001\) \(\forall i\), which implies that
+\(\sqrt{n}(\bar{X}_n^{(i)} - \mu)/\sigma\) does not converge in
+probability to \(Y_i\).
+
+\hypertarget{question-4}{%
+\subsection{Question 4}\label{question-4}}
+
+\hypertarget{a-2}{%
+\subsubsection{4a}\label{a-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/datasets\_all/ratings.dat"}\NormalTok{, }
+                \AttributeTok{sep=} \StringTok{","}\NormalTok{)}
+\FunctionTok{names}\NormalTok{(X) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"UserID"}\NormalTok{, }\StringTok{"ProfileID"}\NormalTok{, }\StringTok{"Rating"}\NormalTok{)}
+
+\CommentTok{\#Function to calculate weighted rank}
+\NormalTok{weighted.rank }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(ProfileID) \{}
+\NormalTok{  R }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(X[}\FunctionTok{which}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{ProfileID }\SpecialCharTok{==}\NormalTok{ ProfileID), }\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{])}
+\NormalTok{  v }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(X[}\FunctionTok{which}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{ProfileID }\SpecialCharTok{==}\NormalTok{ ProfileID), ])}
+\NormalTok{  m }\OtherTok{\textless{}{-}} \DecValTok{4182}
+\NormalTok{  C }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(X[, }\DecValTok{3}\NormalTok{])}
+  \FunctionTok{return}\NormalTok{ ((v}\SpecialCharTok{/}\NormalTok{(v}\SpecialCharTok{+}\NormalTok{m))}\SpecialCharTok{*}\NormalTok{R }\SpecialCharTok{+}\NormalTok{ (m}\SpecialCharTok{/}\NormalTok{(v}\SpecialCharTok{+}\NormalTok{m))}\SpecialCharTok{*}\NormalTok{C)}
+\NormalTok{\}}
+
+\CommentTok{\#Histogram of weighted ranks of all ProfileIDs associated with UserID 100}
+\NormalTok{results }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ X[}\FunctionTok{which}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{UserID }\SpecialCharTok{==} \DecValTok{100}\NormalTok{), }\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]) \{}
+\NormalTok{  results }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(results, }\FunctionTok{weighted.rank}\NormalTok{(i))}
+\NormalTok{\}}
+\FunctionTok{hist}\NormalTok{(results, }\AttributeTok{main =} \StringTok{"Weighted Ratings of all ProfileIDs associated with UserID 100"}\NormalTok{, }\AttributeTok{xlab=}\StringTok{"Rating"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+\hypertarget{b-2}{%
+\subsubsection{4b}\label{b-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{load}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/datasets\_all/users.Rdata"}\NormalTok{)}
+
+\CommentTok{\#Female CA Users}
+\NormalTok{ca }\OtherTok{\textless{}{-}} \FunctionTok{grep}\NormalTok{(}\StringTok{"\^{}(?!.*CAR).*CA"}\NormalTok{, User}\SpecialCharTok{$}\NormalTok{State, }\AttributeTok{perl=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{ca\_f }\OtherTok{\textless{}{-}}\NormalTok{ ca[}\FunctionTok{which}\NormalTok{(User}\SpecialCharTok{$}\NormalTok{Gender[ca] }\SpecialCharTok{==} \StringTok{"F"}\NormalTok{)]}
+
+\CommentTok{\#Male NY Users}
+\NormalTok{ny }\OtherTok{\textless{}{-}} \FunctionTok{grep}\NormalTok{(}\StringTok{".*ny|.*york"}\NormalTok{, User}\SpecialCharTok{$}\NormalTok{State, }\AttributeTok{perl=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{ignore.case =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{ny\_m }\OtherTok{\textless{}{-}}\NormalTok{ ny[}\FunctionTok{which}\NormalTok{(User}\SpecialCharTok{$}\NormalTok{Gender[ny] }\SpecialCharTok{==} \StringTok{"M"}\NormalTok{)]}
+
+\CommentTok{\#Box{-}plot of ratings given out by female CA users}
+\NormalTok{ca\_f\_ratings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ ca\_f) \{}
+\NormalTok{  ca\_f\_ratings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(ca\_f\_ratings, X[}\FunctionTok{which}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{UserID }\SpecialCharTok{==}\NormalTok{ i), }\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{])}
+\NormalTok{\}}
+\FunctionTok{boxplot}\NormalTok{(ca\_f\_ratings, }\AttributeTok{main=}\StringTok{"Ratings from F CA Users"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Rating"}\NormalTok{)}
+
+\CommentTok{\#Box{-}plot of ratings given out by male NY users}
+\NormalTok{ny\_m\_ratings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{() }
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in}\NormalTok{ ny\_m) \{}
+\NormalTok{  ny\_m\_ratings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(ny\_m\_ratings, X[}\FunctionTok{which}\NormalTok{(X}\SpecialCharTok{$}\NormalTok{UserID }\SpecialCharTok{==}\NormalTok{ i), }\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{])}
+\NormalTok{\}}
+\FunctionTok{boxplot}\NormalTok{(ny\_m\_ratings, }\AttributeTok{main=}\StringTok{"Ratings from M NY Users"}\NormalTok{, }\AttributeTok{ylab=}\StringTok{"Rating"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment1_vladislav_trukhin_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+\hypertarget{c-2}{%
+\subsubsection{4c}\label{c-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(biganalytics)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: bigmemory
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: foreach
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: biglm
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: DBI
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Given}
+\NormalTok{N}\OtherTok{=}\DecValTok{3000000}       
+\NormalTok{Nu}\OtherTok{=}\DecValTok{135359}
+\NormalTok{Np}\OtherTok{=}\DecValTok{220970}
+\NormalTok{user.rat}\OtherTok{=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,Nu)}
+\NormalTok{user.num}\OtherTok{=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,Nu)}
+\NormalTok{profile.rat}\OtherTok{=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,Np)}
+\NormalTok{profile.num}\OtherTok{=}\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{,Np)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N)\{}
+\NormalTok{    user.rat[X[i,}\StringTok{\textquotesingle{}UserID\textquotesingle{}}\NormalTok{]]}\OtherTok{=}\NormalTok{user.rat[X[i,}\StringTok{\textquotesingle{}UserID\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{+}\NormalTok{X[i,}\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{]}
+\NormalTok{    user.num[X[i,}\StringTok{\textquotesingle{}UserID\textquotesingle{}}\NormalTok{]]}\OtherTok{=}\NormalTok{user.num[X[i,}\StringTok{\textquotesingle{}UserID\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{    profile.rat[X[i,}\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]]}\OtherTok{=}\NormalTok{profile.rat[X[i,}\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{+}\NormalTok{X[i,}\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{]}
+\NormalTok{    profile.num[X[i,}\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]]}\OtherTok{=}\NormalTok{profile.num[X[i,}\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]]}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{\}}
+\NormalTok{user.ave}\OtherTok{=}\NormalTok{user.rat}\SpecialCharTok{/}\NormalTok{user.num}
+\NormalTok{profile.ave}\OtherTok{=}\NormalTok{profile.rat}\SpecialCharTok{/}\NormalTok{profile.num}
+\NormalTok{X1}\OtherTok{=}\FunctionTok{big.matrix}\NormalTok{(}\AttributeTok{nrow=}\FunctionTok{nrow}\NormalTok{(X), }\AttributeTok{ncol=}\FunctionTok{ncol}\NormalTok{(X), }\AttributeTok{type=} \StringTok{"double"}\NormalTok{, }
+              \AttributeTok{dimnames=}\FunctionTok{list}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}UsrAveRat\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}PrfAveRat\textquotesingle{}}\NormalTok{,}\StringTok{\textquotesingle{}Rat\textquotesingle{}}\NormalTok{)))}
+\NormalTok{X1[,}\StringTok{\textquotesingle{}Rat\textquotesingle{}}\NormalTok{]}\OtherTok{=}\NormalTok{X[,}\StringTok{\textquotesingle{}Rating\textquotesingle{}}\NormalTok{]}
+\NormalTok{X1[,}\StringTok{\textquotesingle{}UsrAveRat\textquotesingle{}}\NormalTok{]}\OtherTok{=}\NormalTok{user.ave[X[,}\StringTok{\textquotesingle{}UserID\textquotesingle{}}\NormalTok{]]}
+\NormalTok{X1[,}\StringTok{\textquotesingle{}PrfAveRat\textquotesingle{}}\NormalTok{]}\OtherTok{=}\NormalTok{profile.ave[X[,}\StringTok{\textquotesingle{}ProfileID\textquotesingle{}}\NormalTok{]]}
+
+\CommentTok{\#Normal Method}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Rat }\SpecialCharTok{\textasciitilde{}}\NormalTok{ UsrAveRat }\SpecialCharTok{+}\NormalTok{ PrfAveRat, }\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(X1)))}
+
+\CommentTok{\#Coefficients and R2}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.1270532  0.4459886  0.9121571
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6294795
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Sub{-}sampling Method (Sample 100 times of 1000 sample size)}
+\NormalTok{coeff }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+\NormalTok{  n1 }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(}\FunctionTok{trunc}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, N}\DecValTok{{-}1000}\NormalTok{)))}
+\NormalTok{  n2 }\OtherTok{\textless{}{-}}\NormalTok{ n1 }\SpecialCharTok{+} \DecValTok{1000}
+\NormalTok{  fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Rat }\SpecialCharTok{\textasciitilde{}}\NormalTok{ UsrAveRat }\SpecialCharTok{+}\NormalTok{ PrfAveRat, }\FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{as.matrix}\NormalTok{(X1[n1}\SpecialCharTok{:}\NormalTok{n2,])))}
+\NormalTok{  coeff }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(coeff, }\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{3}\NormalTok{])}
+\NormalTok{\}}
+
+\CommentTok{\#Coefficients and R2}
+\FunctionTok{colMeans}\NormalTok{(coeff)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.1556274  0.4454397  0.9170613
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{preds }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(}\DecValTok{1}\NormalTok{, X1[, }\DecValTok{1}\SpecialCharTok{:}\DecValTok{2}\NormalTok{]))}\SpecialCharTok{\%*\%}\FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{colMeans}\NormalTok{(coeff))}
+\NormalTok{actual }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(X1[,}\DecValTok{3}\NormalTok{])}
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((preds }\SpecialCharTok{{-}}\NormalTok{ actual) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((actual }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(actual)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.629465
+\end{verbatim}
+
+The sub-sampling method for big data linear regression obtained similar
+coefficients values as the normal method while being less
+computationally expensive.
+
+\end{document}

@@ -1,0 +1,298 @@
+---
+title: 'STAD80: Assignment 2'
+author: "Vladislav Trukhin"
+date: 'Due: Feb 3'
+output:
+  pdf_document:
+    keep_tex: true
+    toc: yes
+    toc_depth: 2
+---
+## Question 1
+### 1a
+```{r}
+data <- read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/housingprice.csv")
+
+mean_prices <- tapply(data$price, data$zipcode, mean)
+sorted_mean_prices <- sort(mean_prices, decreasing = TRUE)
+labels(sorted_mean_prices) # Zipcode order by avg housing price
+top_mean_prices <- sorted_mean_prices[0:3]
+labels(top_mean_prices) # Top 3 zipcodes with most expensive avg housing price
+
+par(mfrow=c(1,3))
+boxplot(data[which(data$zipcode == labels(top_mean_prices[1])),]$price)
+title(labels(top_mean_prices[1]))
+boxplot(data[which(data$zipcode == labels(top_mean_prices[2])),]$price)
+title(labels(top_mean_prices[2]))
+boxplot(data[which(data$zipcode == labels(top_mean_prices[3])),]$price)
+title(labels(top_mean_prices[3]))
+```
+
+### 1b
+```{r}
+plot(data$sqft_living, data$price)
+```
+
+### 1c
+```{r}
+train <- read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/train.data.csv")
+test <- read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/test.data.csv")
+
+fit <- lm(price ~ bedrooms + bathrooms + sqft_living + sqft_lot, train)
+summary(fit)$r.squared # Training R2
+cor(predict(fit, test), test$price)^2 # Test R2
+```
+
+### 1d
+```{r}
+fit <- lm(price ~ zipcode + 
+            bedrooms + 
+            bathrooms + 
+            sqft_living + 
+            sqft_lot, train)
+summary(fit)$r.squared # Training R2
+cor(predict(fit, test), test$price)^2 # Test R2
+```
+
+### 1e
+```{r}
+fancy = read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/fancyhouse.csv")
+predict(fit, fancy) # Predicted price
+```
+
+The predicted price is not reasonable as the actual price of the home is $100+ 
+million, which makes the predicted 10 times off of the actual price.
+
+### 1f
+$R^2 = 1-\frac{RSS}{TSS}$
+
+As the value of TSS is the same for both models, only need to observe their respective RSS.
+
+$RSS_{d+1} - RSS_d = ||\textbf{Y} - \textbf{X}_{d+1}\hat{\beta_{d+1}}||^2_2 - ||\textbf{Y} - \textbf{X}_d\hat{\beta}_d||^2_2$
+
+$= \sum^n_{i=1}(y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 - \sum^n_{i=1}(y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2$
+
+$= \sum^n_{i=1}(y_i-\hat{y_i}_{d+1})^2 - \sum^n_{i=1}(y_i-\hat{y_i}_d)^2$
+
+The addition of one covariate term brings one more degree of freedom when 
+finding the minimum argument $\hat{\beta}_{d+1}$ for $||\textbf{Y} - \textbf{X}_{d+1}\beta_{d+1}||^2_2$. 
+The minimum argument can be computed in closed form without issues as it is assumed
+$n > d+1$, or number of features + 1 do not exceed number of samples within the 
+training data, $\textbf{X}_{d+1}$. This means that the estimated $\textbf{Y}$, $\hat{\textbf{Y}}_{d+1} = \textbf{X}_{d+1}\beta_{d+1}$, will be closer to the true value of $\textbf{Y}$ than if were using the minimum argument obtained from the model without the additional covariate term, $\hat{\textbf{Y}}_{d} = \textbf{X}_{d}\beta_{d}$.
+
+$\Rightarrow (y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 \leq (y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2$
+
+$\Rightarrow \sum^n_{i=1}(y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 - \sum^n_{i=1}(y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2 \leq 0$
+
+$\Rightarrow ||\textbf{Y} - \textbf{X}_{d+1}\hat{\beta_{d+1}}||^2_2 - ||\textbf{Y} - \textbf{X}_d\hat{\beta}_d||^2_2 \leq 0$
+
+$\Rightarrow RSS_{d+1} - RSS_d \leq 0$
+
+$\Rightarrow RSS_{d+1} \leq RSS_d$
+
+$\Rightarrow \frac{RSS_{d+1}}{TSS} \leq \frac{RSS_d}{TSS}$
+
+$\Rightarrow 1-\frac{RSS_{d+1}}{TSS} \geq 1-\frac{RSS_d}{TSS}$
+
+$\Rightarrow R^2_{d+1} \geq R^2_d$
+
+Therefore, if $n > d+1$, adding an additional covariate never lowers $R^2$ over 
+training data.
+
+## Question 2
+### 2a 
+```{r}
+fit <- lm(price ~ zipcode + 
+            bedrooms + 
+            bathrooms + 
+            bedrooms * bathrooms + 
+            sqft_living + 
+            sqft_lot, train)
+summary(fit)$r.squared # Training R2
+cor(predict(fit, test), test$price)^2 # Test R2
+```
+
+### 2b
+```{r}
+fit <- lm(price ~ zipcode + 
+            bedrooms + 
+            bathrooms + 
+            bedrooms * bathrooms + 
+            sqft_living + 
+            sqft_lot + 
+            sqft_living * bedrooms, train)
+summary(fit)$r.squared # Training R2
+cor(predict(fit, test), test$price)^2 # Test R2
+```
+
+Adding a new covariate that multiplies sqft_living and bedrooms. It models both 
+the number of bedrooms and the size of each, which may influence the price.
+
+### 2c
+```{r}
+fit <- lm(price ~ zipcode + 
+            poly(bedrooms, 2) + 
+            poly(bathrooms, 3) + 
+            sqft_living + 
+            sqft_lot, train)
+summary(fit)$r.squared # Training R2
+cor(predict(fit, test), test$price)^2 # Test R2
+```
+
+## Question 3
+### 3.a
+```{r}
+wine_train <- 
+  read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/wine.csv")
+wine_test <- 
+  read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/winetest.csv")
+par(mfrow=c(2,2))
+plot(wine_train$AGST, wine_train$Price)
+plot(wine_train$WinterRain, wine_train$Price)
+plot(wine_train$HarvestRain, wine_train$Price)
+plot(wine_train$Age, wine_train$Price)
+
+cor(wine_train$AGST, wine_train$Price)
+cor(wine_train$WinterRain, wine_train$Price)
+cor(wine_train$HarvestRain, wine_train$Price)
+cor(wine_train$Age, wine_train$Price)
+```
+
+According to the graph, AGST and Price seem to be the most correlated. The 
+variance is smaller and has a strong positive correlation. The Pearson's 
+correlation number suggests the same, with the magnitude of the value for AGST 
+and Price higher than all three.
+
+### 3.b
+```{r}
+fit <- lm(Price ~ AGST, wine_train)
+summary(fit)$coeff # Coefficients
+summary(fit)$r.squared # Training R2
+rss <- sum((predict(fit,wine_test)-wine_test$Price)^2)
+tss <- sum((wine_test$Price-mean(wine_test$Price))^2)
+rsq <- 1 - rss/tss
+rsq # Test R2
+```
+
+### 3.c
+```{r}
+fit <- lm(Price ~ AGST + HarvestRain, wine_train)
+summary(fit)$r.squared # Training R2
+rss <- sum((predict(fit,wine_test)-wine_test$Price)^2)
+tss <- sum((wine_test$Price-mean(wine_test$Price))^2)
+rsq <- 1 - rss/tss
+rsq # Test R2
+
+fit <- lm(Price ~ AGST + HarvestRain + Age, wine_train)
+summary(fit)$r.squared # Training R2
+rss <- sum((predict(fit,wine_test)-wine_test$Price)^2)
+tss <- sum((wine_test$Price-mean(wine_test$Price))^2)
+rsq <- 1 - rss/tss
+rsq # Test R2
+
+fit <- lm(Price ~ AGST + HarvestRain + Age + WinterRain, wine_train)
+summary(fit)$r.squared # Training R2
+summary(fit)$coeff # Coefficients 
+rss <- sum((predict(fit,wine_test)-wine_test$Price)^2)
+tss <- sum((wine_test$Price-mean(wine_test$Price))^2)
+rsq <- 1 - rss/tss
+rsq # Test R2
+
+fit <- lm(Price ~ AGST + HarvestRain + Age + WinterRain + FrancePop, wine_train)
+summary(fit)$r.squared # Training R2
+rss <- sum((predict(fit,wine_test)-wine_test$Price)^2)
+tss <- sum((wine_test$Price-mean(wine_test$Price))^2)
+rsq <- 1 - rss/tss
+rsq # Test R2
+```
+
+The linear model depending on AGST, HarvestRain, Age, and WinterRain performed 
+the best, as it had a high $R^2$ value for the training data and the highest 
+$R^2$ value for the test data. That particular model agrees with 
+Prof. Ashenfelter’s findings, since HarvestRain has a negative coefficient
+and WinterRain has a positive one.
+
+## Question 4
+### 4.a
+```{r}
+baseball = read.csv("/Users/vladislavtrukhin/Downloads/_data_hw2/baseball.csv")
+par(mfrow=c(1, 2))
+boxplot(baseball$OBP)
+hist(baseball$OBP)
+mean(baseball$OBP)
+median(baseball$OBP)
+
+boxplot(baseball$SLG)
+hist(baseball$SLG)
+mean(baseball$SLG) 
+median(baseball$SLG) 
+
+boxplot(baseball$BA)
+hist(baseball$BA)
+mean(baseball$BA)
+median(baseball$BA)
+```
+
+### 4.b
+```{r}
+par(mfrow=c(1,2))
+fit <- lm(baseball$RS ~ baseball$BA)
+summary(fit)$coeff # Coefficients
+summary(fit)$r.squared # Training R2
+plot(baseball$BA, baseball$RS)
+abline(fit)
+qqnorm(rstandard(fit))
+
+fit <- lm(baseball$RS ~ baseball$OBP)
+summary(fit)$coeff # Coefficients
+summary(fit)$r.squared # Training R2
+plot(baseball$OBP, baseball$RS)
+abline(fit)
+qqnorm(rstandard(fit))
+
+fit <- lm(baseball$RS ~ baseball$SLG)
+summary(fit)$coeff # Coefficients
+summary(fit)$r.squared # Training R2
+plot(baseball$SLG, baseball$RS)
+abline(fit)
+qqnorm(rstandard(fit))
+```
+
+The analysis is not consistent with the intuition, as the $R^2$ is the 
+lowest relative to RS's and BA's $R^2$.
+
+### 4.c
+```{r}
+fit <- lm(baseball$RS ~ baseball$BA + baseball$SLG + baseball$OBP)
+summary(fit)$coeff # Coefficients
+summary(fit)$r.squared # Training R2
+qqnorm(rstandard(fit))
+
+fit <- lm(baseball$RS ~ baseball$OBP + baseball$SLG)
+summary(fit)$r.squared # Training R2
+```
+
+The results are consistent of that in 4.b. The coefficient of BA has a low 
+significance level, consistent with the low $R^2$ value obtained from 4.b.
+The two models have near equivalent $R^2$ values, which makes the later model 
+a better model due to being more simple.
+
+### 4.d
+```{r}
+baseball$RD = baseball$RS - baseball$RA
+baseball_pre_2002 = baseball[which(baseball$Year < 2002), ]
+
+fit1 <- lm(W ~ RD, baseball_pre_2002)
+fit2 <- lm(RS ~ OBP + SLG, baseball_pre_2002)
+fit3 <- lm(RA ~ OOBP + OSLG, baseball_pre_2002)
+
+oak_pred <- data.frame("OBP" = .349, 
+                       "SLG" = .430, 
+                       "OOBP" = .307, 
+                       "OSLG" = .373)
+oak_pred$RS <- predict(fit2, oak_pred)
+oak_pred$RA <- predict(fit3, oak_pred)
+oak_pred$RD <- oak_pred$RS - oak_pred$RA
+predict(fit1, oak_pred) #Predicted Wins
+baseball[which(baseball$Year == 2002 & baseball$Team == 'OAK'), ]$W #Actual Wins
+```

@@ -1,0 +1,1425 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80: Assignment 6},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80: Assignment 6}
+\author{Vladislav Trukhin}
+\date{Due: March 30th, 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# initialize data directory}
+\NormalTok{data\_dir }\OtherTok{\textless{}{-}} \StringTok{"mnist{-}data"}
+\FunctionTok{dir.create}\NormalTok{(data\_dir, }\AttributeTok{recursive =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{showWarnings =} \ConstantTok{FALSE}\NormalTok{)}
+
+\CommentTok{\# download the MNIST data sets, and read them into R}
+\NormalTok{sources }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}
+  
+  \AttributeTok{train =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{x =} \StringTok{"https://storage.googleapis.com/cvdf{-}datasets/mnist/train{-}images{-}idx3{-}ubyte.gz"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"https://storage.googleapis.com/cvdf{-}datasets/mnist/train{-}labels{-}idx1{-}ubyte.gz"}
+\NormalTok{  ),}
+  
+  \AttributeTok{test =} \FunctionTok{list}\NormalTok{(}
+    \AttributeTok{x =} \StringTok{"https://storage.googleapis.com/cvdf{-}datasets/mnist/t10k{-}images{-}idx3{-}ubyte.gz"}\NormalTok{,}
+    \AttributeTok{y =} \StringTok{"https://storage.googleapis.com/cvdf{-}datasets/mnist/t10k{-}labels{-}idx1{-}ubyte.gz"}
+\NormalTok{  )}
+  
+\NormalTok{)}
+
+\CommentTok{\# read an MNIST file (encoded in IDX format)}
+\NormalTok{read\_idx }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(file) \{}
+  
+  \CommentTok{\# create binary connection to file}
+\NormalTok{  conn }\OtherTok{\textless{}{-}} \FunctionTok{gzfile}\NormalTok{(file, }\AttributeTok{open =} \StringTok{"rb"}\NormalTok{)}
+  \FunctionTok{on.exit}\NormalTok{(}\FunctionTok{close}\NormalTok{(conn), }\AttributeTok{add =} \ConstantTok{TRUE}\NormalTok{)}
+  
+  \CommentTok{\# read the magic number as sequence of 4 bytes}
+\NormalTok{  magic }\OtherTok{\textless{}{-}} \FunctionTok{readBin}\NormalTok{(conn, }\AttributeTok{what =} \StringTok{"raw"}\NormalTok{, }\AttributeTok{n =} \DecValTok{4}\NormalTok{, }\AttributeTok{endian =} \StringTok{"big"}\NormalTok{)}
+\NormalTok{  ndims }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(magic[[}\DecValTok{4}\NormalTok{]])}
+  
+  \CommentTok{\# read the dimensions (32{-}bit integers)}
+\NormalTok{  dims }\OtherTok{\textless{}{-}} \FunctionTok{readBin}\NormalTok{(conn, }\AttributeTok{what =} \StringTok{"integer"}\NormalTok{, }\AttributeTok{n =}\NormalTok{ ndims, }\AttributeTok{endian =} \StringTok{"big"}\NormalTok{)}
+  
+  \CommentTok{\# read the rest in as a raw vector}
+\NormalTok{  data }\OtherTok{\textless{}{-}} \FunctionTok{readBin}\NormalTok{(conn, }\AttributeTok{what =} \StringTok{"raw"}\NormalTok{, }\AttributeTok{n =} \FunctionTok{prod}\NormalTok{(dims), }\AttributeTok{endian =} \StringTok{"big"}\NormalTok{)}
+  
+  \CommentTok{\# convert to an integer vecto}
+\NormalTok{  converted }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(data)}
+  
+  \CommentTok{\# return plain vector for 1{-}dim array}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{length}\NormalTok{(dims) }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)}
+    \FunctionTok{return}\NormalTok{(converted)}
+  
+  \CommentTok{\# wrap 3D data into matrix}
+  \FunctionTok{matrix}\NormalTok{(converted, }\AttributeTok{nrow =}\NormalTok{ dims[}\DecValTok{1}\NormalTok{], }\AttributeTok{ncol =} \FunctionTok{prod}\NormalTok{(dims[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]), }\AttributeTok{byrow =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+
+\NormalTok{mnist }\OtherTok{\textless{}{-}} \FunctionTok{rapply}\NormalTok{(sources, }\AttributeTok{classes =} \StringTok{"character"}\NormalTok{, }\AttributeTok{how =} \StringTok{"list"}\NormalTok{, }\ControlFlowTok{function}\NormalTok{(url) \{}
+  
+  \CommentTok{\# download + extract the file at the URL}
+\NormalTok{  target }\OtherTok{\textless{}{-}} \FunctionTok{file.path}\NormalTok{(data\_dir, }\FunctionTok{basename}\NormalTok{(url))}
+  \ControlFlowTok{if}\NormalTok{ (}\SpecialCharTok{!}\FunctionTok{file.exists}\NormalTok{(target))}
+    \FunctionTok{download.file}\NormalTok{(url, target)}
+  
+  \CommentTok{\# read the IDX file}
+  \FunctionTok{read\_idx}\NormalTok{(target)}
+  
+\NormalTok{\})}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Additional preprocessing}
+
+\CommentTok{\# convert training data intensities to 0{-}1 range}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{/} \DecValTok{255}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x }\SpecialCharTok{/} \DecValTok{255}
+
+\CommentTok{\# Only cluster digits 0{-}4}
+\NormalTok{ix\_train }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{2} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{3} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{4}
+\NormalTok{ix\_test }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{1} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{2} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{3} \SpecialCharTok{|}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\SpecialCharTok{==} \DecValTok{4}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[ix\_train,]}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[ix\_train]}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x[ix\_test,]}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{y[ix\_test]}
+
+\CommentTok{\# 1/4 size train}
+\NormalTok{matrix }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x)[}\DecValTok{1}\NormalTok{]) \{}
+\NormalTok{  im }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,], }\AttributeTok{ncol=}\DecValTok{28}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{28}\NormalTok{))}
+\NormalTok{  list }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{14}\NormalTok{) \{}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{14}\NormalTok{) \{}
+\NormalTok{      list }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(list, }\FunctionTok{mean}\NormalTok{(im[(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i), (}\DecValTok{2}\SpecialCharTok{*}\NormalTok{j}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{j)]))}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  matrix }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(matrix, list)}
+\NormalTok{\}}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ matrix}
+
+\CommentTok{\# 1/4 size test}
+\NormalTok{matrix }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x)[}\DecValTok{1}\NormalTok{]) \{}
+\NormalTok{  im }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x[n,], }\AttributeTok{ncol=}\DecValTok{28}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{28}\NormalTok{))}
+\NormalTok{  list }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{14}\NormalTok{) \{}
+    \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{14}\NormalTok{) \{}
+\NormalTok{      list }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(list, }\FunctionTok{mean}\NormalTok{(im[(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i), (}\DecValTok{2}\SpecialCharTok{*}\NormalTok{j}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{:}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{j)]))}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  matrix }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(matrix, list)}
+\NormalTok{\}}
+\NormalTok{mnist}\SpecialCharTok{$}\NormalTok{test}\SpecialCharTok{$}\NormalTok{x }\OtherTok{\textless{}{-}}\NormalTok{ matrix}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{N }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x)[}\DecValTok{1}\NormalTok{]}
+\NormalTok{D }\OtherTok{\textless{}{-}} \FunctionTok{dim}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x)[}\DecValTok{2}\NormalTok{]}
+\NormalTok{K }\OtherTok{\textless{}{-}} \DecValTok{5}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{question-1.1}{%
+\subsection{Question 1.1}\label{question-1.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{7}\NormalTok{))}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{mu }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{runif}\NormalTok{(D}\SpecialCharTok{*}\NormalTok{K), }\AttributeTok{nrow =}\NormalTok{ D, }\AttributeTok{ncol =}\NormalTok{ K)}
+\NormalTok{prev\_loss }\OtherTok{\textless{}{-}} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+  \CommentTok{\# Assignment}
+\NormalTok{  closest }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{  loss }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{    closest[n] }\OtherTok{\textless{}{-}} \FunctionTok{which.min}\NormalTok{(}\FunctionTok{colSums}\NormalTok{((mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,] }\SpecialCharTok{{-}}\NormalTok{ mu)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{    loss }\OtherTok{\textless{}{-}}\NormalTok{ loss }\SpecialCharTok{+} \FunctionTok{min}\NormalTok{(}\FunctionTok{colSums}\NormalTok{((mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,] }\SpecialCharTok{{-}}\NormalTok{ mu)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Update }
+  \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{K) \{}
+\NormalTok{    mu[,k] }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(}\FunctionTok{rbind}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[closest }\SpecialCharTok{==}\NormalTok{ k,], }\FunctionTok{rep}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{196}\NormalTok{)))}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Current iteration loss}
+  \FunctionTok{message}\NormalTok{(}\StringTok{"Iteration: "}\NormalTok{, i, }\StringTok{" Loss: "}\NormalTok{, loss)}
+  
+  \CommentTok{\# Check for convergence}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(prev\_loss }\SpecialCharTok{{-}}\NormalTok{ loss) }\SpecialCharTok{\textless{}} \FloatTok{0.0001}\NormalTok{) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{  prev\_loss }\OtherTok{\textless{}{-}}\NormalTok{ loss}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Iteration: 1 Loss: 1528387.54278973
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 2 Loss: 302391.106983158
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 3 Loss: 261158.550252353
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 4 Loss: 244133.077778585
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 5 Loss: 238663.608216232
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 6 Loss: 235509.779660883
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 7 Loss: 232529.208513017
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 8 Loss: 229834.442619395
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 9 Loss: 228370.21412767
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 10 Loss: 227624.413714981
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 11 Loss: 227276.805691325
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 12 Loss: 227142.463723411
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 13 Loss: 227098.293960547
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 14 Loss: 227081.248184545
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 15 Loss: 227076.938393217
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 16 Loss: 227075.485606832
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 17 Loss: 227074.990749326
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 18 Loss: 227074.805799378
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 19 Loss: 227074.733694462
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 20 Loss: 227074.710339601
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 21 Loss: 227074.672974529
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 22 Loss: 227074.653392452
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 23 Loss: 227074.636174259
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 24 Loss: 227074.634472423
+\end{verbatim}
+
+\begin{verbatim}
+## Iteration: 25 Loss: 227074.634472423
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mar=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(K, }\DecValTok{14}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{K) \{}
+\NormalTok{  class }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[closest }\SpecialCharTok{==}\NormalTok{ k,]}
+\NormalTok{  number }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{table}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k])))[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  acc }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k] }\SpecialCharTok{==}\NormalTok{ number) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k])}
+  
+  \CommentTok{\# Plot 1}
+\NormalTok{  sampled }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[}\FunctionTok{sample}\NormalTok{(}\FunctionTok{which}\NormalTok{(closest }\SpecialCharTok{==}\NormalTok{ k), }\DecValTok{12}\NormalTok{),]}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{) \{}
+    \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(sampled[i,], }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Plot 2}
+  \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(mu[,k], }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{\# Plot 3}
+\NormalTok{  var }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(class}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{dim}\NormalTok{(class)[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ mu[,k]}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{  var }\OtherTok{\textless{}{-}}\NormalTok{ var }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(var) }\SpecialCharTok{*} \DecValTok{255}
+\NormalTok{  var[var }\SpecialCharTok{\textless{}} \DecValTok{51}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(var, }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{\# Plot 4}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Cluster \%d"}\NormalTok{, }\FunctionTok{as.integer}\NormalTok{(number)))}
+  \CommentTok{\# Number with True Label in Cluster vs Number with True Label}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k] }\SpecialCharTok{==}\NormalTok{ number), }\FunctionTok{length}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k]))) }
+  \CommentTok{\# Accuracy Rate}
+  \FunctionTok{print}\NormalTok{(acc)}
+  \CommentTok{\# Misclassification Rate}
+  \FunctionTok{print}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{acc)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cluster 2"
+## [1] 4402 5168
+## [1] 0.8517802
+## [1] 0.1482198
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Cluster 1"
+## [1] 6607 7923
+## [1] 0.8339013
+## [1] 0.1660987
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Cluster 3"
+## [1] 5129 6007
+## [1] 0.8538372
+## [1] 0.1461628
+\end{verbatim}
+
+\begin{verbatim}
+## [1] "Cluster 4"
+## [1] 5559 6156
+## [1] 0.9030214
+## [1] 0.09697856
+\end{verbatim}
+
+\includegraphics{a6_vladislav_trukhin_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+\begin{verbatim}
+## [1] "Cluster 0"
+## [1] 5226 5342
+## [1] 0.9782853
+## [1] 0.02171471
+\end{verbatim}
+
+\hypertarget{question-1.2}{%
+\subsection{Question 1.2}\label{question-1.2}}
+
+\hypertarget{question-1.2.i}{%
+\subsubsection{Question 1.2.I}\label{question-1.2.i}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  \(p(Z_i = j) = \eta_j\)
+\item
+  \(p(Z_i = j | x_i) = \frac{p(x_i | Z_i = j)p(Z_i = j)}{p(x_i)} = \frac{p(x_i | Z_i = j)\eta_j}{\Sigma_{j=1}^k p(x_i | Z_i = j)\eta_j}\)
+\end{enumerate}
+
+\hypertarget{question-1.2.ii}{%
+\subsubsection{Question 1.2.II}\label{question-1.2.ii}}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(\ell(\theta) = \Sigma_{i=1}^n \log \Sigma_{j=1}^k \gamma_{ij}\frac{p_\theta(x_i, Z_i = j)}{\gamma_{ij}}\)
+\end{enumerate}
+
+\(= \Sigma_{i=1}^n \log E_{\gamma_{ij}}\frac{p_\theta(x_i, Z_i = j)}{\gamma_{ij}}\)
+
+\(\geq \Sigma_{i=1}^n E_{\gamma_{ij}} \log \frac{p_\theta(x_i, Z_i = j)}{\gamma_{ij}}\)
+By Jensen's Inequality
+
+\(= \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \frac{p_\theta(x_i, Z_i = j)}{\gamma_{ij}}\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  \(F(\gamma, \theta^{old}) = \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \frac{p_{\theta^{old}}(x_i, Z_i = j)}{\gamma_{ij}}\)
+\end{enumerate}
+
+\(= \Sigma_{i=1}^n \Sigma_{j=1}^k p_{\theta^{old}}(Z_i = j | x_i) \log \frac{p_{\theta^{old}}(x_i, Z_i = j)}{ p_{\theta^{old}}(Z_i = j | x_i)}\)
+
+\(= \Sigma_{i=1}^n \Sigma_{j=1}^k p_{\theta^{old}}(Z_i = j | x_i) \log p_{\theta^{old}}(x_i)\)
+
+\(= \Sigma_{i=1}^n \log p_{\theta^{old}}(x_i) \Sigma_{j=1}^k p_{\theta^{old}}(Z_i = j | x_i)\)
+
+\(= \Sigma_{i=1}^n \log p_{\theta^{old}}(x_i)\)
+
+\(= \Sigma_{i=1}^n \log \Sigma_{j=1}^k p_{\theta^{old}}(x_i, Z_i = j)\)
+
+\(= \Sigma_{i=1}^n \log \Sigma_{j=1}^k p_{\theta^{old}}(Z_i = j | x_i)\frac{p_{\theta^{old}}(x_i, Z_i = j)}{p_{\theta^{old}}(Z_i = j | x_i)}\)
+
+\(= \Sigma_{i=1}^n \log \Sigma_{j=1}^k \gamma_{ij} \frac{p_{\theta^{old}}(x_i, Z_i = j)}{\gamma_{ij}} = \ell(\theta^{old})\)
+
+\hypertarget{question-1.2.iii}{%
+\subsubsection{Question 1.2.III}\label{question-1.2.iii}}
+
+\(argmax_\theta F_{\theta^{old}}(\theta) = argmax_\theta \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \frac{p_{\theta}(x_i, Z_i = j)}{\gamma_{ij}} - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= argmax_\theta \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log p_{\theta}(x_i, Z_i = j) - \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \gamma_{ij} - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= argmax_\theta \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log p_{\theta}(x_i | Z_i = j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log p(Z_i = j) - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= argmax_\theta \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log (\frac{1}{(2\pi)^{d/2}|\Sigma_j|^{1/2}}exp(-\frac{1}{2}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j))) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= argmax_\theta \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} (- \frac{d}{2}\log (2\pi) + \frac{1}{2} \log |\Sigma_j^{-1}|-\frac{1}{2}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j)) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= argmax_\theta \frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log |\Sigma_j^{-1}|-\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{4}
+\tightlist
+\item
+\end{enumerate}
+
+For \(\sigma^2_j:\)
+
+\(\frac{\partial}{\partial \sigma^{-2}_j}\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log |\Sigma_j^{-1}|-\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} \frac{\partial}{\partial \sigma^{-2}_j}\log |\sigma^{-2}_jI|-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}\frac{\partial}{\partial \sigma^{-2}_j}(x_i-\mu_j)^\top\sigma^{-2}_jI(x_i-\mu_j)\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} \sigma^{2}_jI-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j)^\top(x_i-\mu_j)\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} \sigma^{2}_j-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j)^\top(x_i-\mu_j) = 0\)
+
+\(\Rightarrow \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} \sigma^{2}_j = \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j)^\top(x_i-\mu_j)\)
+
+\(\Rightarrow \sigma^{2}_j \Sigma_{i=1}^n \gamma_{ij} = \Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j)^\top(x_i-\mu_j)\)
+
+\(\Rightarrow \sigma^{2}_j = \frac{\Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j)^\top(x_i-\mu_j)}{\Sigma_{i=1}^n \gamma_{ij}}\)
+
+For \(\mu_j:\)
+
+\(\frac{\partial}{\partial \mu_j}\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log |\Sigma_j^{-1}|-\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= -\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}\frac{\partial}{\partial \mu_j}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j)\)
+
+\(= \Sigma_{i=1}^n\gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1} = 0\)
+
+\(\Rightarrow \Sigma_{i=1}^n \gamma_{ij}(x_i-\mu_j) = 0\)
+
+\(\Rightarrow \Sigma_{i=1}^n \gamma_{ij}\mu_j = \Sigma_{i=1}^n \gamma_{ij}x_i\)
+
+\(\Rightarrow \mu_j = \frac{\Sigma_{i=1}^n \gamma_{ij}x_i}{\Sigma_{i=1}^n \gamma_{ij}}\)
+
+For \(\eta_j:\)
+
+\(\frac{\partial}{\partial \eta_j}\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log |\Sigma_j^{-1}|-\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \frac{1}{\eta_j} - \Sigma_{i=1}^n \Sigma_{j=1}^k 1 = 0\)
+
+\(\Rightarrow \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \frac{1}{\eta_j} = \Sigma_{i=1}^n \Sigma_{j=1}^k 1\)
+
+\(\Rightarrow \Sigma_{i=1}^n \gamma_{ij} \frac{1}{\eta_j} = \Sigma_{i=1}^n 1\)
+
+\(\Rightarrow \frac{1}{\eta_j} = \frac{N}{\Sigma_{i=1}^n \gamma_{ij}}\)
+
+\(\Rightarrow \eta_j = \frac{\Sigma_{i=1}^n \gamma_{ij}}{N}\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{5}
+\tightlist
+\item
+\end{enumerate}
+
+For \(\sigma^2_{jm}:\)
+
+\(\frac{\partial}{\partial \sigma^{-2}_{jm}}\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log |\Sigma_j^{-1}|-\frac{1}{2}\Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij}(x_i-\mu_j)^\top \Sigma_j^{-1}(x_i-\mu_j) + \Sigma_{i=1}^n \Sigma_{j=1}^k \gamma_{ij} \log \eta_j - \Sigma_{i=1}^n \Sigma_{j=1}^k \eta_j + N\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} \frac{\partial}{\partial \sigma^{-2}_{jm}} \log |[\sigma^{-2}_{j1},...,\sigma^{-2}_{jd}]I|-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij}\frac{\partial}{\partial \sigma^{-2}_{jm}}(x_i-\mu_j)^\top [\sigma^{-2}_{j1},...,\sigma^{-2}_{jd}]I(x_i-\mu_j)\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} [0,...,\sigma^2_{jm},...,0]I-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} [0,...,1,...,0]I(x_i-\mu_j)(x_i-\mu_j)^\top\)
+
+\(= \frac{1}{2}\Sigma_{i=1}^n\gamma_{ij} \sigma^2_{jm}-\frac{1}{2}\Sigma_{i=1}^n \gamma_{ij} (x_{im}-\mu_{jm})^2 = 0\)
+
+\(\Rightarrow \frac{1}{2}\Sigma_{i=1}^n\gamma_{ij} \sigma^2_{jm} = \frac{1}{2}\Sigma_{i=1}^n\gamma_{ij} (x_{im}-\mu_{jm})^2\)
+
+\(\Rightarrow \sigma^2_{jm} = \frac{\Sigma_{i=1}^n\gamma_{ij} (x_{im}-\mu_{jm})^2}{\Sigma_{i=1}^n \gamma_{ij}}\)
+
+\(\eta_j\) and \(\mu_j\) follow from e)
+
+\hypertarget{question-1.2.iv}{%
+\subsubsection{Question 1.2.IV}\label{question-1.2.iv}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#NOTE: ALGORITHM DOES NOT WORK}
+\NormalTok{mu }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{runif}\NormalTok{(}\DecValTok{196}\SpecialCharTok{*}\DecValTok{5}\NormalTok{), }\AttributeTok{nrow =} \DecValTok{196}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{5}\NormalTok{)}
+\NormalTok{sigma }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\FloatTok{0.5}\NormalTok{, K)}
+\NormalTok{pi }\OtherTok{=} \FunctionTok{rep}\NormalTok{(}\DecValTok{1}\NormalTok{, K) }\SpecialCharTok{/}\NormalTok{ K}
+
+\NormalTok{prev\_log\_likelihood }\OtherTok{\textless{}{-}} \DecValTok{0}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+  \CommentTok{\# E{-}Step}
+\NormalTok{  resp }\OtherTok{=} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\AttributeTok{nrow=}\NormalTok{N, }\AttributeTok{ncol=}\NormalTok{K)}
+\NormalTok{  log\_likelihood }\OtherTok{=} \DecValTok{0}
+  \ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{    x }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,]}
+\NormalTok{    sum }\OtherTok{\textless{}{-}} \DecValTok{0}
+    \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{K) \{}
+\NormalTok{      resp[n, k] }\OtherTok{=} \FunctionTok{log}\NormalTok{(pi[k]) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\FunctionTok{log}\NormalTok{(sigma[k]}\SpecialCharTok{*}\NormalTok{D) }\SpecialCharTok{{-}}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{/}\DecValTok{2}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{sigma[k])}\SpecialCharTok{*}\FunctionTok{norm}\NormalTok{(x }\SpecialCharTok{{-}}\NormalTok{ mu[, k], }\AttributeTok{type=}\StringTok{"2"}\NormalTok{)}
+\NormalTok{    \}}
+\NormalTok{    resp[n, ] }\OtherTok{=} \FunctionTok{exp}\NormalTok{(resp[n, ] }\SpecialCharTok{{-}} \FunctionTok{max}\NormalTok{(resp[n,]) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\FunctionTok{exp}\NormalTok{(resp[n,]}\SpecialCharTok{{-}}\FunctionTok{max}\NormalTok{(resp[n,])))))}
+\NormalTok{    log\_likelihood }\OtherTok{=}\NormalTok{ log\_likelihood }\SpecialCharTok{+} \FunctionTok{log}\NormalTok{(sum)}
+\NormalTok{  \}}
+  
+  \CommentTok{\# M{-}Step}
+\NormalTok{  pi }\OtherTok{=} \FunctionTok{colSums}\NormalTok{(resp) }\SpecialCharTok{/}\NormalTok{ N }
+\NormalTok{  mu }\OtherTok{=} \FunctionTok{t}\NormalTok{(}\FunctionTok{t}\NormalTok{(}\FunctionTok{t}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x) }\SpecialCharTok{\%*\%}\NormalTok{ resp) }\SpecialCharTok{/} \FunctionTok{colSums}\NormalTok{(resp))}
+  \ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{K) \{}
+\NormalTok{    sigma[k] }\OtherTok{=} \DecValTok{0}
+    \ControlFlowTok{for}\NormalTok{ (n }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{N) \{}
+\NormalTok{      sigma[k] }\OtherTok{=}\NormalTok{ sigma[k] }\SpecialCharTok{+}\NormalTok{ resp[n, k] }\SpecialCharTok{*}\NormalTok{ (mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,] }\SpecialCharTok{{-}}\NormalTok{ mu[, k])}\SpecialCharTok{\%*\%}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[n,] }\SpecialCharTok{{-}}\NormalTok{ mu[, k])}
+\NormalTok{    \}}
+\NormalTok{    sigma[k] }\OtherTok{=}\NormalTok{ sigma[k] }\SpecialCharTok{/} \FunctionTok{colSums}\NormalTok{(resp)[k] }\SpecialCharTok{+} \FloatTok{0.05}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Check for convergence}
+  \ControlFlowTok{if}\NormalTok{ (}\FunctionTok{abs}\NormalTok{(prev\_log\_likelihood  }\SpecialCharTok{{-}}\NormalTok{ log\_likelihood) }\SpecialCharTok{\textless{}} \FloatTok{0.0001}\NormalTok{) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{  prev\_log\_likelihood }\OtherTok{\textless{}{-}}\NormalTok{ log\_likelihood}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{, }\DecValTok{14}\NormalTok{))}
+\CommentTok{\# Training accuracy}
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  class }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[closest }\SpecialCharTok{==}\NormalTok{ k,]}
+\NormalTok{  number }\OtherTok{\textless{}{-}} \FunctionTok{names}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\SpecialCharTok{{-}}\FunctionTok{table}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k])))[}\DecValTok{1}\NormalTok{]}
+\NormalTok{  acc }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k] }\SpecialCharTok{==}\NormalTok{ number) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k])}
+  
+  \CommentTok{\# Plot 1}
+\NormalTok{  sampled }\OtherTok{\textless{}{-}}\NormalTok{ mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{x[}\FunctionTok{sample}\NormalTok{(}\FunctionTok{which}\NormalTok{(closest }\SpecialCharTok{==}\NormalTok{ k), }\DecValTok{12}\NormalTok{),]}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{12}\NormalTok{) \{}
+    \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(sampled[i,], }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+\NormalTok{  \}}
+  
+  \CommentTok{\# Plot 2}
+  \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(mu[,k], }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{\# Plot 3}
+\NormalTok{  var }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(class}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{dim}\NormalTok{(class)[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}}\NormalTok{ mu[,k]}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{  var }\OtherTok{\textless{}{-}}\NormalTok{ var }\SpecialCharTok{/} \FunctionTok{max}\NormalTok{(var) }\SpecialCharTok{*} \DecValTok{255}
+\NormalTok{  var[var }\SpecialCharTok{\textless{}} \DecValTok{51}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+  \FunctionTok{image}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(var, }\AttributeTok{ncol=}\DecValTok{14}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{14}\NormalTok{)[,}\DecValTok{14}\SpecialCharTok{:}\DecValTok{1}\NormalTok{])}
+  
+  \CommentTok{\# Plot 4}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Cluster \%d"}\NormalTok{, }\FunctionTok{as.integer}\NormalTok{(number)))}
+  \CommentTok{\# Number with True Label in Cluster vs Number with True Label}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\FunctionTok{sum}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k] }\SpecialCharTok{==}\NormalTok{ number), }\FunctionTok{length}\NormalTok{(mnist}\SpecialCharTok{$}\NormalTok{train}\SpecialCharTok{$}\NormalTok{y[closest }\SpecialCharTok{==}\NormalTok{ k]))) }
+  \CommentTok{\# Accuracy Rate}
+  \FunctionTok{print}\NormalTok{(acc)}
+  \CommentTok{\# Misclassification Rate}
+  \FunctionTok{print}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{acc)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{question-1.2.v}{%
+\subsubsection{Question 1.2.V}\label{question-1.2.v}}
+
+\hypertarget{question-1.3}{%
+\subsection{Question 1.3}\label{question-1.3}}
+
+Assume a mixture of spherical Gaussians with same covariance matrix
+\(\sigma^2I\)
+
+E-step:
+
+\(lim_{\sigma^2\rightarrow0}\gamma_{ik}=lim_{\sigma^2\rightarrow0}p_{\theta^{old}}(Z_i=k|x_i)\)
+
+\(=lim_{\sigma^2\rightarrow0}\frac{p(x_i | Z_i = k)\eta_j}{\Sigma_{j=1}^k p(x_i | Z_i = j)\eta_j}\)
+
+\(=lim_{\sigma^2\rightarrow0}\frac{exp(-1/2(x_i-\mu_k)^\top\sigma^{-2}I(x_i-\mu_k))\eta_j}{\Sigma_{j=1}^K exp(-1/2(x_i-\mu_j)^\top\sigma^{-2}I(x_i-\mu_j))\eta_j}\)
+
+\(=lim_{\sigma^2\rightarrow0}\frac{exp(-||x_i-\mu_k|||_2^2/(2\sigma^{2}))\eta_j}{\Sigma_{j=1}^K exp(-||x_i-\mu_j||_2^2/(2\sigma^{2}))\eta_j}\)
+
+\(=r_{nk}=\begin{cases}1, & \text{if}\ k=argmin_j||x_i-\mu_j||_2^2 \\0, & \text{o.w.}\end{cases}\)
+
+Since the term with the smallest \(||x_i-\mu_j||_2^2\) goes to \(0\) the
+slowest
+
+M-step:
+
+Since the only variable that is responsible for the E-step result is
+\(\mu_j\) we only need to update \(\mu_j\):
+
+\(\frac{\partial}{\partial \mu_j}\Sigma_{i=1;r_{ij}=1}^N||x_i-\mu_j||_2^2 = \Sigma_{i=1}^Nr_{ij}\frac{\partial}{\partial \mu_j}(x_i-\mu_j)^\top(x_i-\mu_j)\)
+
+\(=-2\Sigma_{i=1}^Nr_{ij}(x_i-\mu_j) = 0\)
+
+\(\Rightarrow\Sigma_{i=1}^Nr_{ij}(x_i-\mu_j) = 0\)
+
+\(\Rightarrow\Sigma_{i=1}^Nx_ir_{ij} = \mu_j\Sigma_{i=1}^Nr_{ij}\)
+
+\(\Rightarrow\frac{\Sigma_{i=1}^Nr_{ij}x_i}{\Sigma_{i=1}^Nr_{ij}} = \mu_j\)
+
+\hypertarget{question-1.4}{%
+\subsection{Question 1.4}\label{question-1.4}}
+
+The K-means algorithm achieved an average accuracy of 90\% for the
+digits. However, it is not satisfactory as it means the algorithm will
+fail 10\% times when classifying digits. EM if implemented correctly
+would have achieved a higher accuracy for spherical and even higher for
+diagonal covariance. K means only uses mean to make classifications but
+EM uses far more parameters that increase model flexibility to more
+accurately model the underlying distribution of the data. The algorithms
+overlook the possibility of transforming the data to feature vectors,
+which could improve performance.
+
+The K-means converged quickly with few steps, which is impressive given
+how well it performs. EM would have converged slower for spherical and
+even slower for diagonal due to more parameters for each to update and
+being more computationally expensive, however at the benefit of
+increasing the accuracy ceiling.
+
+The mixture models for Gaussian distributions might not be the optimal
+model for classifying digits, instead one can experiment with other
+models such as a categorical mixture model.
+
+The initialization strategy was to randomly sample an initial mean
+vector between 0 and 1 to fall in between possible values of the data.
+This strategy was successful as K-means managed to converge every
+initialization, and any further changes to the initialization strategy
+lead to no further improvement. EM would have been similar in regards to
+the mean initialization, with same pi for all classes, with only a focus
+on making sure the covariance initialization had its diagonal values of
+similar magnitude.
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+\hypertarget{question-2.1}{%
+\subsection{Question 2.1}\label{question-2.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/script1.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: NLP
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(dat, }\DecValTok{3}\NormalTok{)[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 name
+## 1         Michel Che
+## 2 Hossein Modarressi
+## 3      Xiao-Gang Wen
+\end{verbatim}
+
+Michel Che - Chemistry Professor, Hossein Modarressi - Muslim Jurist,
+Xiao-Gang Wen - Chinese-born American Physicist
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(dtm.mat.raw) }\CommentTok{\# Number of Individuals; Number of Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  812 6888
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{word\_freq }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{colSums}\NormalTok{(dtm.mat.raw))}
+\FunctionTok{tail}\NormalTok{(word\_freq, }\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 Most Frequent Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     new    with     has    from     his     was     for univers     and     the 
+##    1174    1674    1708    2126    2353    2817    3165    3169   10729   17316
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{quantile}\NormalTok{(word\_freq) }\CommentTok{\# Quantiles}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    0%   25%   50%   75%  100% 
+##     2     3     5    14 17316
+\end{verbatim}
+
+\hypertarget{question-2.2}{%
+\subsection{Question 2.2}\label{question-2.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/script2.R"}\NormalTok{)}
+\NormalTok{word\_weight }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{colSums}\NormalTok{(dtm.mat))}
+\FunctionTok{tail}\NormalTok{(word\_weight, }\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 Highest Weighted Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  research   histori       new  mathemat    scienc       law    econom     music 
+##  903.4017  905.1748  908.1503  975.4508  989.8247 1132.1644 1160.7760 1179.0219 
+##       her       she 
+## 1611.8679 2414.6500
+\end{verbatim}
+
+\hypertarget{question-2.3}{%
+\subsection{Question 2.3}\label{question-2.3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/script3.R"}\NormalTok{)}
+\FunctionTok{dim}\NormalTok{(dtm.mat.raw) }\CommentTok{\# Number of Individuals; Number of Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  812 6632
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{word\_freq }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(}\FunctionTok{colSums}\NormalTok{(dtm.mat.raw))}
+\FunctionTok{tail}\NormalTok{(word\_freq, }\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 Most Frequent Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   physic   theori mathemat    music      law    polit   econom  histori 
+##      310      323      329      364      389      390      397      418 
+##      her      she 
+##      633      956
+\end{verbatim}
+
+\hypertarget{question-2.4}{%
+\subsection{Question 2.4}\label{question-2.4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ix }\OtherTok{\textless{}{-}} \FunctionTok{match}\NormalTok{(}\StringTok{"Ben Bernanke"}\NormalTok{, dat}\SpecialCharTok{$}\NormalTok{name)}
+\NormalTok{dat}\SpecialCharTok{$}\NormalTok{text[ix]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] ben shalom bernanke brnki brnangkee born december 13 1953 is an american economist at the brookings institution who served two terms as chairman of the federal reserve the central bank of the united states from 2006 to 2014 during his tenure as chairman bernanke oversaw the federal reserves response to the late2000s financial crisisbefore becoming federal reserve chairman bernanke was a tenured professor at princeton university and chaired the department of economics there from 1996 to september 2002 when he went on public service leavefrom 2002 until 2005 he was a member of the board of governors of the federal reserve system proposed the bernanke doctrine and first discussed the great moderation the theory that traditional business cycles have declined in volatility in recent decades through structural changes that have occurred in the international economy particularly increases in the economic stability of developing nations diminishing the influence of macroeconomic monetary and fiscal policybernanke then served as chairman of president george w bushs council of economic advisers before president bush nominated him to succeed alan greenspan as chairman of the united states federal reserve his first term began february 1 2006 bernanke was confirmed for a second term as chairman on january 28 2010 after being renominated by president barack obama his second term ended february 1 2014 when he was succeeded by janet yellen
+## 59071 Levels: 108 born 1978 is an italian artist in the field of street art and contemporary art from alessandria108 has moved from working in traditional graffiti art to painting large and mysterious figures that invade public spaces he was the first writer to use numbers instead of letters for his name he started to work when he was a child on the streets of alessandria and used different nameshis work has appeared on the streets of milan paris london berlin and new york city his first works known by people are enigmatic bloblike yellow shapes it is his firm intention to make visual chaos his new works are labyrinths dead trees non figurative 3d objects and installations but especially black and gloomy shapes becoming one of the biggest and influential artists in graffiti abstractism in the last years he took part in a lot of international exhibitions nusign 24 in paris urban edge show in milano segundo and tercer asalto in zaragoza and in 2007 he was invited to join the project called walls inside the biennale di venezia with jr and daim during march 2008 he was invited to join nomadaz a show curated by pablo aravena in los angeles with eltono dem microbo and other artists to represent europe in the usa 108s doomy black abstractions are engaging and challenging in equal measure whether it be within the confines of a small room in the abandoned monastery where the large triangular constructions are most effective and have the effect of warping and playing with the rooms dimensions as the viewer attempts to back away and comprehend the pieces or as a surreal floating void on a wall beside a busy road ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(dtm.mat[ix,]), }\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 Highest Weighted Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     janet   volatil    econom      bush   succeed      term     feder  chairman 
+##  8.665336  8.665336  8.771607  9.929792  9.929792 15.431924 20.107399 20.619103 
+##    reserv   bernank 
+## 27.087042 40.401867
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(dtm.mat.raw[ix,]), }\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 Most Frequent Words}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   second  succeed    tenur     when   econom     term  bernank    feder 
+##        2        2        2        2        3        4        5        5 
+##   reserv chairman 
+##        5        6
+\end{verbatim}
+
+\hypertarget{question-2.5}{%
+\subsection{Question 2.5}\label{question-2.5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{norm.sim.ksc}\NormalTok{(}\FunctionTok{quick.norm}\NormalTok{(}\FunctionTok{t}\NormalTok{(dtm.mat), }\DecValTok{2}\NormalTok{), }\DecValTok{8}\NormalTok{)}
+\NormalTok{res}\SpecialCharTok{$}\NormalTok{size }\CommentTok{\# Cluster sizes}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1719  450  713  839  616  918  916  717
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove words from clusters not present in dtm.mat.raw}
+\NormalTok{idx }\OtherTok{=} \FunctionTok{which}\NormalTok{(word.presence }\SpecialCharTok{\textgreater{}=} \FunctionTok{quantile}\NormalTok{(word.presence, }\AttributeTok{prob =} \FloatTok{0.99}\NormalTok{))}
+\NormalTok{res}\SpecialCharTok{$}\NormalTok{cluster }\OtherTok{=}\NormalTok{ res}\SpecialCharTok{$}\NormalTok{cluster[}\SpecialCharTok{{-}}\NormalTok{idx]}
+\NormalTok{idx }\OtherTok{=} \FunctionTok{which}\NormalTok{(}\FunctionTok{colnames}\NormalTok{(dtm.mat) }\SpecialCharTok{\%in\%}\NormalTok{ common.words[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{300}\NormalTok{,}\DecValTok{1}\NormalTok{])}
+\NormalTok{res}\SpecialCharTok{$}\NormalTok{cluster }\OtherTok{=}\NormalTok{ res}\SpecialCharTok{$}\NormalTok{cluster[}\SpecialCharTok{{-}}\NormalTok{idx]}
+
+\ControlFlowTok{for}\NormalTok{ (k }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{8}\NormalTok{) \{}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Cluster \%d"}\NormalTok{, k))}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(}\FunctionTok{colSums}\NormalTok{(dtm.mat.raw[, res}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{==}\NormalTok{ k])), }\DecValTok{25}\NormalTok{)) }\CommentTok{\# Top 25 words}
+  \FunctionTok{print}\NormalTok{(}\FunctionTok{quantile}\NormalTok{(}\FunctionTok{colSums}\NormalTok{(dtm.mat.raw[, res}\SpecialCharTok{$}\NormalTok{cluster }\SpecialCharTok{==}\NormalTok{ k]))) }\CommentTok{\# Quantiles}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Cluster 1"
+##    when  appear  london    live   organ america    both  record perform     won 
+##     159     160     162     166     167     172     173     174     175     182 
+##   elect  jersey    join     had    well    dure    name  former    mani    citi 
+##     194     204     204     205     208     223     223     227     231     248 
+##    team    play   music     her     she 
+##     267     295     364     633     956 
+##   0%  25%  50%  75% 100% 
+##    2    2    5   14  956 
+## [1] "Cluster 2"
+##        aid    marshal      given       much     togeth       piec understand 
+##         46         47         48         50         50         52         54 
+##     differ       them      endow        way    russian     result   communic 
+##         55         55         56         56         60         62         73 
+##     recipi       form      creat  historian        san       film   interest 
+##         79         82         84         88        109        121        135 
+##    between        not       into      relat 
+##        145        145        164        172 
+##   0%  25%  50%  75% 100% 
+##    2    3    5   13  172 
+## [1] "Cluster 3"
+##        same        jame      father         ann     centuri       essay 
+##          63          64          67          75          75          78 
+##        oper    honorari     collect     british      famili      museum 
+##          79          82          88          90          90         101 
+##        life        four     commiss       medal        edit architectur 
+##         104         106         108         110         122         130 
+##      modern  fellowship      design      cultur         use       sever 
+##         144         157         159         173         193         200 
+##      recent 
+##         201 
+##   0%  25%  50%  75% 100% 
+##    2    2    5   10  201 
+## [1] "Cluster 4"
+##   religion particular  philosoph      these       paul      wrote       issu 
+##         87         88         90         90         91         92         95 
+##        how       hold      earli    written      among     critic    william 
+##         99        109        134        135        136        141        146 
+##     oxford     church        but      write    theolog     articl   columbia 
+##        148        153        172        175        177        187        192 
+##    faculti philosophi      press    journal 
+##        194        216        233        265 
+##   0%  25%  50%  75% 100% 
+##    2    3    5   14  265 
+## [1] "Cluster 5"
+##    medicin       next      along     strong       like     street    product 
+##         47         47         48         49         55         56         61 
+##     summer      medic     achiev     biolog      charl   investig laboratori 
+##         61         62         67         73         73         78         81 
+##     poetri   collabor     theatr     direct       than       they    project 
+##         83         86         86        102        114        143        154 
+##       more     review      human      their 
+##        179        191        220        229 
+##   0%  25%  50%  75% 100% 
+##    2    3    5   11  229 
+## [1] "Cluster 6"
+##    coauthor   scientist     theoret       model        area       paper 
+##          91          92          94         100         102         124 
+##         now      system distinguish      number      doctor       engin 
+##         128         130         132         135         155         167 
+##   contribut      editor   technolog      advanc       field       known 
+##         176         180         184         191         198         200 
+##       under      comput       prize     academi      physic      theori 
+##         207         235         261         290         310         323 
+##    mathemat 
+##         329 
+##   0%  25%  50%  75% 100% 
+##    2    2    5   10  329 
+## [1] "Cluster 7"
+##      chair       yale    general       were      later    appoint      posit 
+##        170        172        173        175        177        178        180 
+##     senior      found     taught      offic     polici      teach california 
+##        180        187        190        194        205        222        229 
+##    foundat       educ      visit washington       then    develop    program 
+##        237        238        238        241        260        271        282 
+##      board      polit     econom    histori 
+##        287        390        397        418 
+##   0%  25%  50%  75% 100% 
+##    2    3    6   21  418 
+## [1] "Cluster 8"
+##  angel confer  start  media  spent   base report  georg   firm writer   juli 
+##     88     90     92     94     94    101    101    103    108    108    117 
+##   game  leagu   head season    him  coach   best   earn  befor  three   high 
+##    122    122    124    133    137    151    157    179    181    183    195 
+## career assist    law 
+##    216    224    389 
+##   0%  25%  50%  75% 100% 
+##    2    3    6   16  389
+\end{verbatim}
+
+\hypertarget{question-3}{%
+\section{Question 3}\label{question-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{load}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/gdp.Rdata"}\NormalTok{)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/q4.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'igraph'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     decompose, spectrum
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     union
+\end{verbatim}
+
+\hypertarget{question-3.1}{%
+\subsection{Question 3.1}\label{question-3.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Remove rows with all NA values}
+\NormalTok{ix }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(}\FunctionTok{rowMeans}\NormalTok{(gdp, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)))}
+\NormalTok{gdp }\OtherTok{\textless{}{-}}\NormalTok{ gdp[}\SpecialCharTok{{-}}\NormalTok{ix, ]}
+
+\CommentTok{\# Replace NA entries with mean}
+\ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(gdp))\{}
+\NormalTok{  gdp[i, }\FunctionTok{is.na}\NormalTok{(gdp[i,])] }\OtherTok{\textless{}{-}} \FunctionTok{rowMeans}\NormalTok{(gdp[i,], }\AttributeTok{na.rm =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{question-3.2}{%
+\subsection{Question 3.2}\label{question-3.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Regress over one country\textquotesingle{}s GDP over all countries\textquotesingle{} GDP}
+\NormalTok{mat }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FunctionTok{nrow}\NormalTok{(gdp), }\FunctionTok{nrow}\NormalTok{(gdp))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(gdp))\{}
+\NormalTok{  t }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}\FunctionTok{t}\NormalTok{(gdp[}\SpecialCharTok{{-}}\NormalTok{i, ]), }\FunctionTok{t}\NormalTok{(gdp[i, ]), }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+\NormalTok{  coef }\OtherTok{\textless{}{-}} \FunctionTok{coef}\NormalTok{(t, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)[}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{]}
+\NormalTok{  coef }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(coef[}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(i}\DecValTok{{-}1}\NormalTok{)], }\DecValTok{0}\NormalTok{, coef[}\SpecialCharTok{{-}}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\NormalTok{(i}\DecValTok{{-}1}\NormalTok{))])}
+\NormalTok{  neighbors }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(coef }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{)}
+\NormalTok{  mat[i, neighbors] }\OtherTok{=} \DecValTok{1}
+\NormalTok{\}}
+
+\CommentTok{\# Iterate diagonally to remove connections}
+\NormalTok{I }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(gdp)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{I) \{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(gdp)) \{}
+    \ControlFlowTok{if}\NormalTok{ (mat[i, j] }\SpecialCharTok{!=}\NormalTok{ mat[j, i]) \{}
+\NormalTok{      mat[i, j] }\OtherTok{=} \DecValTok{0}
+\NormalTok{      mat[j, i] }\OtherTok{=} \DecValTok{0}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{  I }\OtherTok{\textless{}{-}}\NormalTok{ I }\SpecialCharTok{{-}} \DecValTok{1}
+\NormalTok{\}}
+\FunctionTok{graphplot}\NormalTok{(mat)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## pdf 
+##   2
+\end{verbatim}
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{gdp_nodewise.png}
+\end{figure}
+
+The countries with the red nodes in the graph are: Chad, Nigeria, Iraq,
+St.~Lucia, Cambodia, Comoros, West Bank and Gaza, Latvia, Montenegro,
+Czech Republic, Bosnia and Herzegovina, Bulgaria, Bermuda, Spain,
+Mongolia, Uruguay, Botswana, Bolivia, Central African Republic, Belize,
+Greece, Cyprus, Sudan, Trinidad and Tobago, Seychelles, Brunei
+Darussalam, Timor-Leste, Mauritania
+
+\hypertarget{question-3.3}{%
+\subsection{Question 3.3}\label{question-3.3}}
+
+Two events of a coin toss are globally independent, but become
+conditionally dependent when information is provided about the sum of
+the results, treating heads as 1 and tails as -1, as one can narrow down
+the results to a greater probability. Two responses in the linear
+regression model with the same design covariate are conditionally
+independent when given the model but are globally dependent when the
+model is not provided, as its that dependency that allows one to derive
+an estimated model.
+
+\hypertarget{question-3.4}{%
+\subsection{Question 3.4}\label{question-3.4}}
+
+N,Y,Y,Y,N
+
+\hypertarget{question-3.5}{%
+\subsection{Question 3.5}\label{question-3.5}}
+
+\(\Theta\Sigma=I\)
+
+\(\Rightarrow \Theta=\Sigma^{-1}\)
+
+\(\Rightarrow \begin{bmatrix}\Theta_{AA} & \Theta_{AA^c}\\ \Theta_{A^cA} & \Theta_{A^cA^c} \end{bmatrix} = \begin{bmatrix}\Sigma_{AA} & \Sigma_{AA^c}\\ \Sigma_{A^cA} & \Sigma_{A^cA^c} \end{bmatrix}^{-1}\)
+
+\(\Rightarrow \begin{bmatrix}\Theta_{AA} & \Theta_{AA^c}\\ \Theta_{A^cA} & \Theta_{A^cA^c} \end{bmatrix} = \begin{bmatrix}(\Sigma_{AA} - \Sigma_{AA^c}\Sigma_{A^cA^c}^{-1}\Sigma_{A^cA})^{-1} & ... \\ ... & ... \end{bmatrix}\)
+
+\(\Rightarrow \Theta_{AA} = (\Sigma_{AA} - \Sigma_{AA^c}\Sigma_{A^cA^c}^{-1}\Sigma_{A^cA})^{-1}\)
+
+\(\Rightarrow \Theta_{AA}^{-1} = \Sigma_{AA} - \Sigma_{AA^c}\Sigma_{A^cA^c}^{-1}\Sigma_{A^cA}\)
+
+\hypertarget{question-3.6}{%
+\subsection{Question 3.6}\label{question-3.6}}
+
+\(X_i\) and \(X_j\) are independent given \(X_{\backslash{i, j}}\) iff
+\(\Theta_{AA}^{-1}\) is diagonal iff \(\Theta_{AA}\) is diagonal iff
+\(\Theta_{i, j} = 0\)
+
+\hypertarget{question-3.7}{%
+\subsection{Question 3.7}\label{question-3.7}}
+
+\(Var(X_1)=Var(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1}+\epsilon)\)
+
+\(=Var(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1})+Var(\epsilon)+2cov(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1},\epsilon)\)
+
+\(=\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}Var(X_{\backslash1})\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{1,\backslash1}+\Sigma_{1,1}-\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{\backslash1,1}+2cov(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1},\epsilon)\)
+
+\(=\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{\backslash1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{1,\backslash1}+\Sigma_{1,1}-\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{\backslash1,1}+2cov(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1},\epsilon)\)
+
+\(=\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{1,\backslash1}+\Sigma_{1,1}-\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}\Sigma_{\backslash1,1}+2cov(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1}X_{\backslash1},\epsilon)\)
+
+\(=\Sigma_{1,1}+2(\Sigma_{1,\backslash1}\Sigma^{-1}_{\backslash1,\backslash1})cov(X_{\backslash1},\epsilon)\)
+
+We know \(Var(X_1)=\Sigma_{1,1}\) under this model so this is only true
+if \(cov(X_{\backslash1},\epsilon) = 0 \implies X_{\backslash1}\)
+independent of \(\epsilon\).
+
+\(\begin{bmatrix}\Theta_{11} & \Theta_{1\backslash1}\\ \Theta_{\backslash11} & \Theta_{\backslash1\backslash1} \end{bmatrix} \begin{bmatrix}\Sigma_{11} & \Sigma_{1\backslash1}\\ \Sigma_{\backslash11} & \Sigma_{\backslash1\backslash1} \end{bmatrix} = I\)
+
+\(\Rightarrow \Theta_{11}\Sigma_{1\backslash1} + \Theta_{1\backslash1}\Sigma_{\backslash1\backslash1}=0\)
+
+\(\Rightarrow \Sigma_{1\backslash1} = -\Theta^{-1}_{11}\Theta_{1\backslash1}\Sigma_{\backslash1\backslash1}\)
+
+\(\Rightarrow \Sigma_{\backslash11} = -\Sigma_{\backslash1\backslash1}\Theta^{-1}_{11}\Theta_{\backslash11}\)
+
+\(\beta = \Sigma^{-1}_{\backslash1\backslash1}\Sigma_{\backslash1,1}\)
+
+\(=-\Sigma^{-1}_{\backslash1\backslash1}\Sigma_{\backslash1\backslash1}\Theta^{-1}_{11}\Theta_{\backslash11}\)
+
+\(=-\Theta^{-1}_{11}\Theta_{\backslash11}\)
+
+\hypertarget{question-3.8}{%
+\subsection{Question 3.8}\label{question-3.8}}
+
+\(P(X_j, X_k | X_{\backslash j,k}) = \frac{P(X)}{P(X_{\backslash j,k})}\)
+
+\(= \frac{Z_{X_{\backslash j,k}}exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i)}{Z_Xexp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}\)
+
+\(= \frac{Z_{X_{\backslash j,k}}exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i)}{Z_Xexp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i)exp(-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}\)
+
+\(= \frac{Z_{X_{\backslash j,k}}}{Z_X}exp(\beta_jx_j+\Sigma_{j\neq i}\beta_{ji}x_jx_i)exp(\beta_kx_k+\Sigma_{k\neq i}\beta_{ki}x_kx_i)exp(\beta_{jk}x_jx_k)\)
+
+\(= \frac{Z_{X_{\backslash j,k}}}{Z_X}\frac{exp(\beta_jx_j+\Sigma_{j\neq i}\beta_{ji}x_jx_i)exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}\)
+
+\(\frac{exp(\beta_kx_k+\Sigma_{k\neq i}\beta_{ki}x_kx_i)exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}exp(\beta_{jk}x_jx_k)\)
+
+\(= \frac{Z_{X_{\backslash j,k}}}{Z_X}\frac{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_kx_k-\Sigma_{k\neq i}\beta_{ki}x_kx_i)}{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}\)
+
+\(\frac{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\Sigma_{j\neq i}\beta_{ji}x_jx_i)}{exp(\Sigma^d_{i=1}\beta_ix_i+\Sigma_{l<i}\beta_{li}x_lx_i-\beta_jx_j-\beta_kx_k-\Sigma_{j\neq i}\beta_{ji}x_jx_i-\Sigma_{k\neq i}\beta_{ki}x_kx_i+\beta_{jk}x_jx_k)}exp(\beta_{jk}x_jx_k)^3\)
+
+\(= \frac{Z_{X_{\backslash j,k}}}{Z_X}\frac{Z_{X_{\backslash k}}P(X_{\backslash k})}{Z_{X_{\backslash j,k}}P(X_{\backslash j,k})}\frac{Z_{X_{\backslash j}}P(X_{\backslash j})}{Z_{X_{\backslash j,k}}P(X_{\backslash j,k})}exp(\beta_{jk}x_jx_k)^3\)
+
+\(= \frac{Z_{X_{\backslash j}}Z_{X_{\backslash k}}}{Z_{X_{\backslash j,k}}Z_X}P(X_j|X_{\backslash j,k})P(X_k|X_{\backslash j,k})exp(\beta_{jk}x_jx_k)^3\)
+
+\(= P(X_j|X_{\backslash j,k})P(X_k|X_{\backslash j,k})exp(\beta_{jk}x_jx_k)^3\)
+
+\(= P(X_j|X_{\backslash j,k})P(X_k|X_{\backslash j,k})\) if and only if
+\(\beta_{jk}=0\)
+
+Therefore \(X_j\) independent of \(X_k\) given \(X_{\backslash j,k}\) if
+and only if \(\beta_{jk}=0\)
+
+\hypertarget{question-3.9}{%
+\subsection{Question 3.9}\label{question-3.9}}
+
+\(P(X_j = 1 | X_{\backslash j} = x_{\backslash j}) = \frac{P(X_j = 1, X_{\backslash j} = x_{\backslash j})}{P(X_j = 1, X_{\backslash j} = x_{\backslash j}) + P(X_j = -1, X_{\backslash j} = x_{\backslash j})}\)
+
+\(= \frac{1}{1 + \frac{P(X_j = -1, X_{\backslash j} = x_{\backslash j})}{P(X_j = 1, X_{\backslash j} = x_{\backslash j})}}\)
+
+\(\Rightarrow \frac{P(X_j = -1, X_{\backslash j} = x_{\backslash j})}{P(X_j = 1, X_{\backslash j} = x_{\backslash j})}\)
+
+\(= \frac{Z^{-1}exp(-\beta_j - \Sigma_{i \neq j}\beta_{ij}x_i+\Sigma_{i=1; i\neq j}^d\beta_ix_i + \Sigma_{i < k; i,k\neq j}\beta_{ik}x_ix_k)}{Z^{-1}exp(\beta_j + \Sigma_{i \neq j}\beta_{ij}x_i+\Sigma_{i=1; i\neq j}^d\beta_ix_i + \Sigma_{i < k; i,k\neq j}\beta_{ik}x_ix_k)}\)
+
+\(= \frac{exp(-\beta_j - \Sigma_{i \neq j}\beta_{ij}x_i)exp(\Sigma_{i=1; i\neq j}^d\beta_ix_i + \Sigma_{i < k; i,k\neq j}\beta_{ik}x_ix_k)}{exp(\beta_j + \Sigma_{i \neq j}\beta_{ij}x_i)exp(\Sigma_{i=1; i\neq j}^d\beta_ix_i + \Sigma_{i < k; i,k\neq j}\beta_{ik}x_ix_k)}\)
+
+\(= \frac{exp(-\beta_j - \Sigma_{i \neq j}\beta_{ij}x_i)}{exp(\beta_j + \Sigma_{i \neq j}\beta_{ij}x_i)}\)
+
+\(= exp(-2(\beta_j + \Sigma_{i \neq j}\beta_{ij}x_i))\)
+
+\(\Rightarrow \frac{1}{1 + \frac{P(X_j = -1, X_{\backslash j} = x_{\backslash j})}{P(X_j = 1, X_{\backslash j} = x_{\backslash j})}}\)
+
+\(= \frac{1}{1 + exp(-2(\beta_j + \Sigma_{i \neq j}\beta_{ij}x_i))}\)
+
+\hypertarget{question-4}{%
+\section{Question 4}\label{question-4}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# w[1]: w\_chains,   w[2]: w\_inter{-}chain}
+\CommentTok{\# w[3]: w\_chain{-}empty,   w[4]: w\_empty}
+\CommentTok{\# w[5]: h\_stone}
+\NormalTok{w }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FloatTok{2.47}\NormalTok{, }\FloatTok{0.521}\NormalTok{, }\FloatTok{0.442}\NormalTok{, }\FloatTok{0.427}\NormalTok{, }\FloatTok{0.265}\NormalTok{)}
+
+\CommentTok{\# Go board for game 2}
+\NormalTok{C2 }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{read.table}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/AlphaGo{-}vs{-}Lee{-}game2\_80.txt"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{) )}
+\CommentTok{\# Go board for game 4}
+\NormalTok{C4 }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(}\FunctionTok{read.table}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/AlphaGo{-}vs{-}Lee{-}game4\_80.txt"}\NormalTok{, }\AttributeTok{header=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{sep =} \StringTok{","}\NormalTok{) )}
+
+\NormalTok{construct.ising.graph }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(weight, c) \{ }\CommentTok{\# Complete the following function}
+\NormalTok{    g}\OtherTok{=}\FunctionTok{matrix}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{19}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{, }\DecValTok{19}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+    \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{19}\NormalTok{)\{}
+        \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{19}\NormalTok{)\{ }\CommentTok{\# Enumerate every point on the board. i is the row index. j is the column index.}
+\NormalTok{            i0}\OtherTok{=}\NormalTok{(j}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\DecValTok{19}\SpecialCharTok{+}\NormalTok{i}
+\NormalTok{            i1}\OtherTok{=}\NormalTok{j}\SpecialCharTok{*}\DecValTok{19}\SpecialCharTok{+}\NormalTok{i }\CommentTok{\# right neighbor}
+\NormalTok{            i2}\OtherTok{=}\NormalTok{(j}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\DecValTok{19}\SpecialCharTok{+}\NormalTok{i}\SpecialCharTok{+}\DecValTok{1} \CommentTok{\# lower neighbor}
+            \ControlFlowTok{if}\NormalTok{ (j}\SpecialCharTok{\textless{}}\DecValTok{19}\NormalTok{)\{}
+                \ControlFlowTok{if}\NormalTok{ (c[i,j]}\SpecialCharTok{*}\NormalTok{c[i,j}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{                    g[i0, i1]}\OtherTok{=}\NormalTok{w[}\DecValTok{1}\NormalTok{]}
+\NormalTok{                    g[i1, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{1}\NormalTok{]}
+\NormalTok{                \}}
+                \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (c[i,j]}\SpecialCharTok{*}\NormalTok{c[i,j}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]}\SpecialCharTok{=={-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{                    g[i0, i1]}\OtherTok{=}\NormalTok{w[}\DecValTok{2}\NormalTok{]}
+\NormalTok{                    g[i1, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{2}\NormalTok{]}
+\NormalTok{                \}   }
+                \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ ((c[i,j]}\SpecialCharTok{==}\DecValTok{0}\NormalTok{)}\SpecialCharTok{\&}\NormalTok{(c[i, j}\SpecialCharTok{+}\DecValTok{1}\NormalTok{]}\SpecialCharTok{==}\DecValTok{0}\NormalTok{))\{}
+\NormalTok{                    g[i0, i1]}\OtherTok{=}\NormalTok{w[}\DecValTok{4}\NormalTok{]}
+\NormalTok{                    g[i1, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{4}\NormalTok{]}
+\NormalTok{                \}}
+                \ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{                    g[i0, i1]}\OtherTok{=}\NormalTok{w[}\DecValTok{3}\NormalTok{]}
+\NormalTok{                    g[i1, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{3}\NormalTok{]}
+\NormalTok{                \}}
+\NormalTok{            \}}
+            \ControlFlowTok{if}\NormalTok{ (i}\SpecialCharTok{\textless{}}\DecValTok{19}\NormalTok{)\{}
+                \ControlFlowTok{if}\NormalTok{ (c[i,j]}\SpecialCharTok{*}\NormalTok{c[i}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,j]}\SpecialCharTok{==}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{                    g[i0, i2]}\OtherTok{=}\NormalTok{w[}\DecValTok{1}\NormalTok{]}
+\NormalTok{                    g[i2, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{1}\NormalTok{]}
+\NormalTok{                \}}
+                \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (c[i,j]}\SpecialCharTok{*}\NormalTok{c[i}\SpecialCharTok{+}\DecValTok{1}\NormalTok{,j]}\SpecialCharTok{=={-}}\DecValTok{1}\NormalTok{)\{}
+\NormalTok{                    g[i0, i2]}\OtherTok{=}\NormalTok{w[}\DecValTok{2}\NormalTok{]}
+\NormalTok{                    g[i2, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{2}\NormalTok{]}
+\NormalTok{                \}   }
+                \ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ ((c[i,j]}\SpecialCharTok{==}\DecValTok{0}\NormalTok{)}\SpecialCharTok{\&}\NormalTok{(c[i}\SpecialCharTok{+}\DecValTok{1}\NormalTok{, j]}\SpecialCharTok{==}\DecValTok{0}\NormalTok{))\{}
+\NormalTok{                    g[i0, i2]}\OtherTok{=}\NormalTok{w[}\DecValTok{4}\NormalTok{]}
+\NormalTok{                    g[i2, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{4}\NormalTok{]}
+\NormalTok{                \}}
+                \ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{                    g[i0, i2]}\OtherTok{=}\NormalTok{w[}\DecValTok{3}\NormalTok{]}
+\NormalTok{                    g[i2, i0]}\OtherTok{=}\NormalTok{w[}\DecValTok{3}\NormalTok{]}
+\NormalTok{                \}}
+\NormalTok{            \}}
+\NormalTok{        \}}
+\NormalTok{    \}}
+    \FunctionTok{return}\NormalTok{(g)}
+\NormalTok{\}}
+
+\NormalTok{predict\_go }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(w, C, nsample)\{}
+  \CommentTok{\# C is a matrix, obtained from the current go board}
+  \CommentTok{\# do sampling}
+\NormalTok{  W }\OtherTok{\textless{}{-}} \FunctionTok{construct.ising.graph}\NormalTok{(w, C); }\CommentTok{\# Coefficient matrix for the coupling term. }
+  
+  \CommentTok{\# Complete the line below with your code (just one line of code)}
+\NormalTok{  h }\OtherTok{\textless{}{-}}\NormalTok{ w[}\DecValTok{5}\NormalTok{] }\SpecialCharTok{*}\NormalTok{ C }\CommentTok{\# Coeffcient vector for the external field term. }
+  
+\NormalTok{  S\_mat }\OtherTok{\textless{}{-}} \FunctionTok{IsingSampler}\NormalTok{(nsample, }\AttributeTok{graph =}\NormalTok{ W, }
+                        \AttributeTok{thresholds =}\NormalTok{ h, }
+                        \AttributeTok{nIter =} \DecValTok{100}\NormalTok{, }
+                        \AttributeTok{response =} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{1L,1L)) }\CommentTok{\# Each row of S\_mat is a simulated realization of the final territory outcome.}
+  
+\NormalTok{  s }\OtherTok{\textless{}{-}} \FunctionTok{colMeans}\NormalTok{(S\_mat); }\CommentTok{\# s is the empirical expectation of the final territory outcome.}
+\NormalTok{  val }\OtherTok{=} \FunctionTok{sum}\NormalTok{(s) }\SpecialCharTok{{-}} \FloatTok{3.75}\NormalTok{; }\CommentTok{\# Scoring adjustment}
+  \ControlFlowTok{if}\NormalTok{(val }\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{)\{}
+\NormalTok{    result }\OtherTok{=} \ConstantTok{TRUE}
+\NormalTok{  \}}
+  \ControlFlowTok{else}\NormalTok{\{}
+\NormalTok{    result }\OtherTok{=} \ConstantTok{FALSE}
+\NormalTok{  \}}
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(}\AttributeTok{mean =}\NormalTok{ s, }\AttributeTok{result =}\NormalTok{ result))}
+\NormalTok{\}}\CommentTok{\# return the expectation}
+
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2016}\NormalTok{)}
+
+\NormalTok{pred\_game2 }\OtherTok{=} \FunctionTok{predict\_go}\NormalTok{(w, C2, }\AttributeTok{nsample =} \DecValTok{500}\NormalTok{)}
+\NormalTok{expectation }\OtherTok{=}\NormalTok{ pred\_game2}\SpecialCharTok{$}\NormalTok{mean;}
+\NormalTok{result }\OtherTok{=}\NormalTok{ pred\_game2}\SpecialCharTok{$}\NormalTok{result}
+\ControlFlowTok{if}\NormalTok{(result)\{ }
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Alpha{-}go wins game 2"}\NormalTok{))}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Lee Sedol wins game 2"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Alpha-go wins game 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pred\_game4 }\OtherTok{=} \FunctionTok{predict\_go}\NormalTok{(w, C4, }\AttributeTok{nsample =} \DecValTok{500}\NormalTok{)}
+\NormalTok{expectation }\OtherTok{=}\NormalTok{ pred\_game4}\SpecialCharTok{$}\NormalTok{mean;}
+\NormalTok{result }\OtherTok{=}\NormalTok{ pred\_game4}\SpecialCharTok{$}\NormalTok{result}
+\ControlFlowTok{if}\NormalTok{(result)\{ }
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Alpha{-}go wins game 4"}\NormalTok{))}
+\NormalTok{\}}\ControlFlowTok{else}\NormalTok{\{}
+  \FunctionTok{cat}\NormalTok{(}\FunctionTok{sprintf}\NormalTok{(}\StringTok{"Lee Sedol wins game 4"}\NormalTok{))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Lee Sedol wins game 4
+\end{verbatim}
+
+\hypertarget{question-5}{%
+\section{Question 5}\label{question-5}}
+
+\hypertarget{question-5.1}{%
+\subsection{Question 5.1}\label{question-5.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/deepfeature.R"}\NormalTok{)}
+\NormalTok{array\_lasso }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(train.image.array, train.label, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                         \AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+\NormalTok{feature\_lasso }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(train.deep.feature, train.label, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                           \AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+\NormalTok{array\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(array\_lasso, test.image.array, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{feature\_pred }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(feature\_lasso, test.deep.feature, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\CommentTok{\# Misclassification rate for array}
+\FunctionTok{sum}\NormalTok{((test.label }\SpecialCharTok{==} \StringTok{"dog"}\NormalTok{) }\SpecialCharTok{!=}\NormalTok{ (array\_pred }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(test.label)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4133333
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Misclassification rate for feature}
+\FunctionTok{sum}\NormalTok{((test.label }\SpecialCharTok{==} \StringTok{"dog"}\NormalTok{) }\SpecialCharTok{!=}\NormalTok{ (feature\_pred }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(test.label)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.235
+\end{verbatim}
+
+\hypertarget{question-5.2}{%
+\subsection{Question 5.2}\label{question-5.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw6/deepretrieval.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a6_vladislav_trukhin_files/figure-latex/unnamed-chunk-20-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{dist }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{((}\FunctionTok{t}\NormalTok{(deep.feature) }\SpecialCharTok{{-}}\NormalTok{ deep.feature[}\DecValTok{350}\NormalTok{,])}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{closest }\OtherTok{\textless{}{-}} \FunctionTok{order}\NormalTok{(dist)[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{4}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot.image}\NormalTok{(image.array[closest[}\DecValTok{1}\NormalTok{],])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a6_vladislav_trukhin_files/figure-latex/unnamed-chunk-22-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot.image}\NormalTok{(image.array[closest[}\DecValTok{2}\NormalTok{],])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a6_vladislav_trukhin_files/figure-latex/unnamed-chunk-23-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot.image}\NormalTok{(image.array[closest[}\DecValTok{3}\NormalTok{],])}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a6_vladislav_trukhin_files/figure-latex/unnamed-chunk-24-1.pdf}
+
+\end{document}

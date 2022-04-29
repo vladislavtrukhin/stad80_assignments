@@ -1,0 +1,912 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80: Assignment 2},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80: Assignment 2}
+\author{Vladislav Trukhin}
+\date{Due: Feb 3}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\subsection{Question 1}\label{question-1}}
+
+\hypertarget{a}{%
+\subsubsection{1a}\label{a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/housingprice.csv"}\NormalTok{)}
+
+\NormalTok{mean\_prices }\OtherTok{\textless{}{-}} \FunctionTok{tapply}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{price, data}\SpecialCharTok{$}\NormalTok{zipcode, mean)}
+\NormalTok{sorted\_mean\_prices }\OtherTok{\textless{}{-}} \FunctionTok{sort}\NormalTok{(mean\_prices, }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{)}
+\FunctionTok{labels}\NormalTok{(sorted\_mean\_prices) }\CommentTok{\# Zipcode order by avg housing price}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+##  [1] "98039" "98004" "98040" "98112" "98102" "98109" "98105" "98006" "98119"
+## [10] "98005" "98033" "98199" "98075" "98074" "98077" "98053" "98177" "98008"
+## [19] "98052" "98122" "98115" "98116" "98007" "98027" "98029" "98144" "98103"
+## [28] "98024" "98107" "98117" "98072" "98136" "98065" "98034" "98059" "98011"
+## [37] "98070" "98125" "98166" "98028" "98014" "98045" "98019" "98126" "98155"
+## [46] "98010" "98056" "98118" "98133" "98038" "98146" "98108" "98058" "98092"
+## [55] "98106" "98022" "98042" "98178" "98055" "98198" "98031" "98030" "98003"
+## [64] "98188" "98023" "98148" "98001" "98032" "98168" "98002"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{top\_mean\_prices }\OtherTok{\textless{}{-}}\NormalTok{ sorted\_mean\_prices[}\DecValTok{0}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\FunctionTok{labels}\NormalTok{(top\_mean\_prices) }\CommentTok{\# Top 3 zipcodes with most expensive avg housing price}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [1] "98039" "98004" "98040"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{))}
+\FunctionTok{boxplot}\NormalTok{(data[}\FunctionTok{which}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{zipcode }\SpecialCharTok{==} \FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{1}\NormalTok{])),]}\SpecialCharTok{$}\NormalTok{price)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{1}\NormalTok{]))}
+\FunctionTok{boxplot}\NormalTok{(data[}\FunctionTok{which}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{zipcode }\SpecialCharTok{==} \FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{2}\NormalTok{])),]}\SpecialCharTok{$}\NormalTok{price)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{2}\NormalTok{]))}
+\FunctionTok{boxplot}\NormalTok{(data[}\FunctionTok{which}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{zipcode }\SpecialCharTok{==} \FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{3}\NormalTok{])),]}\SpecialCharTok{$}\NormalTok{price)}
+\FunctionTok{title}\NormalTok{(}\FunctionTok{labels}\NormalTok{(top\_mean\_prices[}\DecValTok{3}\NormalTok{]))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\hypertarget{b}{%
+\subsubsection{1b}\label{b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(data}\SpecialCharTok{$}\NormalTok{sqft\_living, data}\SpecialCharTok{$}\NormalTok{price)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-2-1.pdf}
+
+\hypertarget{c}{%
+\subsubsection{1c}\label{c}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/train.data.csv"}\NormalTok{)}
+\NormalTok{test }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/test.data.csv"}\NormalTok{)}
+
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ bedrooms }\SpecialCharTok{+}\NormalTok{ bathrooms }\SpecialCharTok{+}\NormalTok{ sqft\_living }\SpecialCharTok{+}\NormalTok{ sqft\_lot, train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5101139
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(}\FunctionTok{predict}\NormalTok{(fit, test), test}\SpecialCharTok{$}\NormalTok{price)}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5050777
+\end{verbatim}
+
+\hypertarget{d}{%
+\subsubsection{1d}\label{d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ zipcode }\SpecialCharTok{+} 
+\NormalTok{            bedrooms }\SpecialCharTok{+} 
+\NormalTok{            bathrooms }\SpecialCharTok{+} 
+\NormalTok{            sqft\_living }\SpecialCharTok{+} 
+\NormalTok{            sqft\_lot, train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5162971
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(}\FunctionTok{predict}\NormalTok{(fit, test), test}\SpecialCharTok{$}\NormalTok{price)}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5120952
+\end{verbatim}
+
+\hypertarget{e}{%
+\subsubsection{1e}\label{e}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fancy }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/fancyhouse.csv"}\NormalTok{)}
+\FunctionTok{predict}\NormalTok{(fit, fancy) }\CommentTok{\# Predicted price}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1 
+## 15642273
+\end{verbatim}
+
+The predicted price is not reasonable as the actual price of the home is
+\$100+ million, which makes the predicted 10 times off of the actual
+price.
+
+\hypertarget{f}{%
+\subsubsection{1f}\label{f}}
+
+\(R^2 = 1-\frac{RSS}{TSS}\)
+
+As the value of TSS is the same for both models, only need to observe
+their respective RSS.
+
+\(RSS_{d+1} - RSS_d = ||\textbf{Y} - \textbf{X}_{d+1}\hat{\beta_{d+1}}||^2_2 - ||\textbf{Y} - \textbf{X}_d\hat{\beta}_d||^2_2\)
+
+\(= \sum^n_{i=1}(y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 - \sum^n_{i=1}(y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2\)
+
+\(= \sum^n_{i=1}(y_i-\hat{y_i}_{d+1})^2 - \sum^n_{i=1}(y_i-\hat{y_i}_d)^2\)
+
+The addition of one covariate term brings one more degree of freedom
+when finding the minimum argument \(\hat{\beta}_{d+1}\) for
+\(||\textbf{Y} - \textbf{X}_{d+1}\beta_{d+1}||^2_2\). The minimum
+argument can be computed in closed form without issues as it is assumed
+\(n > d+1\), or number of features + 1 do not exceed number of samples
+within the training data, \(\textbf{X}_{d+1}\). This means that the
+estimated \(\textbf{Y}\),
+\(\hat{\textbf{Y}}_{d+1} = \textbf{X}_{d+1}\beta_{d+1}\), will be closer
+to the true value of \(\textbf{Y}\) than if were using the minimum
+argument obtained from the model without the additional covariate term,
+\(\hat{\textbf{Y}}_{d} = \textbf{X}_{d}\beta_{d}\).
+
+\(\Rightarrow (y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 \leq (y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2\)
+
+\(\Rightarrow \sum^n_{i=1}(y_i-\hat{\beta}_{d+1,0}+\hat{\beta}_{d+1, 1}x_{i,1}+...+\hat{\beta}_{d+1, d+1}x_{i,d+1})^2 - \sum^n_{i=1}(y_i-\hat{\beta}_{d,0}+\hat{\beta}_{d, 1}x_{i,1}+...+\hat{\beta}_{d, d}x_{i,d})^2 \leq 0\)
+
+\(\Rightarrow ||\textbf{Y} - \textbf{X}_{d+1}\hat{\beta_{d+1}}||^2_2 - ||\textbf{Y} - \textbf{X}_d\hat{\beta}_d||^2_2 \leq 0\)
+
+\(\Rightarrow RSS_{d+1} - RSS_d \leq 0\)
+
+\(\Rightarrow RSS_{d+1} \leq RSS_d\)
+
+\(\Rightarrow \frac{RSS_{d+1}}{TSS} \leq \frac{RSS_d}{TSS}\)
+
+\(\Rightarrow 1-\frac{RSS_{d+1}}{TSS} \geq 1-\frac{RSS_d}{TSS}\)
+
+\(\Rightarrow R^2_{d+1} \geq R^2_d\)
+
+Therefore, if \(n > d+1\), adding an additional covariate never lowers
+\(R^2\) over training data.
+
+\hypertarget{question-2}{%
+\subsection{Question 2}\label{question-2}}
+
+\hypertarget{a-1}{%
+\subsubsection{2a}\label{a-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ zipcode }\SpecialCharTok{+} 
+\NormalTok{            bedrooms }\SpecialCharTok{+} 
+\NormalTok{            bathrooms }\SpecialCharTok{+} 
+\NormalTok{            bedrooms }\SpecialCharTok{*}\NormalTok{ bathrooms }\SpecialCharTok{+} 
+\NormalTok{            sqft\_living }\SpecialCharTok{+} 
+\NormalTok{            sqft\_lot, train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5223738
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(}\FunctionTok{predict}\NormalTok{(fit, test), test}\SpecialCharTok{$}\NormalTok{price)}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5165772
+\end{verbatim}
+
+\hypertarget{b-1}{%
+\subsubsection{2b}\label{b-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ zipcode }\SpecialCharTok{+} 
+\NormalTok{            bedrooms }\SpecialCharTok{+} 
+\NormalTok{            bathrooms }\SpecialCharTok{+} 
+\NormalTok{            bedrooms }\SpecialCharTok{*}\NormalTok{ bathrooms }\SpecialCharTok{+} 
+\NormalTok{            sqft\_living }\SpecialCharTok{+} 
+\NormalTok{            sqft\_lot }\SpecialCharTok{+} 
+\NormalTok{            sqft\_living }\SpecialCharTok{*}\NormalTok{ bedrooms, train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5262117
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(}\FunctionTok{predict}\NormalTok{(fit, test), test}\SpecialCharTok{$}\NormalTok{price)}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5228651
+\end{verbatim}
+
+Adding a new covariate that multiplies sqft\_living and bedrooms. It
+models both the number of bedrooms and the size of each, which may
+influence the price.
+
+\hypertarget{c-1}{%
+\subsubsection{2c}\label{c-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ zipcode }\SpecialCharTok{+} 
+            \FunctionTok{poly}\NormalTok{(bedrooms, }\DecValTok{2}\NormalTok{) }\SpecialCharTok{+} 
+            \FunctionTok{poly}\NormalTok{(bathrooms, }\DecValTok{3}\NormalTok{) }\SpecialCharTok{+} 
+\NormalTok{            sqft\_living }\SpecialCharTok{+} 
+\NormalTok{            sqft\_lot, train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5423359
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(}\FunctionTok{predict}\NormalTok{(fit, test), test}\SpecialCharTok{$}\NormalTok{price)}\SpecialCharTok{\^{}}\DecValTok{2} \CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5285267
+\end{verbatim}
+
+\hypertarget{question-3}{%
+\subsection{Question 3}\label{question-3}}
+
+\hypertarget{a-2}{%
+\subsubsection{3.a}\label{a-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{wine\_train }\OtherTok{\textless{}{-}} 
+  \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/wine.csv"}\NormalTok{)}
+\NormalTok{wine\_test }\OtherTok{\textless{}{-}} 
+  \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/winetest.csv"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{plot}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{AGST, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\FunctionTok{plot}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{WinterRain, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\FunctionTok{plot}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{HarvestRain, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\FunctionTok{plot}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{Age, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{AGST, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6595629
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{WinterRain, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1366505
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{HarvestRain, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.5633219
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor}\NormalTok{(wine\_train}\SpecialCharTok{$}\NormalTok{Age, wine\_train}\SpecialCharTok{$}\NormalTok{Price)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4477679
+\end{verbatim}
+
+According to the graph, AGST and Price seem to be the most correlated.
+The variance is smaller and has a strong positive correlation. The
+Pearson's correlation number suggests the same, with the magnitude of
+the value for AGST and Price higher than all three.
+
+\hypertarget{b-2}{%
+\subsubsection{3.b}\label{b-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AGST, wine\_train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Estimate Std. Error   t value     Pr(>|t|)
+## (Intercept) -3.4177613  2.4935130 -1.370661 0.1837099385
+## AGST         0.6350943  0.1509154  4.208282 0.0003350495
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4350232
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{predict}\NormalTok{(fit,wine\_test)}\SpecialCharTok{{-}}\NormalTok{wine\_test}\SpecialCharTok{$}\NormalTok{Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((wine\_test}\SpecialCharTok{$}\NormalTok{Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(wine\_test}\SpecialCharTok{$}\NormalTok{Price))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq }\CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.31426
+\end{verbatim}
+
+\hypertarget{c-2}{%
+\subsubsection{3.c}\label{c-2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AGST }\SpecialCharTok{+}\NormalTok{ HarvestRain, wine\_train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7073708
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{predict}\NormalTok{(fit,wine\_test)}\SpecialCharTok{{-}}\NormalTok{wine\_test}\SpecialCharTok{$}\NormalTok{Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((wine\_test}\SpecialCharTok{$}\NormalTok{Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(wine\_test}\SpecialCharTok{$}\NormalTok{Price))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq }\CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.503339
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AGST }\SpecialCharTok{+}\NormalTok{ HarvestRain }\SpecialCharTok{+}\NormalTok{ Age, wine\_train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.7900362
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{predict}\NormalTok{(fit,wine\_test)}\SpecialCharTok{{-}}\NormalTok{wine\_test}\SpecialCharTok{$}\NormalTok{Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((wine\_test}\SpecialCharTok{$}\NormalTok{Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(wine\_test}\SpecialCharTok{$}\NormalTok{Price))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq }\CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.5080824
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AGST }\SpecialCharTok{+}\NormalTok{ HarvestRain }\SpecialCharTok{+}\NormalTok{ Age }\SpecialCharTok{+}\NormalTok{ WinterRain, wine\_train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8285662
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 Estimate   Std. Error   t value     Pr(>|t|)
+## (Intercept) -3.429980187 1.7658975180 -1.942344 6.631093e-02
+## AGST         0.607209348 0.0987022158  6.151932 5.197012e-06
+## HarvestRain -0.003971534 0.0008537981 -4.651608 1.537556e-04
+## Age          0.023930832 0.0080968750  2.955564 7.818874e-03
+## WinterRain   0.001075505 0.0005072784  2.120148 4.669359e-02
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{predict}\NormalTok{(fit,wine\_test)}\SpecialCharTok{{-}}\NormalTok{wine\_test}\SpecialCharTok{$}\NormalTok{Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((wine\_test}\SpecialCharTok{$}\NormalTok{Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(wine\_test}\SpecialCharTok{$}\NormalTok{Price))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq }\CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3343905
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Price }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AGST }\SpecialCharTok{+}\NormalTok{ HarvestRain }\SpecialCharTok{+}\NormalTok{ Age }\SpecialCharTok{+}\NormalTok{ WinterRain }\SpecialCharTok{+}\NormalTok{ FrancePop, wine\_train)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8293592
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((}\FunctionTok{predict}\NormalTok{(fit,wine\_test)}\SpecialCharTok{{-}}\NormalTok{wine\_test}\SpecialCharTok{$}\NormalTok{Price)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((wine\_test}\SpecialCharTok{$}\NormalTok{Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(wine\_test}\SpecialCharTok{$}\NormalTok{Price))}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+\NormalTok{rsq }\CommentTok{\# Test R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2120672
+\end{verbatim}
+
+The linear model depending on AGST, HarvestRain, Age, and WinterRain
+performed the best, as it had a high \(R^2\) value for the training data
+and the highest \(R^2\) value for the test data. That particular model
+agrees with Prof.~Ashenfelter's findings, since HarvestRain has a
+negative coefficient and WinterRain has a positive one.
+
+\hypertarget{question-4}{%
+\subsection{Question 4}\label{question-4}}
+
+\hypertarget{a-3}{%
+\subsubsection{4.a}\label{a-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baseball }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/baseball.csv"}\NormalTok{)}
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{))}
+\FunctionTok{boxplot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\FunctionTok{hist}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-12-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3263312
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.326
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{SLG)}
+\FunctionTok{hist}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{SLG)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-12-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{SLG) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3973417
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{SLG) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.396
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{BA)}
+\FunctionTok{hist}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{BA)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-12-3.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{BA)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2592727
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{BA)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.26
+\end{verbatim}
+
+\hypertarget{b-3}{%
+\subsubsection{4.b}\label{b-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{BA)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Estimate Std. Error   t value      Pr(>|t|)
+## (Intercept) -805.511   29.51107 -27.29522 1.207747e-128
+## baseball$BA 5864.840  113.68182  51.58995 6.416404e-310
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6839284
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{BA, baseball}\SpecialCharTok{$}\NormalTok{RS)}
+\FunctionTok{abline}\NormalTok{(fit)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{rstandard}\NormalTok{(fit))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-13-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Estimate Std. Error   t value      Pr(>|t|)
+## (Intercept)  -1076.602   24.69729 -43.59192 9.443235e-252
+## baseball$OBP  5490.386   75.60177  72.62246  0.000000e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8108862
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{OBP, baseball}\SpecialCharTok{$}\NormalTok{RS)}
+\FunctionTok{abline}\NormalTok{(fit)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{rstandard}\NormalTok{(fit))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-13-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{SLG)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##              Estimate Std. Error   t value      Pr(>|t|)
+## (Intercept)  -289.368   12.35223 -23.42638 1.190308e-100
+## baseball$SLG 2527.925   30.97887  81.60158  0.000000e+00
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.8440831
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{SLG, baseball}\SpecialCharTok{$}\NormalTok{RS)}
+\FunctionTok{abline}\NormalTok{(fit)}
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{rstandard}\NormalTok{(fit))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-13-3.pdf}
+
+The analysis is not consistent with the intuition, as the \(R^2\) is the
+lowest relative to RS's and BA's \(R^2\).
+
+\hypertarget{c-3}{%
+\subsubsection{4.c}\label{c-3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{BA }\SpecialCharTok{+}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{SLG }\SpecialCharTok{+}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{OBP)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{coeff }\CommentTok{\# Coefficients}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##               Estimate Std. Error    t value      Pr(>|t|)
+## (Intercept)  -806.0845   17.39190 -46.348260 5.904672e-272
+## baseball$BA  -134.9050  113.73431  -1.186141  2.357959e-01
+## baseball$SLG 1533.8848   37.75868  40.623372 2.187242e-229
+## baseball$OBP 2900.9403   97.87168  29.640243 4.386860e-146
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9248834
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qqnorm}\NormalTok{(}\FunctionTok{rstandard}\NormalTok{(fit))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment2_vladislav_trukhin_files/figure-latex/unnamed-chunk-14-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{OBP }\SpecialCharTok{+}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{SLG)}
+\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared }\CommentTok{\# Training R2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9247974
+\end{verbatim}
+
+The results are consistent of that in 4.b. The coefficient of BA has a
+low significance level, consistent with the low \(R^2\) value obtained
+from 4.b. The two models have near equivalent \(R^2\) values, which
+makes the later model a better model due to being more simple.
+
+\hypertarget{d-1}{%
+\subsubsection{4.d}\label{d-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baseball}\SpecialCharTok{$}\NormalTok{RD }\OtherTok{=}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{{-}}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{RA}
+\NormalTok{baseball\_pre\_2002 }\OtherTok{=}\NormalTok{ baseball[}\FunctionTok{which}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{Year }\SpecialCharTok{\textless{}} \DecValTok{2002}\NormalTok{), ]}
+
+\NormalTok{fit1 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(W }\SpecialCharTok{\textasciitilde{}}\NormalTok{ RD, baseball\_pre\_2002)}
+\NormalTok{fit2 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(RS }\SpecialCharTok{\textasciitilde{}}\NormalTok{ OBP }\SpecialCharTok{+}\NormalTok{ SLG, baseball\_pre\_2002)}
+\NormalTok{fit3 }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(RA }\SpecialCharTok{\textasciitilde{}}\NormalTok{ OOBP }\SpecialCharTok{+}\NormalTok{ OSLG, baseball\_pre\_2002)}
+
+\NormalTok{oak\_pred }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\StringTok{"OBP"} \OtherTok{=}\NormalTok{ .}\DecValTok{349}\NormalTok{, }
+                       \StringTok{"SLG"} \OtherTok{=}\NormalTok{ .}\DecValTok{430}\NormalTok{, }
+                       \StringTok{"OOBP"} \OtherTok{=}\NormalTok{ .}\DecValTok{307}\NormalTok{, }
+                       \StringTok{"OSLG"} \OtherTok{=}\NormalTok{ .}\DecValTok{373}\NormalTok{)}
+\NormalTok{oak\_pred}\SpecialCharTok{$}\NormalTok{RS }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit2, oak\_pred)}
+\NormalTok{oak\_pred}\SpecialCharTok{$}\NormalTok{RA }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit3, oak\_pred)}
+\NormalTok{oak\_pred}\SpecialCharTok{$}\NormalTok{RD }\OtherTok{\textless{}{-}}\NormalTok{ oak\_pred}\SpecialCharTok{$}\NormalTok{RS }\SpecialCharTok{{-}}\NormalTok{ oak\_pred}\SpecialCharTok{$}\NormalTok{RA}
+\FunctionTok{predict}\NormalTok{(fit1, oak\_pred) }\CommentTok{\#Predicted Wins}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        1 
+## 103.1386
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{baseball[}\FunctionTok{which}\NormalTok{(baseball}\SpecialCharTok{$}\NormalTok{Year }\SpecialCharTok{==} \DecValTok{2002} \SpecialCharTok{\&}\NormalTok{ baseball}\SpecialCharTok{$}\NormalTok{Team }\SpecialCharTok{==} \StringTok{\textquotesingle{}OAK\textquotesingle{}}\NormalTok{), ]}\SpecialCharTok{$}\NormalTok{W }\CommentTok{\#Actual Wins}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 103
+\end{verbatim}
+
+\end{document}

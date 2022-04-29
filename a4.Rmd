@@ -1,0 +1,380 @@
+---
+title: "STAD80: Assignment 4"
+author: "Vladislav Trukhin"
+date: "Due: February 28th, 2022"
+output:
+  pdf_document:
+    keep_tex: true
+    toc: yes
+    toc_depth: 2
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(warn=-1)
+library(png)
+library(glmnet)
+library(plyr)
+```
+
+# Question 1
+## Question 1.1.a
+```{r}
+source("/Users/vladislavtrukhin/Downloads/A4_datasets/functions.R")
+```
+```{r}
+pos_col <- readPNG(
+  sprintf("/Users/vladislavtrukhin/Downloads/A4_datasets/pngdata/pos/%d.png", sample(1:500, 1)))
+neg_col <- readPNG(
+  sprintf("/Users/vladislavtrukhin/Downloads/A4_datasets/pngdata/neg/%d.png", sample(1:500, 1)))
+writePNG(pos_col, target = "pos_col.png")
+writePNG(neg_col, target = "neg_col.png")
+
+```
+\begin{figure}
+  \includegraphics[width=\linewidth]{pos_col.png}
+  \includegraphics[width=\linewidth]{neg_col.png}
+  \caption{Colored}
+\end{figure}
+
+```{r}
+pos_gray <- rgb2gray(pos_col)
+neg_gray <- rgb2gray(neg_col)
+writePNG(pos_gray, target = "pos_gray.png")
+writePNG(neg_gray, target = "neg_gray.png")
+```
+\begin{figure}
+  \includegraphics[width=\linewidth]{pos_gray.png}
+  \includegraphics[width=\linewidth]{neg_gray.png}
+  \caption{Grayscale}
+\end{figure}
+
+```{r}
+neg_crop <- crop.r(neg_gray, 160, 96)
+writePNG(neg_crop, target = "neg_crop.png")
+```
+\begin{figure}
+  \includegraphics[width=\linewidth]{neg_crop.png}
+  \caption{Cropped}
+\end{figure}
+
+```{r}
+par(mfrow=c(1, 2))
+
+pos_grad <- grad(pos_gray, 128, 64, TRUE) 
+neg_grad <- grad(neg_crop, 128, 64, TRUE)
+
+pos_fet <- hog(pos_grad[[1]], pos_grad[[2]], 4, 4, 6)
+neg_fet <- hog(neg_grad[[1]], neg_grad[[2]], 4, 4, 6)
+
+head(pos_fet, 6)
+head(neg_fet, 6)
+```
+
+## Question 1.1.b
+```{r}
+feature <- function(pos, neg) {
+  pos_gray <- rgb2gray(pos)
+  neg_gray <- rgb2gray(neg)
+  
+  neg_crop <- crop.r(neg_gray, 160, 96)
+  
+  pos_grad <- grad(pos_gray, 128, 64, FALSE) 
+  neg_grad <- grad(neg_crop, 128, 64, FALSE)
+  
+  pos_fet <- hog(pos_grad[[1]], pos_grad[[2]], 4, 4, 6)
+  neg_fet <- hog(neg_grad[[1]], neg_grad[[2]], 4, 4, 6)
+  
+  return(list(pos_fet, neg_fet))
+}
+```
+```{r}
+fet_data <- c()
+pos_data <- c()
+for (i in 1:500) {
+  pos <- readPNG(
+    sprintf("/Users/vladislavtrukhin/Downloads/A4_datasets/pngdata/pos/%d.png", i))
+  neg <- readPNG(
+    sprintf("/Users/vladislavtrukhin/Downloads/A4_datasets/pngdata/neg/%d.png", i))
+  fet <- feature(pos, neg)
+  fet_data <- rbind(fet_data, fet[[1]], fet[[2]])
+  pos_data <- rbind(pos_data, 1, 0)
+}
+```
+
+## Question 1.2
+```{r}
+par(mfrow=c(1, 2))
+fit <- glmnet(fet_data, pos_data, family="binomial", type.measure="class")
+cv <- cv.glmnet(fet_data, pos_data, family="binomial", type.measure="class")
+
+plot(cv)
+title("CV Error vs Lambda")
+
+plot(fit)
+abline(v=sum(abs(coef(cv, s="lambda.min")[2:97])), col="blue", lwd=2, lty=2)
+abline(v=sum(abs(coef(cv, s="lambda.1se")[2:97])), col="red", lwd=2, lty=2)
+title("Reg Path")
+
+predicted <- predict(cv, fet_data, s="lambda.min")
+misclass <- sum(as.integer(predicted > 0) != pos_data)
+misclass # Number misclassified
+(500-misclass)/500 # Training accuracy
+```
+
+# Question 2
+## Question 2.a
+```{r}
+load("/Users/vladislavtrukhin/Downloads/A4_datasets/Amazon_SML.RData")
+colnames(dat) # Column names
+sum(table(dat$rating)) # Number of reviews
+nrow(as.data.frame(unique(dat$name))) # Number of unique products
+
+count5 <- function(data) {
+  return(sum(data$rating == 5))
+}
+
+count1 <- function(data) {
+  return(sum(data$rating == 1))
+}
+
+x <- dlply(dat, .(name), count5)
+y <- dlply(dat, .(name), count1)
+x[which.max(x)] # Product with most number of 5 ratings and count
+y[which.max(y)] # Product with most number of 1 ratings and count
+```
+
+## Question 2.b
+```{r}
+# Number of reviews of each rating
+sum(dat$rating == 1)
+sum(dat$rating == 5)
+```
+
+The best performance of a constant classifier is 50%, one which assigns a rating
+5 for every review.
+
+```{r}
+source("/Users/vladislavtrukhin/Downloads/A4_datasets/tdMat.R")
+```
+
+## Question 2.c
+```{r}
+source("/Users/vladislavtrukhin/Downloads/A4_datasets/splitData.R")
+```
+```{r}
+set.seed(10)
+lambda <- exp(seq(-20, -1, length.out = 99))
+cv <- cv.glmnet(train.x, train.y, family="binomial", type.measure="class", lambda=lambda)
+
+# Number of covariates with non-zero coefficients in the model selected by lambda.1se
+sum(coef(cv, lamda="lambda.1se") != 0)
+
+neg_order <- order(coef(cv, lamda="lambda.1se"), decreasing = FALSE)
+pos_order <- order(coef(cv, lamda="lambda.1se"), decreasing = TRUE)
+head(row.names(coef(cv, lamda="lambda.1se"))[neg_order], 20) # 20 most negative words
+head(row.names(coef(cv, lamda="lambda.1se"))[pos_order], 20) # 20 most positive words
+```
+
+## Question 2.d
+```{r}
+most_neg = 0
+for (i in row.names(coef(cv, lamda="lambda.1se"))[neg_order]) {
+  if (sum(train.x[,i] != 0) > 10) {
+    most_neg = i
+    break
+  }
+}
+most_neg # Most negative word in more than 10 reviews
+
+most_pos = 0
+for (i in row.names(coef(cv, lamda="lambda.1se"))[pos_order]) {
+  if (sum(train.x[,i] != 0) > 10) {
+    most_pos = i
+    break
+  }
+}
+most_pos # Most positive word in more than 10 reviews
+
+# Reviews with most negative word in more than 10 reviews and rating 5
+sum(dat$rating[train.tag[which(train.x[, most_neg] > 0)]] == 5)
+# Reviews with most negative word in more than 10 reviews and rating 1
+sum(dat$rating[train.tag[which(train.x[, most_neg] > 0)]] == 1)
+# Reviews with most positive word in more than 10 reviews and rating 5
+sum(dat$rating[train.tag[which(train.x[, most_pos] > 0)]] == 5)
+# Reviews with most positive word in more than 10 reviews and rating 1
+sum(dat$rating[train.tag[which(train.x[, most_pos] > 0)]] == 1)
+```{r}
+# First review using the most negative word in more than 10 reviews
+print(dat$review[train.tag[which(train.x[, most_neg] > 0)[1]]])
+```
+
+We have had this monitor for four years now and we are getting ready to purchase 
+another one to use with our second baby that is due soon.  Our home is about 4,000 
+sq. feet and our daughters room is at the other end of the house from ours. We 
+have no problems hearing her perfectly, anywhere in the house. We have never 
+replaced the battery and we take it with us whenever we travel. Do not waste your 
+time or money on any other product, we tried the Graco, Fisher Price, and the 
+Summer and were disappointed.  Congratulations on your little one and enjoy hearing 
+those precious sounds through this monitor!
+
+```{r}
+# First review using the most positive word in more than 10 reviews
+print(dat$review[train.tag[which(train.x[, most_pos] > 0)[1]]])
+```
+
+It\\'s easy to hold by little fingers n gives sound when she presses it. She loves 
+it very much and smile every time she sees Sophie.
+
+## Question 2.e
+```{r}
+predict_test <- predict(cv, test.x, s="lambda.1se")
+misclass <- sum(as.integer(predict_test > 0) != test.y)
+misclass # Number misclassified
+(1312-misclass)/1312 # Test accuracy
+```
+
+The performance of the logistic model exceeds the constant classifier.
+
+# Question 3
+## Question 3.a
+
+$\ell(\beta) = \ln\Pi_{i=1}^n P(Y=y_i|X=x_i)$
+
+$=\ln\Pi_{i=1}^n \frac{\lambda(x_i)^{y_i}}{y_i!}e^{-\lambda(x_i)}$
+
+$=\Sigma_{i=1}^n y_i\ln\lambda(x_i) -\ln y_i! -\lambda(x_i)$
+
+$=\Sigma_{i=1}^n y_i\beta^\top x_i -\ln y_i! - e^{\beta^\top x_i}$
+
+## Question 3.b
+
+For Poisson regression
+
+$\frac{\partial\ell(\beta)}{\partial\beta}=\Sigma_{i=1}^n\frac{\partial}{\partial\beta}y_i\beta^\top x_i-\frac{\partial}{\partial\beta}\ln y_i!-\frac{\partial}{\partial\beta}e^{\beta^\top x_i}$
+
+$=\Sigma_{i=1}^ny_ix_i-e^{\beta^\top x_i}x_i$
+
+At $\beta=\hat\beta$
+
+$\Sigma_{i=1}^ny_ix_i-e^{\hat\beta^\top x_i}x_i=0$
+
+$\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^ne^{\hat\beta^\top x_i}x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^n\lambda(x_i)x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^nE_{\hat\beta}[Y|X=x_i]x_i$
+
+For logistic regression
+
+$\frac{\partial\ell(\beta)}{\partial\beta}=-\Sigma_{i=1}^n(1-y_i)\frac{\partial}{\partial\beta}\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\frac{\partial}{\partial\beta}\ln(1+e^{-\beta x_i})$
+
+$=-\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i+\Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i$
+
+At $\beta=\hat\beta$
+
+$-\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i+\Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i=0$
+
+$\Rightarrow \Sigma_{i=1}^ny_i\frac{e^{-\beta x_i}}{1+e^{-\beta x_i}}x_i=\Sigma_{i=1}^n(1-y_i)\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_i\frac{1}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i-y_i\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_i\frac{1}{1+e^{\beta x_i}}x_i+y_i\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_i(\frac{1}{1+e^{\beta x_i}}x_i+\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i)=\Sigma_{i=1}^n\frac{e^{\beta x_i}}{1+e^{\beta x_i}}x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_i\frac{1+e^{\beta x_i}}{1+e^{\beta x_i}}x_i=\Sigma_{i=1}^n\theta(x_i)x_i$
+
+$\Rightarrow \Sigma_{i=1}^ny_ix_i=\Sigma_{i=1}^nE_{\hat\beta}[Y|X=x_i]x_i$
+
+# Question 4
+## Question 4.a
+
+$\ell(\beta) = \ln\Pi_{i=1}^n P(Y=y_i|X=x_i)$
+
+$=\ln\Pi_{i=1}^n(1-\eta(x_i))^{1-y_i}\eta(x_i)^{y_i}$
+
+$=\Sigma_{i=1}^n(1-y_i)\ln(1-\eta(x_i))+y_i\ln\eta(x_i)$
+
+$=\Sigma_{i=1}^n(1-y_i)\ln(1-\eta(x_i))+y_i\ln\eta(x_i)$
+
+$=\Sigma_{i=1}^n(1-y_i)\ln(\frac{1}{1+e^{\beta x_i}})+y_i\ln(\frac{1}{1+e^{-\beta x_i}})$
+
+$=-\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})$
+
+## Question 4.b
+
+$-\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})$
+
+$\forall x_i\leq 0, y_i=0$
+
+$\Rightarrow -\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i}) = -\Sigma_{i=1, y_i=0}^n\ln(1+e^{-\beta|x_i|})$ 
+
+$\forall x_i\geq 0, y_i=1$
+
+$\Rightarrow -\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i}) = -\Sigma_{i=1, y_i=1}^n\ln(1+e^{-\beta|x_i|})$
+
+$\Rightarrow -\Sigma_{i=1}^n(1-y_i)\ln(1+e^{\beta x_i})-\Sigma_{i=1}^ny_i\ln(1+e^{-\beta x_i})$
+
+$=-\Sigma_{i=1, y_i=0}^n\ln(1+e^{-\beta|x_i|})-\Sigma_{i=1, y_i=1}^n\ln(1+e^{-\beta|x_i|})$
+
+$=-\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})$
+
+$\Rightarrow argmax_\beta-\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})$
+
+$=argmin_\beta\Sigma_{i=1}^n\ln(1+e^{-\beta|x_i|})$
+
+$=argmin_\beta e^{-\beta}$
+
+$=argmax_\beta\beta = \infty = \hat\beta$
+
+# Question 5
+## Question 5.1
+```{r}
+X <- read.csv("/Users/vladislavtrukhin/Downloads/A4_datasets/framingham.csv")
+X <- na.omit(X)
+X.all <- scale(X[,-16])
+Y.all <- X[,16]
+
+fit <- glm(TenYearCHD~male+age+education+currentSmoker+cigsPerDay+BPMeds
+           +prevalentStroke+prevalentHyp+diabetes+totChol+sysBP+diaBP
+           +BMI+heartRate+glucose, family=binomial, data=X)
+summary(fit)
+```
+
+The variables male, age, cigsPerDay, totChol, sysBP, and glucose are statistically 
+significant with p-val < 0.05.
+
+## Question 5.2
+```{r}
+set.seed(100)
+
+total <- 1:nrow(X)
+
+# 1/5 Test
+test_idx <- sample(total, nrow(X)/5)
+test <- X[test_idx, ] 
+
+# 4/5 Train
+train_idx <- total[!total%in%test_idx]
+train <- X[train_idx, ]
+
+fit <- glm(TenYearCHD~male+age+education+currentSmoker+cigsPerDay+BPMeds
+           +prevalentStroke+prevalentHyp+diabetes+totChol+sysBP+diaBP
+           +BMI+heartRate+glucose, family=binomial, data=train)
+
+predicted <- predict.glm(fit, test)
+misclass <- sum(as.integer(predicted > 0) != test$TenYearCHD) 
+misclass # Misclassification error for test
+(nrow(test)-misclass)/nrow(test) # Test accuracy
+```
+
+## Question 5.3
+```{r}
+cv <- cv.glmnet(X.all, Y.all, family="binomial", type.measure="class", alpha=1, nfolds=5)
+plot(cv)
+title("CV Error vs Lambda")
+```
+
+No, the shape is not a typical U-curve but does go down a little initially and 
+up a little afterwards. Regularization is most likely not needed in this problem.

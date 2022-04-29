@@ -1,0 +1,840 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80 Assignment 3},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80 Assignment 3}
+\author{Vladislav Trukhin}
+\date{February 12th, 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+\hypertarget{question-1.1.a}{%
+\subsection{Question 1.1.a}\label{question-1.1.a}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{load}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A3\_data/q1.RData"}\NormalTok{)}
+
+\CommentTok{\#Format training data}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Region }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Region }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{), }
+                             \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Region }\SpecialCharTok{==} \DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                           \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                           \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                           \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                           \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                          \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+                \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}5Fa{-}expoBTTR1m58uG\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}5KFUl5p0Gxsvgmd4wspENpn\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}trqRTuT{-}GNTYJNKbuKz\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}trqRTu5Jg9q9wMKYvmpENpn\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Key\_Page }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+  \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Key\_Page }\SpecialCharTok{==} \StringTok{\textquotesingle{}3a7eb50444df6f61b2409f4e2f16b687\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+  \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Key\_Page }\SpecialCharTok{==} \StringTok{\textquotesingle{}df6f61b2409f4e2f16b6873a7eb50444\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                             \FunctionTok{ifelse}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Form }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Form }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Width }\OtherTok{\textless{}{-}}\NormalTok{ (dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Width}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Width))}\SpecialCharTok{/}
+                            \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Width)}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Height }\OtherTok{\textless{}{-}}\NormalTok{ (dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Height}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Height))}\SpecialCharTok{/}
+                            \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Height)}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Floor\_Price }\OtherTok{\textless{}{-}} 
+\NormalTok{  (dataTrainAll}\SpecialCharTok{$}\NormalTok{Floor\_Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Floor\_Price))}\SpecialCharTok{/}
+    \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Floor\_Price)}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Click }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{)}
+\NormalTok{predictors\_train }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Region, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{City, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Domain, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Key\_Page, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Vis, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Form, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Width, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Ad\_Height, }
+\NormalTok{                    dataTrainAll}\SpecialCharTok{$}\NormalTok{Floor\_Price)}
+
+\CommentTok{\#Format test data}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Region }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Region }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                         \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Region }\SpecialCharTok{==} \DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{City }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                       \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                       \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                       \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{4}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                       \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{City }\SpecialCharTok{==} \DecValTok{5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{AdX }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{AdX }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                      \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{AdX }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Domain }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+                    \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}5Fa{-}expoBTTR1m58uG\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                    \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}5KFUl5p0Gxsvgmd4wspENpn\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                    \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}trqRTuT{-}GNTYJNKbuKz\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                    \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Domain }\SpecialCharTok{==} \StringTok{\textquotesingle{}trqRTu5Jg9q9wMKYvmpENpn\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Key\_Page }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}
+          \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Key\_Page }\SpecialCharTok{==} \StringTok{\textquotesingle{}3a7eb50444df6f61b2409f4e2f16b687\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+          \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Key\_Page }\SpecialCharTok{==} \StringTok{\textquotesingle{}df6f61b2409f4e2f16b6873a7eb50444\textquotesingle{}}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{),}
+                         \FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Vis }\SpecialCharTok{==} \DecValTok{2}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Form }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Form }\SpecialCharTok{==} \DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Width }\OtherTok{\textless{}{-}}\NormalTok{ (dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Width}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Width))}\SpecialCharTok{/}
+                        \FunctionTok{sd}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Width)}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Height }\OtherTok{\textless{}{-}}\NormalTok{ (dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Height}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Height))}\SpecialCharTok{/}
+                        \FunctionTok{sd}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Height)}
+\NormalTok{dataTest}\SpecialCharTok{$}\NormalTok{Floor\_Price }\OtherTok{\textless{}{-}}\NormalTok{ (dataTest}\SpecialCharTok{$}\NormalTok{Floor\_Price}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Floor\_Price))}\SpecialCharTok{/}
+                          \FunctionTok{sd}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Floor\_Price)}
+\NormalTok{dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\OtherTok{\textless{}{-}} \FunctionTok{as.integer}\NormalTok{(dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{)}
+\NormalTok{predictors\_test }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(dataTest}\SpecialCharTok{$}\NormalTok{Region,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{City,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{AdX,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Domain,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Key\_Page,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Vis,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Form,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Width,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Ad\_Height,}
+\NormalTok{                         dataTest}\SpecialCharTok{$}\NormalTok{Floor\_Price)}
+
+\CommentTok{\#Plot regularization paths}
+\NormalTok{lasso }\OtherTok{\textless{}{-}} \FunctionTok{glmnet}\NormalTok{(predictors\_train, dataTrainAll}\SpecialCharTok{$}\NormalTok{Click, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                \AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{)}
+\NormalTok{ridge }\OtherTok{\textless{}{-}} \FunctionTok{glmnet}\NormalTok{(predictors\_train, dataTrainAll}\SpecialCharTok{$}\NormalTok{Click, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                \AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alpha=}\DecValTok{0}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(lasso)}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}LASSO Reg Path\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(ridge)}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}Ridge Reg Path\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-1-1.pdf}
+
+\hypertarget{question-1.1.b}{%
+\subsection{Question 1.1.b}\label{question-1.1.b}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pulling data to figure out which coefficient is which on the reg path graphs}
+\NormalTok{lasso}\SpecialCharTok{$}\NormalTok{beta[,}\StringTok{"s60"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          V1          V2          V3          V4          V5          V6 
+##  0.00000000  0.00000000 -0.37332014  0.02034307  0.00000000  0.03862679 
+##          V7          V8          V9         V10         V11         V12 
+##  0.00000000  0.00000000  0.00000000 -0.18408582  0.00000000 -1.37743055 
+##         V13         V14         V15         V16         V17         V18 
+## -0.05923494  0.22183780  0.43412044  0.11498391  0.08058022 -0.05764039 
+##         V19         V20         V21 
+##  3.26243672  1.79726921  0.00000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ridge}\SpecialCharTok{$}\NormalTok{beta[,}\StringTok{"s99"}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            V1            V2            V3            V4            V5 
+## -0.0576417597 -0.0022104905 -0.1000908016  0.0424505564 -0.0198632993 
+##            V6            V7            V8            V9           V10 
+##  0.0390233525 -0.0213713002 -0.0005691764  0.0288367595 -0.0584429726 
+##           V11           V12           V13           V14           V15 
+## -0.0177808368 -0.1952993194 -0.0008595341  0.0419041119  0.1602612574 
+##           V16           V17           V18           V19           V20 
+##  0.0569908436  0.0301263809 -0.0220105017  1.6364782552  1.0589847255 
+##           V21 
+##  0.0109832008
+\end{verbatim}
+
+Ad\_Width, Ad\_Height, and Domain ``trqRTuT-GNTYJNKbuKz'' where all
+chosen as influential features by LASSO, influential being measured by a
+relatively large coefficient magnitude. Ridge chose Ad\_Width,
+Ad\_Height as influential features.
+
+\hypertarget{question-1.1.c}{%
+\subsection{Question 1.1.c}\label{question-1.1.c}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\#Plot cross validation}
+\NormalTok{lasso\_cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(predictors\_train, dataTrainAll}\SpecialCharTok{$}\NormalTok{Click, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                      \AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{5}\NormalTok{)}
+\NormalTok{ridge\_cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(predictors\_train, dataTrainAll}\SpecialCharTok{$}\NormalTok{Click, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }
+                      \AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }\AttributeTok{alpha=}\DecValTok{0}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{5}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(lasso\_cv)}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}LASSO CV\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(ridge\_cv)}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}Ridge CV\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Plot regularization paths with chosen coefficients norm line}
+\FunctionTok{plot}\NormalTok{(lasso)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{coef}\NormalTok{(lasso\_cv, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{22}\NormalTok{])))}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}LASSO Reg Path\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(ridge)}
+\FunctionTok{abline}\NormalTok{(}\AttributeTok{v=}\FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{coef}\NormalTok{(ridge\_cv, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{22}\NormalTok{])))}
+\FunctionTok{title}\NormalTok{(}\StringTok{\textquotesingle{}Ridge Reg Path\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-3-1.pdf}
+
+The regression paths graphs shows 2-3 of the original 21 features are
+dominant in predicting at least one click. The CV deviance spikes at
+certain thresholds of \(\lambda\), with the values below the threshold
+corresponding with the relative dominance of a few features on the
+regression paths graphs. The reason why models with large degree of
+freedom do not tend to perform better in CV is because they are prone to
+over-fitting, which leads to a low training error at the expense of
+generalization, resulting in more deviance during CV calculation.
+
+\hypertarget{question-1.1.d}{%
+\subsection{Question 1.1.d}\label{question-1.1.d}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Total classifications made}
+\NormalTok{n }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{table}\NormalTok{(dataTestRes}\SpecialCharTok{$}\NormalTok{Click))}
+\NormalTok{n}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 10000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Classification test error for ridge}
+\NormalTok{predict\_test\_ridge  }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(ridge\_cv, predictors\_test, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)}
+\CommentTok{\# Error when true class was 0 but predicted class was 1}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predict\_test\_ridge }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 22
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Error when true class was 1 but predicted class was 0}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predict\_test\_ridge }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{==} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 236
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Classification test error for lasso}
+\NormalTok{predict\_test\_lasso  }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(lasso\_cv, predictors\_test, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)}
+\CommentTok{\# Error when true class was 0 but predicted class was 1}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predict\_test\_lasso }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{==} \DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 23
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Error when true class was 1 but predicted class was 0}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(}\FunctionTok{as.integer}\NormalTok{(predict\_test\_lasso }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ dataTestRes}\SpecialCharTok{$}\NormalTok{Click }\SpecialCharTok{==} \SpecialCharTok{{-}}\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 235
+\end{verbatim}
+
+\hypertarget{question-1.2}{%
+\subsection{Question 1.2}\label{question-1.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+\FunctionTok{load}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A3\_data/q1.RData"}\NormalTok{)}
+
+\CommentTok{\# Format training data}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX }\OtherTok{\textless{}{-}}\NormalTok{ (dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX))}\SpecialCharTok{/}
+                      \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX)}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid }\OtherTok{\textless{}{-}}\NormalTok{ (dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid}
+                             \SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid))}\SpecialCharTok{/}
+                              \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid)}
+\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid }\OtherTok{\textless{}{-}}\NormalTok{ (dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid))}\SpecialCharTok{/}
+                            \FunctionTok{sd}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid)}
+
+\CommentTok{\# Fit linear regression}
+\NormalTok{fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Comp\_Bid }\SpecialCharTok{\textasciitilde{}}\NormalTok{ AdX }\SpecialCharTok{+}\NormalTok{ iPinYou\_Bid, dataTrainAll)}
+\NormalTok{mle }\OtherTok{\textless{}{-}}\NormalTok{ fit}\SpecialCharTok{$}\NormalTok{coefficients[}\DecValTok{2}\SpecialCharTok{:}\DecValTok{3}\NormalTok{]}
+\NormalTok{mle }\CommentTok{\#MLE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         AdX iPinYou_Bid 
+##  -0.1664490   0.7721763
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit lasso linear regression}
+\NormalTok{lasso }\OtherTok{\textless{}{-}} \FunctionTok{glmnet}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX, dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid), }
+\NormalTok{                dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid, }\AttributeTok{family=}\StringTok{"gaussian"}\NormalTok{, }\AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }
+                \AttributeTok{alpha=}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{\# Choose lasso solution}
+\NormalTok{l1\_norm\_mle }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(mle))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(lasso}\SpecialCharTok{$}\NormalTok{beta)) \{}
+\NormalTok{  l1\_norm\_lasso }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(lasso}\SpecialCharTok{$}\NormalTok{beta[,i]))}
+  \ControlFlowTok{if}\NormalTok{ (l1\_norm\_lasso }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\SpecialCharTok{*}\NormalTok{l1\_norm\_mle) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{  picked\_lasso }\OtherTok{\textless{}{-}}\NormalTok{ lasso}\SpecialCharTok{$}\NormalTok{beta[,i]}
+\NormalTok{\}}
+\NormalTok{picked\_lasso }\CommentTok{\#Lasso}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        V1        V2 
+## 0.0000000 0.4382291
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fit ridge linear regression}
+\NormalTok{ridge }\OtherTok{\textless{}{-}} \FunctionTok{glmnet}\NormalTok{(}\FunctionTok{cbind}\NormalTok{(dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX, dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid), }
+\NormalTok{                dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid, }\AttributeTok{family=}\StringTok{"gaussian"}\NormalTok{, }\AttributeTok{standardize=}\ConstantTok{FALSE}\NormalTok{, }
+                \AttributeTok{alpha=}\DecValTok{0}\NormalTok{)}
+
+\CommentTok{\# Choose ridge solution}
+\NormalTok{l2\_norm\_mle }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((mle)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(ridge}\SpecialCharTok{$}\NormalTok{beta)) \{}
+\NormalTok{  l2\_norm\_ridge }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((ridge}\SpecialCharTok{$}\NormalTok{beta[,i])}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+  \ControlFlowTok{if}\NormalTok{ (l2\_norm\_ridge }\SpecialCharTok{\textgreater{}} \FloatTok{0.5}\SpecialCharTok{*}\NormalTok{l2\_norm\_mle) \{}
+    \ControlFlowTok{break}
+\NormalTok{  \}}
+\NormalTok{  picked\_ridge }\OtherTok{\textless{}{-}}\NormalTok{ ridge}\SpecialCharTok{$}\NormalTok{beta[,i]}
+\NormalTok{\}}
+\NormalTok{picked\_ridge }\CommentTok{\#Ridge}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         V1         V2 
+## -0.1765613  0.5160305
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Discretized grid of mse}
+\NormalTok{beta1 }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{100}\NormalTok{)}
+\NormalTok{beta2 }\OtherTok{=} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\NormalTok{.}\DecValTok{5}\NormalTok{,}\DecValTok{1}\NormalTok{,}\AttributeTok{length.out=}\DecValTok{100}\NormalTok{)}
+\NormalTok{mse }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(, }\AttributeTok{nrow =} \DecValTok{100}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{100}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{) \{}
+\NormalTok{    pred }\OtherTok{\textless{}{-}}\NormalTok{ beta1[i]}\SpecialCharTok{*}\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{AdX }\SpecialCharTok{+}\NormalTok{ beta2[j]}\SpecialCharTok{*}\NormalTok{dataTrainAll}\SpecialCharTok{$}\NormalTok{iPinYou\_Bid}
+\NormalTok{    mse[i,j] }\OtherTok{=} \FunctionTok{sum}\NormalTok{((dataTrainAll}\SpecialCharTok{$}\NormalTok{Comp\_Bid }\SpecialCharTok{{-}}\NormalTok{ pred)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Plot contour with mse and lasso}
+\FunctionTok{contour}\NormalTok{(beta1, beta2, mse, }\AttributeTok{nlevels=}\DecValTok{10}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(mle[}\DecValTok{1}\NormalTok{], mle[}\DecValTok{2}\NormalTok{])}
+\FunctionTok{points}\NormalTok{(picked\_lasso[}\DecValTok{1}\NormalTok{], picked\_lasso[}\DecValTok{2}\NormalTok{])}
+\NormalTok{l1\_norm\_lasso }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{(}\FunctionTok{abs}\NormalTok{(picked\_lasso))}
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OtherTok{=}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{+}\NormalTok{l1\_norm\_lasso\}, }\DecValTok{0}\NormalTok{, l1\_norm\_lasso, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OtherTok{=}\NormalTok{x}\SpecialCharTok{{-}}\NormalTok{l1\_norm\_lasso\}, }\DecValTok{0}\NormalTok{, l1\_norm\_lasso, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OtherTok{=}\NormalTok{x}\SpecialCharTok{+}\NormalTok{l1\_norm\_lasso\}, }\SpecialCharTok{{-}}\NormalTok{l1\_norm\_lasso, }\DecValTok{0}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{x}\OtherTok{=}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{{-}}\NormalTok{l1\_norm\_lasso\}, }\SpecialCharTok{{-}}\NormalTok{l1\_norm\_lasso, }\DecValTok{0}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col =} \StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\# Plot contour with mse and ridge}
+\FunctionTok{contour}\NormalTok{(beta1, beta2, mse, }\AttributeTok{nlevels=}\DecValTok{10}\NormalTok{)}
+\FunctionTok{points}\NormalTok{(mle[}\DecValTok{1}\NormalTok{], mle[}\DecValTok{2}\NormalTok{])}
+\FunctionTok{points}\NormalTok{(picked\_ridge[}\DecValTok{1}\NormalTok{],picked\_ridge[}\DecValTok{2}\NormalTok{])}
+\NormalTok{l2\_norm\_ridge }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((picked\_ridge)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\FunctionTok{sqrt}\NormalTok{(l2\_norm\_ridge}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)\}, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in sqrt(l2_norm_ridge - x^2): NaNs produced
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\ControlFlowTok{function}\NormalTok{(x)\{}\SpecialCharTok{{-}}\FunctionTok{sqrt}\NormalTok{(l2\_norm\_ridge}\SpecialCharTok{{-}}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{)\}, }\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\AttributeTok{add=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in sqrt(l2_norm_ridge - x^2): NaNs produced
+\end{verbatim}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-5-1.pdf}
+
+The MLE sits right in the epicenter of the level curves, which tells us
+that the MLE coefficients have the lowest MSE of all the possible
+coefficients.
+
+LASSO sits on the top vertex of the diamond \(L1\) norm, the vertex
+closest to the smallest level curve that touches the shape. The point is
+the lowest MSE possible with the condition that the point is along the
+shape.
+
+Ridge sits on the upper-left portion of the circle \(L2\) norm, the
+point closest to the smallest level curve that touches the shape. The
+point is the lowest MSE possible with the condition that the point is
+along the shape.
+
+Lasso favors sparsity as the restriction that the coordinate of
+coefficients be bounded by an \(L1\) norm means they are geometrically
+restricted to the diamond shape, with the vertices of the shape, where
+some of the coefficients are 0, end up the most optimal solutions in
+terms of MSE.
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+\hypertarget{question-2.1}{%
+\subsection{Question 2.1}\label{question-2.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{train }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/train.data.csv"}\NormalTok{)}
+\NormalTok{test }\OtherTok{=} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/\_data\_hw2/test.data.csv"}\NormalTok{)}
+
+\CommentTok{\# Plot R\^{}2 wrt degree}
+\FunctionTok{plot}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.6}\NormalTok{))}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+\NormalTok{  fit }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(price }\SpecialCharTok{\textasciitilde{}} \FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(sqft\_living), i) }\SpecialCharTok{+}\NormalTok{ bedrooms }\SpecialCharTok{+}\NormalTok{ bathrooms, train)}
+  
+  \CommentTok{\# R\^{}2 train}
+  \FunctionTok{points}\NormalTok{(i, }\FunctionTok{summary}\NormalTok{(fit)}\SpecialCharTok{$}\NormalTok{r.squared, }\AttributeTok{col=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
+  
+  \CommentTok{\# R\^{}2 test}
+\NormalTok{  predict\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, test)}
+\NormalTok{  rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((predict\_test }\SpecialCharTok{{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{price) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((test}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{price)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+  \FunctionTok{points}\NormalTok{(i, rsq, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-6-1.pdf}
+
+The plot is consistent with the concept that adding more features does
+not hurt the training \(R^2\). Over-fitting can be seen, as past
+\(k=4\), the gap between the training and test \(R^2\) begins to grow,
+showing that increases in \(k\) is improving the training \(R^2\)
+without improving the test \(R^2\) at the same rate.
+
+\hypertarget{question-2.2}{%
+\subsection{Question 2.2}\label{question-2.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\# Plot R\^{}2 wrt degree, lasso}
+\FunctionTok{plot}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.6}\NormalTok{))}
+\FunctionTok{title}\NormalTok{(}\StringTok{"LASSO"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+\NormalTok{  fit }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+    \FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{sqft\_living), i), train}\SpecialCharTok{$}\NormalTok{bedrooms, train}\SpecialCharTok{$}\NormalTok{bathrooms), }
+\NormalTok{    train}\SpecialCharTok{$}\NormalTok{price, }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+  
+  \CommentTok{\# R\^{}2 train}
+\NormalTok{  predict\_train }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, }\FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{sqft\_living), i), }
+\NormalTok{                                     train}\SpecialCharTok{$}\NormalTok{bedrooms, }
+\NormalTok{                                     train}\SpecialCharTok{$}\NormalTok{bathrooms), }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{  rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((predict\_train }\SpecialCharTok{{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{price) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((train}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{price)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+  \FunctionTok{points}\NormalTok{(i, rsq, }\AttributeTok{col=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
+  
+  \CommentTok{\# R\^{}2 test}
+\NormalTok{  predict\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, }\FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{sqft\_living), i), }
+\NormalTok{                                     test}\SpecialCharTok{$}\NormalTok{bedrooms, }
+\NormalTok{                                     test}\SpecialCharTok{$}\NormalTok{bathrooms), }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{  rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((predict\_test }\SpecialCharTok{{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{price) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((test}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{price)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+  \FunctionTok{points}\NormalTok{(i, rsq, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Plot R\^{}2 wrt degree, ridge}
+\FunctionTok{plot}\NormalTok{(}\ConstantTok{NULL}\NormalTok{, }\AttributeTok{xlim=}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{10}\NormalTok{), }\AttributeTok{ylim=}\FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.6}\NormalTok{))}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Ridge"}\NormalTok{)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{) \{}
+\NormalTok{  fit }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(}
+    \FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{sqft\_living), i), train}\SpecialCharTok{$}\NormalTok{bedrooms, train}\SpecialCharTok{$}\NormalTok{bathrooms), }
+\NormalTok{    train}\SpecialCharTok{$}\NormalTok{price, }\AttributeTok{alpha=}\DecValTok{0}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+  
+  \CommentTok{\# R\^{}2 train}
+\NormalTok{  predict\_train }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, }\FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{sqft\_living), i), }
+\NormalTok{                                     train}\SpecialCharTok{$}\NormalTok{bedrooms, }
+\NormalTok{                                     train}\SpecialCharTok{$}\NormalTok{bathrooms), }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{  rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((predict\_train }\SpecialCharTok{{-}}\NormalTok{ train}\SpecialCharTok{$}\NormalTok{price) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((train}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(train}\SpecialCharTok{$}\NormalTok{price)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+  \FunctionTok{points}\NormalTok{(i, rsq, }\AttributeTok{col=}\StringTok{\textquotesingle{}blue\textquotesingle{}}\NormalTok{)}
+  
+  \CommentTok{\# R\^{}2 test}
+\NormalTok{  predict\_test }\OtherTok{\textless{}{-}} \FunctionTok{predict}\NormalTok{(fit, }\FunctionTok{cbind}\NormalTok{(}\FunctionTok{poly}\NormalTok{(}\FunctionTok{log}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{sqft\_living), i), }
+\NormalTok{                                     test}\SpecialCharTok{$}\NormalTok{bedrooms, }
+\NormalTok{                                     test}\SpecialCharTok{$}\NormalTok{bathrooms), }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)}
+\NormalTok{  rss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((predict\_test }\SpecialCharTok{{-}}\NormalTok{ test}\SpecialCharTok{$}\NormalTok{price) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  tss }\OtherTok{\textless{}{-}} \FunctionTok{sum}\NormalTok{((test}\SpecialCharTok{$}\NormalTok{price }\SpecialCharTok{{-}} \FunctionTok{mean}\NormalTok{(test}\SpecialCharTok{$}\NormalTok{price)) }\SpecialCharTok{\^{}} \DecValTok{2}\NormalTok{)}
+\NormalTok{  rsq }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ rss}\SpecialCharTok{/}\NormalTok{tss}
+  \FunctionTok{points}\NormalTok{(i, rsq, }\AttributeTok{col=}\StringTok{\textquotesingle{}red\textquotesingle{}}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-7-1.pdf}
+
+LASSO and Ridge help improve performance for models with large number of
+features, where they are able to simplify the model leading to better
+generalization capabilities. However, LASSO and Ridge harm performance
+when there are few features to choose from, with the norm regularization
+holding back the models ability to predict the output with its limited
+features.
+
+\hypertarget{question-3}{%
+\section{Question 3}\label{question-3}}
+
+\hypertarget{question-3.1}{%
+\subsection{Question 3.1}\label{question-3.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{))}
+
+\NormalTok{data }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}
+            \StringTok{"/Users/vladislavtrukhin/Downloads/A3\_data/LIGO.Hanford.Data.txt"}\NormalTok{)}
+\NormalTok{theory }\OtherTok{\textless{}{-}} \FunctionTok{read.table}\NormalTok{(}
+            \StringTok{"/Users/vladislavtrukhin/Downloads/A3\_data/LIGO.Hanford.Theory.txt"}\NormalTok{)}
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# Plot time series}
+\FunctionTok{plot}\NormalTok{(data[,}\DecValTok{1}\NormalTok{], data[,}\DecValTok{2}\NormalTok{], }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Data"}\NormalTok{)}
+
+\CommentTok{\# Construct inverse discrete cosine transform matrix}
+\NormalTok{Tn }\OtherTok{\textless{}{-}} \FunctionTok{nrow}\NormalTok{(data)}
+\NormalTok{C }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(, }\AttributeTok{nrow =}\NormalTok{ Tn, }\AttributeTok{ncol =}\NormalTok{ Tn)}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(C)) \{}
+  \ControlFlowTok{for}\NormalTok{ (j }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(C)) \{}
+    \ControlFlowTok{if}\NormalTok{ (j }\SpecialCharTok{==} \DecValTok{1}\NormalTok{) \{}
+\NormalTok{      C[i, j] }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{1}\SpecialCharTok{/}\NormalTok{Tn)}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{      C[i, j] }\OtherTok{=} \FunctionTok{sqrt}\NormalTok{(}\DecValTok{2}\SpecialCharTok{/}\NormalTok{Tn)}\SpecialCharTok{*}\FunctionTok{cos}\NormalTok{(pi}\SpecialCharTok{*}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{i}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(j}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{2}\SpecialCharTok{*}\NormalTok{Tn))}
+\NormalTok{    \}}
+\NormalTok{  \}}
+\NormalTok{\}}
+
+\CommentTok{\# Fit, w\_hat, and plot predicted values}
+\NormalTok{lasso1 }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(C, }\FunctionTok{as.matrix}\NormalTok{(data[}\DecValTok{2}\NormalTok{]), }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+
+\FunctionTok{plot}\NormalTok{(data[,}\DecValTok{1}\NormalTok{], }\FunctionTok{predict}\NormalTok{(lasso1, C, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{), }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"LASSO"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-8-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Alternate estimator C\_inv*y}
+\NormalTok{C\_inv }\OtherTok{=} \FunctionTok{solve}\NormalTok{(C)}
+
+\CommentTok{\# Counting number of sparse coefficients in w\_hat}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{abs}\NormalTok{(}\FunctionTok{coef}\NormalTok{(lasso1, }\AttributeTok{s=}\StringTok{"lambda.min"}\NormalTok{)) }\SpecialCharTok{\textless{}} \FloatTok{0.01}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2823
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Counting number of sparse coefficients in C\_inv*y}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{abs}\NormalTok{(C\_inv}\SpecialCharTok{\%*\%}\NormalTok{data[,}\DecValTok{2}\NormalTok{]) }\SpecialCharTok{\textless{}} \FloatTok{0.01}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 234
+\end{verbatim}
+
+\(\hat w\) is more sparse than \(C^{-1}y\) as seen by the count of the
+coefficients close to 0. \(C^{-1}y\) could be less sparse since it
+directly uses \(y\) which is full of noise, obscuring the underlying
+model which leads to the coefficients predicting both the noise and the
+data, resulting in the coefficents becoming less sparse. This allows
+LASSO's \(\hat w\) to beat out \(C^{-1}y\) in sparsity via its sparsity
+property alone.
+
+\hypertarget{question-3.2}{%
+\subsection{Question 3.2}\label{question-3.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{par}\NormalTok{(}\AttributeTok{mfrow=}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{))}
+
+\CommentTok{\# Plot time series, data and theory}
+\FunctionTok{plot}\NormalTok{(data[,}\DecValTok{1}\NormalTok{], data[,}\DecValTok{2}\NormalTok{], }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Data"}\NormalTok{)}
+\FunctionTok{plot}\NormalTok{(theory[,}\DecValTok{1}\NormalTok{], theory[,}\DecValTok{2}\NormalTok{], }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Theory"}\NormalTok{)}
+
+\CommentTok{\# Plot previously predicted values via w\_hat from 3.1}
+\FunctionTok{plot}\NormalTok{(data[,}\DecValTok{1}\NormalTok{], }\FunctionTok{predict}\NormalTok{(lasso1, C, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{), }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"LASSO with spike noise"}\NormalTok{)}
+
+\CommentTok{\# Construct design matrix}
+\NormalTok{Phi }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(}\FunctionTok{diag}\NormalTok{(Tn), C)}
+
+\CommentTok{\# Fit and plot predicted values}
+\NormalTok{lasso2 }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(Phi, }\FunctionTok{as.matrix}\NormalTok{(data[}\DecValTok{2}\NormalTok{]), }\AttributeTok{alpha=}\DecValTok{1}\NormalTok{, }\AttributeTok{nfolds=}\DecValTok{10}\NormalTok{)}
+
+\CommentTok{\# With the spike and spectrum of waves modeled via estimators, reconstruct only }
+\CommentTok{\# the strength of waves by eliminating the spike estimator and working only with}
+\CommentTok{\# spectrum estimator}
+\NormalTok{lower }\OtherTok{=}\NormalTok{ Tn}\SpecialCharTok{+}\DecValTok{1}
+\NormalTok{upper }\OtherTok{=} \DecValTok{2}\SpecialCharTok{*}\NormalTok{Tn}
+\FunctionTok{plot}\NormalTok{(data[,}\DecValTok{1}\NormalTok{], C}\SpecialCharTok{\%*\%}\FunctionTok{coef}\NormalTok{(lasso2, }\AttributeTok{s=}\StringTok{"lambda.1se"}\NormalTok{)[lower}\SpecialCharTok{:}\NormalTok{upper], }\AttributeTok{type=}\StringTok{\textquotesingle{}l\textquotesingle{}}\NormalTok{)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"LASSO without spike noise"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{assignment3_vladislav_trukhin_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+The method in 3.2 that denoises the spike noise within the data is more
+meaningful. It is able to smooth out the rough spikes that were left
+untreated in the method in 3.1, aligning it closer to the theoretical
+simulation. This can be heard when playing the results as audio, with
+3.2 results sounding smoother and closer to the theoretical audio than
+3.1.
+
+\hypertarget{question-4}{%
+\section{Question 4}\label{question-4}}
+
+\hypertarget{question-4.1}{%
+\subsection{Question 4.1}\label{question-4.1}}
+
+Suppose \(\hat\beta\) is a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\) for an arbitrary
+\(\lambda \geq 0\)
+
+Suppose \(\hat\beta\) is not a minimizer for
+\(\frac{1}{2n}||Y-X\beta||^2_2\) subject to \(||\beta||_1\leq C\)
+
+Let \(C= ||\hat\beta||_1\), \(\exists \beta^*\) that is a minimizer for
+\(\frac{1}{2n}||Y-X\beta||^2_2\) that satisfies
+\(||\beta^*||_1\leq C= ||\hat\beta||_1\)
+
+Case 1:
+
+Suppose \(||\beta^*||_1= ||\hat\beta||_1\)
+
+Then \(\lambda||\beta^*||_1 = \lambda||\hat\beta||_1\)
+
+Since \(\beta^*\) is a minimizer for \(\frac{1}{2n}||Y-X\beta||^2_2\) it
+is also a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\)
+
+\(\hat\beta\) is also a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\)
+
+\(\therefore \beta^*= \hat\beta\)
+
+\(\therefore \hat\beta\) is a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2\) subject to
+\(||\beta||_1\leq C= ||\hat\beta||_1\)
+
+Contradiction
+
+Case 2:
+
+Suppose \(||\beta^*||_1< ||\hat\beta||_1\)
+
+Then \(\lambda||\beta^*||_1 < \lambda||\hat\beta||_1\)
+
+Since \(\beta^*\) is a minimizer for \(\frac{1}{2n}||Y-X\beta||^2_2\) it
+is also a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\)
+
+\(\hat\beta\) is cannot be a minimizer of
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\) since
+\(\lambda||\beta^*||_1 < \lambda||\hat\beta||_1\)
+
+Contradiction
+
+Therefore for any \(\lambda \geq 0\), \(\exists C\) such that
+\(\frac{1}{2n}||Y-X\beta||^2_2\) subject to \(||\beta||_1\leq C\) has
+the same minimizer as
+\(\frac{1}{2n}||Y-X\beta||^2_2+\lambda||\beta||_1\)
+
+\hypertarget{question-4.2}{%
+\subsection{Question 4.2}\label{question-4.2}}
+
+Add a new row to \(X\), \(X_{n+1} = [0,...,0]^\top\), such that
+\(X \rightarrow \tilde X\), and a new row to \(Y\),
+\(Y_{n+1} = \sqrt{\alpha\lambda||\beta||^2_2}\), such that
+\(Y \rightarrow \tilde Y\)
+
+Let \(\tilde\lambda = \lambda(1-\alpha)\)
+
+\(||\tilde Y-\tilde X\beta||^2_2 + \tilde\lambda||\beta||_1 = (\tilde Y-\tilde X\beta)^\top(\tilde Y-\tilde X\beta) + \tilde\lambda||\beta||_1\)
+
+\(= (\tilde Y^\top-\beta^\top\tilde X^\top)(\tilde Y-\tilde X\beta) + \tilde\lambda||\beta||_1\)
+
+\(= \tilde Y^\top\tilde Y - \tilde Y^\top\tilde X\beta -\beta^\top\tilde X^\top\tilde Y+\beta^\top\tilde X^\top\tilde X\beta + \tilde\lambda||\beta||_1\)
+
+\(= \tilde Y^\top\tilde Y - 2\tilde Y^\top\tilde X\beta+\beta^\top\tilde X^\top\tilde X\beta + \tilde\lambda||\beta||_1\)
+
+\(= \tilde Y^\top\tilde Y - 2Y^\top X\beta+\beta^\top X^\top X\beta + \tilde\lambda||\beta||_1\)
+
+since \(X_{n+1}^T\beta = 0 \Rightarrow \tilde X\beta = X\beta\) and
+\(Y_{n+1}X_{n+1}^T\beta = 0 \Rightarrow \tilde Y^\top\tilde X\beta = Y^\top X\beta\)
+
+\(= Y^\top Y + \alpha\lambda||\beta||^2_2 - 2Y^\top X\beta+\beta^\top X^\top X\beta + \tilde\lambda||\beta||_1\)
+
+since
+\(Y_{n+1}^2 = \sqrt{\alpha\lambda||\beta||^2_2}^2 = \alpha\lambda||\beta||^2_2 \Rightarrow \tilde Y^\top\tilde Y=Y^\top Y + \alpha\lambda||\beta||^2_2\)
+
+\(= Y^\top Y - 2Y^\top X\beta+\beta^\top X^\top X\beta + \alpha\lambda||\beta||^2_2 + \tilde\lambda||\beta||_1\)
+
+\(= (Y-X\beta)^\top(Y-X\beta) + \alpha\lambda||\beta||^2_2 + \lambda(1-\alpha)||\beta||_1\)
+
+substitute \(\tilde\lambda = \lambda(1-\alpha)\)
+
+\(= ||Y-X\beta||^2_2 + \lambda(\alpha||\beta||^2_2 + (1-\alpha)||\beta||_1)\)
+
+\(\therefore\) Elastic-Net can be converted into a LASSO problem with
+the same optimal value via augmenting \(X\) and \(Y\) with one row of
+specific values
+
+\end{document}

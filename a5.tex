@@ -1,0 +1,709 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={STAD80: Assignment 5},
+  pdfauthor={Vladislav Trukhin},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{STAD80: Assignment 5}
+\author{Vladislav Trukhin}
+\date{Due: March 17th, 2022}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{question-1}{%
+\section{Question 1}\label{question-1}}
+
+\hypertarget{question-1.1}{%
+\subsection{Question 1.1}\label{question-1.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/SpamAssassin/functions.R"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{feature }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(pos, neg) \{}
+\NormalTok{  pos\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(pos)}
+\NormalTok{  neg\_gray }\OtherTok{\textless{}{-}} \FunctionTok{rgb2gray}\NormalTok{(neg)}
+  
+\NormalTok{  neg\_crop }\OtherTok{\textless{}{-}} \FunctionTok{crop.r}\NormalTok{(neg\_gray, }\DecValTok{160}\NormalTok{, }\DecValTok{96}\NormalTok{)}
+  
+\NormalTok{  pos\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(pos\_gray, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{) }
+\NormalTok{  neg\_grad }\OtherTok{\textless{}{-}} \FunctionTok{grad}\NormalTok{(neg\_crop, }\DecValTok{128}\NormalTok{, }\DecValTok{64}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{)}
+  
+\NormalTok{  pos\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(pos\_grad[[}\DecValTok{1}\NormalTok{]], pos\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+\NormalTok{  neg\_fet }\OtherTok{\textless{}{-}} \FunctionTok{hog}\NormalTok{(neg\_grad[[}\DecValTok{1}\NormalTok{]], neg\_grad[[}\DecValTok{2}\NormalTok{]], }\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{6}\NormalTok{)}
+  
+  \FunctionTok{return}\NormalTok{(}\FunctionTok{list}\NormalTok{(pos\_fet, neg\_fet))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{fet\_data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\NormalTok{pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{500}\NormalTok{) \{}
+\NormalTok{  pos }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+    \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/pos/\%d.png"}\NormalTok{, i))}
+\NormalTok{  neg }\OtherTok{\textless{}{-}} \FunctionTok{readPNG}\NormalTok{(}
+    \FunctionTok{sprintf}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/A4\_datasets/pngdata/neg/\%d.png"}\NormalTok{, i))}
+\NormalTok{  fet }\OtherTok{\textless{}{-}} \FunctionTok{feature}\NormalTok{(pos, neg)}
+\NormalTok{  fet\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(fet\_data, fet[[}\DecValTok{1}\NormalTok{]], fet[[}\DecValTok{2}\NormalTok{]])}
+\NormalTok{  pos\_data }\OtherTok{\textless{}{-}} \FunctionTok{rbind}\NormalTok{(pos\_data, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C }\OtherTok{\textless{}{-}} \FunctionTok{exp}\NormalTok{(}\FunctionTok{seq}\NormalTok{(}\FunctionTok{log}\NormalTok{(}\DecValTok{10}\SpecialCharTok{\^{}{-}}\DecValTok{4}\NormalTok{), }\FunctionTok{log}\NormalTok{(}\DecValTok{10}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{), }\AttributeTok{length.out=}\DecValTok{100}\NormalTok{))}
+\NormalTok{cve }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\NormalTok{me }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{100}\NormalTok{)\{}
+\NormalTok{  svm }\OtherTok{\textless{}{-}} \FunctionTok{ksvm}\NormalTok{(fet\_data, pos\_data, }\AttributeTok{type=}\StringTok{"C{-}svc"}\NormalTok{, }\AttributeTok{kernel=}\StringTok{"vanilladot"}\NormalTok{, }\AttributeTok{cross=}\DecValTok{5}\NormalTok{, }\AttributeTok{C=}\NormalTok{C[i])}
+\NormalTok{  cve }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(cve, }\FunctionTok{cross}\NormalTok{(svm))}
+\NormalTok{  me }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(me, }\FunctionTok{error}\NormalTok{(svm))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters  
+##  Setting default kernel parameters
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{log}\NormalTok{(C), me)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Misclassification Error vs ln(C)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a5_vladislav_trukhin_files/figure-latex/unnamed-chunk-4-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(}\FunctionTok{log}\NormalTok{(C), cve)}
+\FunctionTok{title}\NormalTok{(}\StringTok{"Cross{-}Validation Error vs ln(C)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{a5_vladislav_trukhin_files/figure-latex/unnamed-chunk-4-2.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{C[}\FunctionTok{which.min}\NormalTok{(me)] }\CommentTok{\# Optimal C that yields lowest misclassification error}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4.037017
+\end{verbatim}
+
+The cross validation error decreases as C increases to 10\^{}-5 and
+increases past 10\^{}-5.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{cv }\OtherTok{\textless{}{-}} \FunctionTok{cv.glmnet}\NormalTok{(fet\_data, pos\_data, }\AttributeTok{family=}\StringTok{"binomial"}\NormalTok{, }\AttributeTok{type.measure=}\StringTok{"class"}\NormalTok{)}
+\FunctionTok{min}\NormalTok{(cv}\SpecialCharTok{$}\NormalTok{cvm)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.114
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(cve)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.108
+\end{verbatim}
+
+The lowest cross validation of SVM is lower than the lowest cross
+validation of logistic regression, however not significantly.
+
+\hypertarget{question-2}{%
+\section{Question 2}\label{question-2}}
+
+\hypertarget{question-2.1}{%
+\subsection{Question 2.1}\label{question-2.1}}
+
+\(\Sigma_{i=1}^n \log p(\mathbf{x_i}, y_i)\)
+
+\(=\Sigma_{i=1:y_i=1}^n \log p(y_i = 1)p(\mathbf{x_i}|y_i = 1) + \Sigma_{i=1:y_i=2}^n \log p(y_i = 2)p(\mathbf{x_i}|y_i = 2)\)
+
+\(=\Sigma_{i=1:y_i=1}^n \log \eta \frac{1}{(2\pi)^{d/2}|\mathbf{\Sigma}|^{1/2}}exp(\frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}}{2}) + \Sigma_{i=1:y_i=2}^n \log (1 - \eta) \frac{1}{(2\pi)^{d/2}|\mathbf{\Sigma}|^{1/2}}exp(\frac{-(\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)}}{2})\)
+
+\(=\Sigma_{i=1:y_i=1}^n \log \eta - d/2\log(2\pi) - 1/2\log|\mathbf{\Sigma}| + \frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}}{2} + \Sigma_{i=1:y_i=2}^n \log (1 - \eta) - d/2\log(2\pi) - 1/2\log|\mathbf{\Sigma}| + \frac{-(\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)}}{2}\)
+
+\(=n_1\log \eta - dn/2\log(2\pi) + n/2\log|\mathbf{\Sigma}|^{-1} + \Sigma_{i=1:y_i=1}^n\frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}}{2} + n_2\log (1 - \eta) + \Sigma_{i=1:y_i=2}^n\frac{-(\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)}}{2}\)
+
+\(=n_1\log \eta + n_2\log (1 - \eta) - dn/2\log(2\pi) + n/2\log|\mathbf{\Sigma^{-1}}| + \Sigma_{i=1:y_i=1}^n\frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}}{2} + \Sigma_{i=1:y_i=2}^n\frac{-(\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)}}{2}\)
+
+\hypertarget{question-2.2}{%
+\subsection{Question 2.2}\label{question-2.2}}
+
+MLE \(\hat\eta\)
+
+\(\frac{\partial}{\partial \eta} \Sigma_{i=1}^n \log p(\mathbf{x_i}, y_i)\)
+
+\(=n_1\frac{\partial}{\partial \eta}\log \eta + n_2\frac{\partial}{\partial \eta}\log (1 - \eta)\)
+
+\(=\frac{n_1}{\eta} - \frac{n_2}{1 - \eta}\)
+
+\(\Rightarrow \frac{n_1}{\hat\eta} = \frac{n_2}{1 - \hat\eta}\)
+
+\(\Rightarrow n_1(1 - \hat\eta) = n_2\hat\eta\)
+
+\(\Rightarrow n_1 = n_2\hat\eta + n_1\hat\eta\)
+
+\(\Rightarrow \frac{n_1}{n_1 + n_2} = \hat\eta\)
+
+MLE \(\mathbf{\hat\mu_1}\)
+
+\(\frac{\partial}{\partial \mu_1} \Sigma_{i=1}^n \log p(\mathbf{x_i}, y_i)\)
+
+\(=\frac{\partial}{\partial \mu_1} \Sigma_{i=1:y_i=1}^n\frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}}{2}\)
+
+\(=- 1/2 \Sigma_{i=1:y_i=1}^n \frac{\partial}{\partial \mu_1}(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}\)
+
+\(=\Sigma_{i=1:y_i=1}^n (\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1}\)
+
+\(\Rightarrow \Sigma_{i=1:y_i=1}^n (\mathbf{x_i-\hat \mu_1}) = \mathbf{0}\)
+
+\(\Rightarrow \frac{\Sigma_{i=1:y_i=1}^n\mathbf{x_i}}{n_1} = \mathbf{\hat \mu_1}\)
+
+MLE \(\mathbf{\hat\mu_2}\)
+
+Similar case follows as \(\mathbf{\hat\mu_1}\),
+\(\frac{\Sigma_{i=1:y_i=2}^n\mathbf{x_i}}{n_2} = \mathbf{\hat\mu_2}\)
+
+\hypertarget{question-2.3}{%
+\subsection{Question 2.3}\label{question-2.3}}
+
+\(\frac{\partial}{\partial\mathbf{\Sigma}^{-1}} \Sigma_{i=1}^n \log p(\mathbf{x_i}, y_i)\)
+
+\(=n/2\frac{\partial}{\partial\mathbf{\Sigma}^{-1}}\log|\mathbf{\Sigma^{-1}}| -1/2 \Sigma_{i=1:y_i=1}^n\frac{\partial}{\partial\mathbf{\Sigma}^{-1}}(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)} -1/2 \Sigma_{i=1:y_i=2}^n\frac{\partial}{\partial\mathbf{\Sigma}^{-1}}(\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)}\)
+
+\(=n/2\Sigma -1/2 \Sigma_{i=1:y_i=1}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace((\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1)}) -1/2 \Sigma_{i=1:y_i=2}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace((\mathbf{x_i-\mu_2})^\top \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2)})\)
+
+\(=n/2\Sigma -1/2 \Sigma_{i=1:y_i=1}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace(\mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_1})(\mathbf{x_i-\mu_1})^\top) -1/2 \Sigma_{i=1:y_i=2}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace(( \mathbf{\Sigma}^{-1} (\mathbf{x_i-\mu_2})(\mathbf{x_i-\mu_2})^\top)\)
+
+\(=n/2\Sigma -1/2 \Sigma_{i=1:y_i=1}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace((\mathbf{x_i-\mu_1})(\mathbf{x_i-\mu_1})^\top\mathbf{\Sigma}^{-1}) -1/2 \Sigma_{i=1:y_i=2}^n \frac{\partial}{\partial\mathbf{\Sigma}^{-1}}trace(((\mathbf{x_i-\mu_2})(\mathbf{x_i-\mu_2})^\top\mathbf{\Sigma}^{-1} )\)
+
+\(=n/2\Sigma -1/2 \Sigma_{i=1:y_i=1}^n (\mathbf{x_i-\mu_1})(\mathbf{x_i-\mu_1})^\top -1/2 \Sigma_{i=1:y_i=2}^n (\mathbf{x_i-\mu_2})(\mathbf{x_i-\mu_2})^\top\)
+
+\(\Rightarrow n\hat\Sigma - \hat\Sigma_{i=1:y_i=1}^n (\mathbf{x_i-\hat\mu_1})(\mathbf{x_i-\hat\mu_1})^\top - \Sigma_{i=1:y_i=2}^n (\mathbf{x_i-\hat\mu_2})(\mathbf{x_i-\hat\mu_2})^\top = 0\)
+
+\(\Rightarrow \hat\Sigma = \frac{\Sigma_{i=1:y_i=1}^n (\mathbf{x_i-\hat\mu_1})(\mathbf{x_i-\hat\mu_1})^\top + \Sigma_{i=1:y_i=2}^n (\mathbf{x_i-\hat\mu_2})(\mathbf{x_i-\hat\mu_2})^\top}{n}\)
+
+\(\Rightarrow \hat\Sigma = \frac{n_1S_1 + n_2S_2}{n}\)
+
+\hypertarget{question-2.4}{%
+\subsection{Question 2.4}\label{question-2.4}}
+
+\(\log\frac{p(y_i=1|\mathbf{x_i})}{p(y_i=2|\mathbf{x_i})}\)
+
+\(=\log\frac{p(y_i=1,\mathbf{x_i})}{p(y_i=2, \mathbf{x_i})}\)
+
+\(=\log\frac{p(\mathbf{x_i}|y_i=1)p(y_i=1)}{p(\mathbf{x_i}|y_i=2)p(y_i=2)}\)
+
+\(=\log p(\mathbf{x_i}|y_i=1) - \log p(\mathbf{x_i}|y_i=2) + \log \frac{p(y_i=1)}{p(y_i=2)}\)
+
+\(=-d/2\log(2\pi) - 1/2\log|\mathbf{\hat\Sigma}| + \frac{-(\mathbf{x_i-\hat\mu_1})^\top \mathbf{\hat\Sigma}^{-1} (\mathbf{x_i-\hat\mu_1)}}{2} + d/2\log(2\pi) + 1/2\log|\mathbf{\hat\Sigma}| - \frac{-(\mathbf{x_i-\hat\mu_2})^\top \mathbf{\hat\Sigma}^{-1} (\mathbf{x_i-\hat\mu_2)}}{2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=-1/2(\mathbf{x_i^\top-\hat\mu_1^\top}) \mathbf{\hat\Sigma}^{-1} (\mathbf{x_i-\hat\mu_1)} + 1/2(\mathbf{x_i^\top-\hat\mu_2^\top}) \mathbf{\hat\Sigma}^{-1} (\mathbf{x_i-\hat\mu_2)} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=-1/2\mathbf{x_i}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} +1/2\mathbf{x_i}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_1} +1/2 \mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} -1/2 \mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_1} + 1/2\mathbf{x_i}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} -1/2\mathbf{x_i}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_2} -1/2\mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} +1/2\mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=\mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} -1/2 \mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_1} + \mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} +1/2\mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=(\mathbf{\hat\mu_1}^\top + \mathbf{\hat\mu_2}^\top)\mathbf{\hat\Sigma}^{-1}\mathbf{x_i} -1/2 \mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_1} +1/2\mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=\mathbf{w}^\top\mathbf{x_i} + w_0 = 0\)
+
+Where:
+
+\(\mathbf{w} = (\mathbf{\hat\mu_1}^\top + \mathbf{\hat\mu_2}^\top)\mathbf{\hat\Sigma}^{-1}\)
+
+\(w_0 = -1/2 \mathbf{\hat\mu_1}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_1} +1/2\mathbf{\hat\mu_2}^\top\mathbf{\hat\Sigma}^{-1}\mathbf{\hat\mu_2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+Therefore linear
+
+\hypertarget{question-2.5}{%
+\subsection{Question 2.5}\label{question-2.5}}
+
+It follows from 2.2
+
+\(\Rightarrow \frac{n_1}{n_1 + n_2} = \hat\eta\)
+
+\(\Rightarrow \frac{\Sigma_{i=1:y_i=1}^n\mathbf{x_i}}{n_1} = \mathbf{\hat \mu_1}\)
+
+\(\Rightarrow \frac{\Sigma_{i=1:y_i=2}^n\mathbf{x_i}}{n_2} = \mathbf{\hat\mu_2}\)
+
+\(\frac{\partial}{\partial\mathbf{\Sigma_1}^{-1}} \Sigma_{i=1}^n \log p(\mathbf{x_i}, y_i)\)
+
+\(=n_1/2\frac{\partial}{\partial\mathbf{\Sigma_1}^{-1}}\log|\mathbf{\Sigma_1^{-1}}| - 1/2\Sigma_{i=1:y_i=1}^n\frac{\partial}{\partial\mathbf{\Sigma_1}^{-1}}\frac{-(\mathbf{x_i-\mu_1})^\top \mathbf{\Sigma_1}^{-1} (\mathbf{x_i-\mu_1)}}{2}\)
+
+\(=n_1/2\Sigma_1 - 1/2\Sigma_{i=1:y_i=1}^n(\mathbf{x_i-\mu_1)(\mathbf{x_i-\mu_1})^\top}\)
+
+\(\Rightarrow \frac{\Sigma_{i=1:y_i=1}^n(\mathbf{x_i-\mu_1)(\mathbf{x_i-\mu_1})^\top}}{n_1} = S_1 = \hat\Sigma_1\)
+
+Similar case follows as \(\hat\Sigma_1\),
+\(\frac{\Sigma_{i=1:y_i=2}^n(\mathbf{x_i-\mu_2)(\mathbf{x_i-\mu_2})^\top}}{n_2} = S_2 = \hat\Sigma_2\)
+
+\(\log\frac{p(y_i=1|\mathbf{x_i})}{p(y_i=2|\mathbf{x_i})}\)
+
+\(=\log p(\mathbf{x_i}|y_i=1) - \log p(\mathbf{x_i}|y_i=2) + \log \frac{p(y_i=1)}{p(y_i=2)}\)
+
+\(=-d/2\log(2\pi) - 1/2\log|\mathbf{\hat\Sigma_1}| + \frac{-(\mathbf{x_i-\hat\mu_1})^\top \mathbf{\hat\Sigma_1}^{-1} (\mathbf{x_i-\hat\mu_1)}}{2} + d/2\log(2\pi) + 1/2\log|\mathbf{\hat\Sigma_2}| - \frac{-(\mathbf{x_i-\hat\mu_2})^\top \mathbf{\hat\Sigma_2}^{-1} (\mathbf{x_i-\hat\mu_2)}}{2} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=1/2\log|\mathbf{\hat\Sigma_2}| - 1/2\log|\mathbf{\hat\Sigma_1}| - 1/2(\mathbf{x_i^\top-\hat\mu_1^\top}) \mathbf{\hat\Sigma_1}^{-1} (\mathbf{x_i-\hat\mu_1)} + 1/2(\mathbf{x_i^\top-\hat\mu_2^\top}) \mathbf{\hat\Sigma_2}^{-1} (\mathbf{x_i-\hat\mu_2)} + \log \frac{\hat\eta}{1-\hat\eta}\)
+
+\(=1/2\log|\mathbf{\hat\Sigma_2}| - 1/2\log|\mathbf{\hat\Sigma_1}| - 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{x_i} + 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{\mu_1} + 1/2\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{x_i} - 1/2\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{\mu_1} + 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{x_i} - 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{\mu_2} - 1/2\mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{x_i} + 1/2\mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{\mu_2}\)
+
+\(=1/2\log|\mathbf{\hat\Sigma_2}| - 1/2\log|\mathbf{\hat\Sigma_1}| - 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{x_i} + \mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{x_i} - 1/2\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{\mu_1} + 1/2\mathbf{x_i^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{x_i} - \mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{x_i} + 1/2\mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{\mu_2}\)
+
+\(=\mathbf{x_i^\top}(-1/2\mathbf{\hat\Sigma_1}^{-1} + 1/2\mathbf{\hat\Sigma_2}^{-1})\mathbf{x_i} + (\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1} - \mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1})\mathbf{x_i} - 1/2\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{\mu_1} + 1/2\mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{\mu_2} + 1/2\log|\mathbf{\hat\Sigma_2}| - 1/2\log|\mathbf{\hat\Sigma_1}|\)
+
+\(=\mathbf{x_i^\top}\mathbf{W}\mathbf{x_i} + \mathbf{w^\top}\mathbf{x_i} + w_0 = 0\)
+
+Where:
+
+\(\mathbf{W} = -1/2\mathbf{\hat\Sigma_1}^{-1} + 1/2\mathbf{\hat\Sigma_2}^{-1}\)
+
+\(\mathbf{w^\top} = \mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1} - \mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\)
+
+\(w_0 = - 1/2\mathbf{\mu_1^\top}\mathbf{\hat\Sigma_1}^{-1}\mathbf{\mu_1} + 1/2\mathbf{\mu_2^\top}\mathbf{\hat\Sigma_2}^{-1}\mathbf{\mu_2} + 1/2\log|\mathbf{\hat\Sigma_2}| - 1/2\log|\mathbf{\hat\Sigma_1}|\)
+
+Therefore quadratic
+
+\hypertarget{question-3}{%
+\section{Question 3}\label{question-3}}
+
+\hypertarget{question-3.1}{%
+\subsection{Question 3.1}\label{question-3.1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{top }\OtherTok{\textless{}{-}} \StringTok{"/Users/vladislavtrukhin/Downloads/SpamAssassin"}
+\NormalTok{Directories }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"easy\_ham"}\NormalTok{,}\StringTok{"spam"}\NormalTok{)}
+\NormalTok{dirs }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(top, Directories, }\AttributeTok{sep =}\StringTok{"/"}\NormalTok{)}
+\FunctionTok{source}\NormalTok{(}\StringTok{"/Users/vladislavtrukhin/Downloads/SpamAssassin/readRawEmail.R"}\NormalTok{)}
+\NormalTok{mail }\OtherTok{\textless{}{-}} \FunctionTok{readAllMessages}\NormalTok{(}\AttributeTok{dirs =}\NormalTok{ dirs)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{doc }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{) \{}
+\NormalTok{  tmp }\OtherTok{\textless{}{-}}\NormalTok{ mail[[i]]}\SpecialCharTok{$}\NormalTok{body}
+\NormalTok{  tmp2 }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(tmp}\SpecialCharTok{$}\NormalTok{text,}\AttributeTok{collapse=}\StringTok{""}\NormalTok{)}
+\NormalTok{  r }\OtherTok{\textless{}{-}} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{b([[:punct:]|[:digit:]])*[a{-}zA{-}Z]*([[:punct:]|[:digit:]])+[a{-}zA{-}Z]*([[:punct:]|[:digit:]])*"}
+\NormalTok{  tmp3 }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(r,}\StringTok{" "}\NormalTok{,tmp2)}
+\NormalTok{  tmp4 }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"[\^{}A{-}Za{-}z]"}\NormalTok{,}\StringTok{" "}\NormalTok{,tmp3)}
+\NormalTok{  doc }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(doc, tmp4)}
+\NormalTok{\}}
+
+\NormalTok{corpus }\OtherTok{\textless{}{-}} \FunctionTok{Corpus}\NormalTok{(}\FunctionTok{VectorSource}\NormalTok{(doc))}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{TermDocumentMatrix}\NormalTok{(corpus, }\AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{removePunctuation =} \ConstantTok{TRUE}\NormalTok{, }
+                                                 \AttributeTok{stemming =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{wordLengths =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{20}\NormalTok{)))}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{q1h }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2188}\NormalTok{]) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2188}\NormalTok{] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
+\NormalTok{q2h }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2188}\NormalTok{] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{ncol}\NormalTok{(res[,}\DecValTok{1}\SpecialCharTok{:}\DecValTok{2188}\NormalTok{])}
+
+\NormalTok{q1s }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{2189}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{]) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{2189}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{)}
+\NormalTok{q2s }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(res[,}\DecValTok{2189}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{] }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{/} \FunctionTok{ncol}\NormalTok{(res[,}\DecValTok{2189}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{])}
+  
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(q1h),}\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 ham words with largest quantity 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       msgs standardis        the   dinosaur    dirksen      tribe      powel 
+##    14.0000    14.0000    14.3357    14.5000    15.0000    16.0000    17.0000 
+## friendship     maxlin     hextab 
+##    18.0000    19.0000    20.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(q2h),}\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 ham words with largest quantity 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       but       not       you      this      have      with       for      that 
+## 0.4867459 0.4908592 0.5063985 0.5420475 0.5470750 0.5489031 0.6512797 0.6681901 
+##       and       the 
+## 0.7838208 0.8999086
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(q1s),}\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 spam words with largest quantity 1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        les marshalles        des       wake    marshal       king       atol 
+##         27         28         33         33         34         44         59 
+##    enenkio     island    kingdom 
+##         79         82         90
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{tail}\NormalTok{(}\FunctionTok{sort}\NormalTok{(q2s),}\DecValTok{10}\NormalTok{) }\CommentTok{\# Top 10 spam words with largest quantity 2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      with       our       are      from      your       for      this       and 
+## 0.4497992 0.4779116 0.4909639 0.4909639 0.6084337 0.6094378 0.6345382 0.6375502 
+##       you       the 
+## 0.6606426 0.6817269
+\end{verbatim}
+
+\hypertarget{question-3.2}{%
+\subsection{Question 3.2}\label{question-3.2}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{testingidx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(res),}\DecValTok{100}\NormalTok{)}
+\NormalTok{trainingidx }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(res)}
+\NormalTok{trainingidx }\OtherTok{\textless{}{-}}\NormalTok{ trainingidx[}\SpecialCharTok{{-}}\NormalTok{testingidx]}
+
+\CommentTok{\# Sufficient statistics}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ res}
+\NormalTok{w }\OtherTok{\textless{}{-}}\NormalTok{ res }\SpecialCharTok{\textgreater{}} \DecValTok{0}
+
+\NormalTok{w\_tr\_hm }\OtherTok{\textless{}{-}}\NormalTok{ w[,trainingidx[}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+\NormalTok{w\_tr\_sp }\OtherTok{\textless{}{-}}\NormalTok{ w[,trainingidx[trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+
+\NormalTok{y\_tr\_hm }\OtherTok{\textless{}{-}}\NormalTok{ y[,trainingidx[}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+\NormalTok{y\_tr\_sp }\OtherTok{\textless{}{-}}\NormalTok{ y[,trainingidx[trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+             
+\NormalTok{w\_te }\OtherTok{\textless{}{-}}\NormalTok{ w[,testingidx]}
+\NormalTok{y\_te }\OtherTok{\textless{}{-}}\NormalTok{ y[,testingidx]}
+
+\CommentTok{\# Model fitting}
+\NormalTok{lambda\_hm }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm}\SpecialCharTok{*}\NormalTok{(y\_tr\_hm}\DecValTok{{-}1}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm)}
+\NormalTok{lambda\_hm[}\SpecialCharTok{!}\FunctionTok{is.finite}\NormalTok{(lambda\_hm)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{theta\_hm }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)}
+
+\NormalTok{lambda\_sp }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp}\SpecialCharTok{*}\NormalTok{(y\_tr\_sp}\DecValTok{{-}1}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp)}
+\NormalTok{lambda\_sp[}\SpecialCharTok{!}\FunctionTok{is.finite}\NormalTok{(lambda\_sp)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{theta\_sp }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)}
+
+\CommentTok{\# Using model on testing data}
+\NormalTok{log\_hm }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{sum}\NormalTok{(trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{length}\NormalTok{(trainingidx))}
+\NormalTok{log\_sp }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{length}\NormalTok{(trainingidx))}
+
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}}\NormalTok{ w\_te}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(theta\_hm}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(theta\_sp}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ lambda\_hm }\SpecialCharTok{+}\NormalTok{ lambda\_sp }
+                   \SpecialCharTok{+}\NormalTok{ (y\_te}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(lambda\_hm}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(lambda\_sp}\FloatTok{+0.0001}\NormalTok{)))}
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}}\NormalTok{ log\_ratio }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{w\_te)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{theta\_hm) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{theta\_sp))}
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(log\_ratio) }\SpecialCharTok{+}\NormalTok{ log\_hm }\SpecialCharTok{{-}}\NormalTok{ log\_sp}
+
+\CommentTok{\# Prediction accuracy on testing data}
+\FunctionTok{sum}\NormalTok{((log\_ratio }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{==}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{testingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(testingidx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.97
+\end{verbatim}
+
+\hypertarget{question-3.3}{%
+\subsection{Question 3.3}\label{question-3.3}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{doc }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{()}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{3184}\NormalTok{) \{}
+\NormalTok{  tmp }\OtherTok{\textless{}{-}}\NormalTok{ mail[[i]]}\SpecialCharTok{$}\NormalTok{body}
+\NormalTok{  tmp2 }\OtherTok{\textless{}{-}} \FunctionTok{paste}\NormalTok{(tmp}\SpecialCharTok{$}\NormalTok{text,}\AttributeTok{collapse=}\StringTok{""}\NormalTok{)}
+\NormalTok{  r }\OtherTok{\textless{}{-}} \StringTok{"}\SpecialCharTok{\textbackslash{}\textbackslash{}}\StringTok{b([[:punct:]|[:digit:]])*[a{-}zA{-}Z]*([[:punct:]|[:digit:]])+[a{-}zA{-}Z]*([[:punct:]|[:digit:]])"}
+\NormalTok{  tmp3 }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(r,}\StringTok{" "}\NormalTok{,tmp2)}
+\NormalTok{  tmp4 }\OtherTok{\textless{}{-}} \FunctionTok{gsub}\NormalTok{(}\StringTok{"[\^{}A{-}Za{-}z]"}\NormalTok{,}\StringTok{" "}\NormalTok{,tmp3)}
+\NormalTok{  doc }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(doc, tmp4)}
+\NormalTok{\}}
+
+\NormalTok{corpus }\OtherTok{\textless{}{-}} \FunctionTok{Corpus}\NormalTok{(}\FunctionTok{VectorSource}\NormalTok{(doc))}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{TermDocumentMatrix}\NormalTok{(corpus, }\AttributeTok{control =} \FunctionTok{list}\NormalTok{(}\AttributeTok{removePunctuation =} \ConstantTok{TRUE}\NormalTok{, }
+                                                 \AttributeTok{stemming =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{wordLengths =} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{, }\DecValTok{20}\NormalTok{)))}
+\NormalTok{res }\OtherTok{\textless{}{-}} \FunctionTok{as.matrix}\NormalTok{(res)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{testingidx }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(res),}\DecValTok{100}\NormalTok{)}
+\NormalTok{trainingidx }\OtherTok{\textless{}{-}} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{ncol}\NormalTok{(res)}
+\NormalTok{trainingidx }\OtherTok{\textless{}{-}}\NormalTok{ trainingidx[}\SpecialCharTok{{-}}\NormalTok{testingidx]}
+
+\CommentTok{\# Sufficient statistics}
+\NormalTok{y }\OtherTok{\textless{}{-}}\NormalTok{ res}
+\NormalTok{w }\OtherTok{\textless{}{-}}\NormalTok{ res }\SpecialCharTok{\textgreater{}} \DecValTok{0}
+
+\NormalTok{w\_tr\_hm }\OtherTok{\textless{}{-}}\NormalTok{ w[,trainingidx[}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+\NormalTok{w\_tr\_sp }\OtherTok{\textless{}{-}}\NormalTok{ w[,trainingidx[trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+
+\NormalTok{y\_tr\_hm }\OtherTok{\textless{}{-}}\NormalTok{ y[,trainingidx[}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+\NormalTok{y\_tr\_sp }\OtherTok{\textless{}{-}}\NormalTok{ y[,trainingidx[trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{]]}
+             
+\NormalTok{w\_te }\OtherTok{\textless{}{-}}\NormalTok{ w[,testingidx]}
+\NormalTok{y\_te }\OtherTok{\textless{}{-}}\NormalTok{ y[,testingidx]}
+
+\CommentTok{\# Model fitting}
+\NormalTok{lambda\_hm }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm}\SpecialCharTok{*}\NormalTok{(y\_tr\_hm}\DecValTok{{-}1}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm)}
+\NormalTok{lambda\_hm[}\SpecialCharTok{!}\FunctionTok{is.finite}\NormalTok{(lambda\_hm)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{theta\_hm }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_hm) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)}
+
+\NormalTok{lambda\_sp }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp}\SpecialCharTok{*}\NormalTok{(y\_tr\_sp}\DecValTok{{-}1}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp)}
+\NormalTok{lambda\_sp[}\SpecialCharTok{!}\FunctionTok{is.finite}\NormalTok{(lambda\_sp)] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{theta\_sp }\OtherTok{\textless{}{-}} \FunctionTok{rowSums}\NormalTok{(w\_tr\_sp) }\SpecialCharTok{/} \FunctionTok{sum}\NormalTok{(trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)}
+
+\CommentTok{\# Using model on testing data}
+\NormalTok{log\_hm }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{sum}\NormalTok{(trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{length}\NormalTok{(trainingidx))}
+\NormalTok{log\_sp }\OtherTok{\textless{}{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{sum}\NormalTok{(}\SpecialCharTok{!}\NormalTok{trainingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\FunctionTok{length}\NormalTok{(trainingidx))}
+
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}}\NormalTok{ w\_te}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(theta\_hm}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(theta\_sp}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ lambda\_hm }\SpecialCharTok{+}\NormalTok{ lambda\_sp }
+                   \SpecialCharTok{+}\NormalTok{ (y\_te}\DecValTok{{-}1}\NormalTok{)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(lambda\_hm}\FloatTok{+0.0001}\NormalTok{) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(lambda\_sp}\FloatTok{+0.0001}\NormalTok{)))}
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}}\NormalTok{ log\_ratio }\SpecialCharTok{+}\NormalTok{ (}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{w\_te)}\SpecialCharTok{*}\NormalTok{(}\FunctionTok{log}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{theta\_hm) }\SpecialCharTok{{-}} \FunctionTok{log}\NormalTok{(}\DecValTok{1}\SpecialCharTok{{-}}\NormalTok{theta\_sp))}
+\NormalTok{log\_ratio }\OtherTok{\textless{}{-}} \FunctionTok{colSums}\NormalTok{(log\_ratio) }\SpecialCharTok{+}\NormalTok{ log\_hm }\SpecialCharTok{{-}}\NormalTok{ log\_sp}
+
+\CommentTok{\# Prediction accuracy on testing data}
+\FunctionTok{sum}\NormalTok{((log\_ratio }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) }\SpecialCharTok{==}\NormalTok{ (}\SpecialCharTok{!}\NormalTok{testingidx }\SpecialCharTok{\textgreater{}} \DecValTok{2188}\NormalTok{)) }\SpecialCharTok{/} \FunctionTok{length}\NormalTok{(testingidx)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.98
+\end{verbatim}
+
+The prediction accuracy is higher using the new regex, which differs in
+that it preserves contractions unlike the old regex. Contractions hold
+predictive value which were filtered out under the old regex.
+
+\end{document}
